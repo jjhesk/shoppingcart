@@ -5,7 +5,7 @@ package com.hb.hkm.hypebeaststore.Controllers;
  */
 public class Config {
     public static class wv{
-        public static final String domain_start = "";
+        public static final String domain_start = "https://store.hypebeast.com/";
     }
     public static class setting{
 

@@ -5,8 +5,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -27,33 +25,31 @@ public class HBWebview extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_store_front, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_store_demo_webview, container, false);
         return rootView;
     }
 
 
     private WebView wv;
-    private void view_settings(WebView view,  bgworker control) {
-       // token_cookie = control.get_web_cookie();
-        CookieSyncManager cookieSyncManager = CookieSyncManager.createInstance(getActivity());
+
+    private void view_settings(WebView view, bgworker control) {
+        // token_cookie = control.get_web_cookie();
+        /*CookieSyncManager cookieSyncManager = CookieSyncManager.createInstance(getActivity());
         cookieSyncManager.startSync();
         CookieManager cookieManager = CookieManager.getInstance();
         cookieManager.setAcceptCookie(true);
         cookieManager.removeSessionCookie();
-
-        cookieSyncManager.sync();
-
+        cookieSyncManager.sync();*/
         // Enable Javascript
         WebSettings webSettings = view.getSettings();
         webSettings.setJavaScriptEnabled(true);
-
     }
 
     @Override
     public void onViewCreated(View view, Bundle bundle) {
         wv = (WebView) view.findViewById(R.id.store_webview);
         view_settings(wv, (bgworker) getActivity().getApplication());
-        wv.setWebViewClient(new HBClient(getActivity(),wv));
+        wv.setWebViewClient(new HBClient(getActivity(), wv));
         wv.setWebChromeClient(new WebChromeClient());
         //wv.addJavascriptInterface(new JSInterfaceSupport(this, ac), "onecall_data_support");
         wv.loadUrl(Config.wv.domain_start);
