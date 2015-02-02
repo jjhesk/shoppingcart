@@ -1,16 +1,10 @@
 package com.hb.hkm.hypebeaststore;
 
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
-
+import com.hb.hkm.hypebeaststore.fragments.HBWebview;
 
 public class StoreFront extends ActionBarActivity {
 
@@ -20,7 +14,7 @@ public class StoreFront extends ActionBarActivity {
         setContentView(R.layout.activity_store_front);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
+                    .add(R.id.container, new HBWebview())
                     .commit();
         }
     }
@@ -48,19 +42,5 @@ public class StoreFront extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
 
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_store_front, container, false);
-            return rootView;
-        }
-    }
 }
