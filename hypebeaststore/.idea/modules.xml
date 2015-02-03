@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/hypebeaststore.iml" filepath="$PROJECT_DIR$/hypebeaststore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libHkmCheck/libHkmCheck.iml" filepath="$PROJECT_DIR$/libHkmCheck/libHkmCheck.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
     </modules>
   </component>

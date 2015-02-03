@@ -19,7 +19,8 @@ public class StoreFront extends ActionBarActivity {
                     .add(R.id.container, new HBWebview())
                     .commit();
         }
-        add_menu();
+
+        //add_menu();
     }
 
     private void add_menu() {
