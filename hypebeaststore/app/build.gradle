@@ -29,4 +29,9 @@ dependencies {
     compile 'org.lucasr.twowayview:twowayview:0.1.4'
     compile project(':JazzListView')
     compile project(':library')
+    compile('de.psdev.licensesdialog:licensesdialog:1.6.0') {
+        exclude module: 'support-v4'
+    }
+    compile project(':L-dialogs')
+    compile 'me.drakeet.materialdialog:library:1.2.2'
 }

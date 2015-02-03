@@ -107,4 +107,15 @@ public class asyclient extends AsyncTask<Void, Void, String> {
         if (mcallback != null) mcallback.beforeStart(this);
     }
 
+    @Override
+    protected void onPostExecute(String result) {
+        super.onPostExecute(result);
+        if (mcallback != null) {
+            if (isError) {
+                mcallback.onFailure(errorMessage);
+            } else {
+                mcallback.onSuccess(result);
+            }
+        }
+    }
 }

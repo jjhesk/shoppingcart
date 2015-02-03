@@ -10,6 +10,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/JazzListView" />
+            <option value="$PROJECT_DIR$/L-dialogs" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/libHkmCheck" />
             <option value="$PROJECT_DIR$/library" />

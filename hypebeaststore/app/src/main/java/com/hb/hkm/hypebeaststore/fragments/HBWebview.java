@@ -12,7 +12,7 @@ import android.webkit.WebView;
 import com.hb.hkm.hypebeaststore.Controllers.Config;
 import com.hb.hkm.hypebeaststore.Controllers.bgworker;
 import com.hb.hkm.hypebeaststore.R;
-import com.hb.hkm.hypebeaststore.webviewsupport.HBClient;
+import com.hb.hkm.hypebeaststore.fragments.WebViewComponents.HBClient;
 
 /**
  * Created by hesk on 2/2/15.

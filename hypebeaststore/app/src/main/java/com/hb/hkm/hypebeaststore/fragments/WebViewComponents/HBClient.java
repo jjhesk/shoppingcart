@@ -1,4 +1,4 @@
-package com.hb.hkm.hypebeaststore.webviewsupport;
+package com.hb.hkm.hypebeaststore.fragments.WebViewComponents;
 
 
 /**

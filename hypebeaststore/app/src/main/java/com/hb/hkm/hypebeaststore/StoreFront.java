@@ -5,10 +5,13 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.hb.hkm.hypebeaststore.Controllers.Config;
+import com.hb.hkm.hypebeaststore.datamodel.tasks.asyclient;
 import com.hb.hkm.hypebeaststore.fragments.GridDisplay;
-import com.hb.hkm.hypebeaststore.fragments.HBWebview;
+import com.hb.hkm.hypebeaststore.fragments.dialogComponents.RunLDialogs;
 
 public class StoreFront extends ActionBarActivity {
+    private asyclient sync;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,8 +22,23 @@ public class StoreFront extends ActionBarActivity {
                     .add(R.id.container, new GridDisplay())
                     .commit();
         }
+        sync = new asyclient(this, new asyclient.callback() {
+            @Override
+            public void onSuccess(String data) {
+                RunLDialogs.strDemo2(StoreFront.this, data);
+            }
 
-        //add_menu();
+            @Override
+            public void onFailure(String message) {
+                RunLDialogs.strDemo2(StoreFront.this, message);
+            }
+
+            @Override
+            public void beforeStart(asyclient task) {
+
+            }
+        });
+        sync.setURL(Config.newarrivals).execute();
     }
 
     private void add_menu() {
