@@ -5,8 +5,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.hb.hkm.hypebeaststore.fragments.GridDisplay;
 import com.hb.hkm.hypebeaststore.fragments.HBWebview;
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 public class StoreFront extends ActionBarActivity {
 
@@ -16,7 +16,7 @@ public class StoreFront extends ActionBarActivity {
         setContentView(R.layout.activity_store_front);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new HBWebview())
+                    .add(R.id.container, new GridDisplay())
                     .commit();
         }
 
@@ -24,7 +24,7 @@ public class StoreFront extends ActionBarActivity {
     }
 
     private void add_menu() {
-        SlidingMenu menu = new SlidingMenu(this);
+        /*SlidingMenu menu = new SlidingMenu(this);
         menu.setMode(SlidingMenu.LEFT);
         menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
         menu.setShadowWidthRes(R.dimen.shadow_width);
@@ -32,7 +32,7 @@ public class StoreFront extends ActionBarActivity {
         menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
         menu.setFadeDegree(0.35f);
         menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
-        menu.setMenu(R.layout.f_menu);
+        menu.setMenu(R.layout.f_menu);*/
     }
 
     @Override

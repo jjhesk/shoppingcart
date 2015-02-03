@@ -25,8 +25,8 @@ public class HBWebview extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_store_demo_webview, container, false);
-        return rootView;
+        View rv = inflater.inflate(R.layout.fragment_store_demo_webview, container, false);
+        return rv;
     }
 
 
