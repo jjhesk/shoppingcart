@@ -6,4 +6,7 @@ package com.hb.hkm.hypebeaststore.datamodel;
 public class Term {
     private String term;
     private int count;
+
+    public Term() {
+    }
 }

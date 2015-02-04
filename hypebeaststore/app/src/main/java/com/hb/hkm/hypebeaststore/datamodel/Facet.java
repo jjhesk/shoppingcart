@@ -8,4 +8,5 @@ public class Facet {
     private filter brand;
     private filter category;
     private filterPrice price;
+    public Facet(){}
 }

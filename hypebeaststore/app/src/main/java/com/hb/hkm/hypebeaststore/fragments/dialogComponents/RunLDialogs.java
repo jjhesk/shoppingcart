@@ -11,25 +11,23 @@ import uk.me.lewisdeane.ldialogs.CustomDialog;
  */
 public class RunLDialogs {
     public static void strDemo2(Context ctx, final String context) {
-        final MaterialDialog dalm = new MaterialDialog(ctx)
-                .setTitle("MaterialDialog")
-                .setMessage(context)
-                .setPositiveButton("OK", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                      //  dalm.dismiss();
+        final MaterialDialog materialdialognow = new MaterialDialog(ctx);
+        materialdialognow.setTitle("MaterialDialog");
+        materialdialognow.setMessage(context);
+        materialdialognow.setPositiveButton("OK", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                materialdialognow.dismiss();
+            }
+        });
+        materialdialognow.setNegativeButton("CANCEL", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                materialdialognow.dismiss();
 
-                    }
-                })
-                .setNegativeButton("CANCEL", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                      //  dalm.dismiss();
-
-                    }
-                });
-
-        dalm.show();
+            }
+        });
+        materialdialognow.show();
 
 
     }

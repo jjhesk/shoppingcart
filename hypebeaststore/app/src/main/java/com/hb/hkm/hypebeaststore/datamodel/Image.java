@@ -8,9 +8,28 @@ public class Image {
     private String path;
     private int position;
     private boolean is_model;
-    private TimeS create_at;
+    private TimeWrap create_at;
     private String small_url;
     private String medium_url;
     private String large_url;
     private String full_url;
+
+    public Image() {
+    }
+
+    public String getS_url() {
+        return small_url;
+    }
+
+    public String getM_url() {
+        return medium_url;
+    }
+
+    public String getL_url() {
+        return large_url;
+    }
+
+    public String getF_url() {
+        return full_url;
+    }
 }

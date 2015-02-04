@@ -9,4 +9,5 @@ public class Attribute {
     private String presentation;
     private String type;
     private String value;
+    public Attribute(){}
 }

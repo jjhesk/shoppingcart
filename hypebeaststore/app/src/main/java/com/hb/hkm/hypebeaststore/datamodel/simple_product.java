@@ -7,4 +7,7 @@ public class simple_product {
     private int id;
     private String name;
     private String slug;
+
+    public simple_product() {
+    }
 }

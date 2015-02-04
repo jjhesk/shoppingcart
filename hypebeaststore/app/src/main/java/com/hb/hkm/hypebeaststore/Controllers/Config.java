@@ -1,5 +1,7 @@
 package com.hb.hkm.hypebeaststore.Controllers;
 
+import android.os.Build;
+
 /**
  * Created by hesk on 2/2/15.
  */
@@ -14,6 +16,6 @@ public class Config {
     public static String clothing = wv.domain_start + "categories/clothing";
 
     public static class setting {
-
+        public static String useragent = "HypebeastStoreApp/1.0 Android " + Build.VERSION.SDK_INT;
     }
 }

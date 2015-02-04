@@ -13,4 +13,6 @@ public class Category {
     private int parent_id;
     private int taxonomy_id;
 
+    public Category() {
+    }
 }

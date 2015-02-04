@@ -13,4 +13,6 @@ public class Option {
     private String name;
     private int value;
 
+    public Option() {
+    }
 }

@@ -8,4 +8,7 @@ import java.util.ArrayList;
 public class filterPrice {
     private String _type;
     private ArrayList<Range> ranges;
+
+    public filterPrice() {
+    }
 }

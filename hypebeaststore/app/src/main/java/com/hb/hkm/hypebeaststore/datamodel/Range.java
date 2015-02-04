@@ -11,5 +11,8 @@ public class Range {
     private int max;
     private int total_count;
     private int total;
-    private float meqn;
+
+    //private float meqn;
+    public Range() {
+    }
 }

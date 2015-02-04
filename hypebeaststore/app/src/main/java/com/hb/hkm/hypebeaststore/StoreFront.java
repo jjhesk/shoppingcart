@@ -6,39 +6,37 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.hb.hkm.hypebeaststore.Controllers.Config;
-import com.hb.hkm.hypebeaststore.datamodel.tasks.asyclient;
-import com.hb.hkm.hypebeaststore.fragments.GridDisplay;
 import com.hb.hkm.hypebeaststore.fragments.dialogComponents.RunLDialogs;
+import com.hb.hkm.hypebeaststore.tasks.WorkerBuilder;
+import com.hb.hkm.hypebeaststore.tasks.asyclient;
 
 public class StoreFront extends ActionBarActivity {
-    private asyclient sync;
+    private WorkerBuilder sync;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_front);
+        // final Bundle instance = savedInstanceState;
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new GridDisplay())
-                    .commit();
+            sync = new WorkerBuilder(this, new asyclient.callback() {
+                @Override
+                public void onSuccess(String data) {
+                    RunLDialogs.strDemo2(StoreFront.this, data);
+                }
+
+                @Override
+                public void onFailure(String message) {
+                    RunLDialogs.strDemo2(StoreFront.this, message);
+                }
+
+                @Override
+                public void beforeStart(asyclient task) {
+
+                }
+            });
+            sync.setURL(Config.hometech).execute();
         }
-        sync = new asyclient(this, new asyclient.callback() {
-            @Override
-            public void onSuccess(String data) {
-                RunLDialogs.strDemo2(StoreFront.this, data);
-            }
-
-            @Override
-            public void onFailure(String message) {
-                RunLDialogs.strDemo2(StoreFront.this, message);
-            }
-
-            @Override
-            public void beforeStart(asyclient task) {
-
-            }
-        });
-        sync.setURL(Config.newarrivals).execute();
     }
 
     private void add_menu() {

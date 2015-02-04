@@ -18,5 +18,6 @@ public class Variant {
     private int product_id;
     private ArrayList<Option> option_values;
 
-
+    public Variant() {
+    }
 }

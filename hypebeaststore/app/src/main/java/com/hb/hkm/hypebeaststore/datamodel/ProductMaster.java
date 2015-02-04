@@ -1,7 +1,5 @@
 package com.hb.hkm.hypebeaststore.datamodel;
 
-import java.util.ArrayList;
-
 /**
  * Created by hesk on 2/3/15.
  */
@@ -15,6 +13,9 @@ public class ProductMaster {
     private int on_hold;
     private boolean in_stock;
     private int product_id;
+
     //presentation": null,
     //private ArrayList<Option> option_values;
+    public ProductMaster() {
+    }
 }

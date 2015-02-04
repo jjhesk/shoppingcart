@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    android:background="@color/main_background">
 
     <com.twotoasters.jazzylistview.JazzyGridView
         android:id="@id/android:list"
@@ -16,6 +13,4 @@
         android:horizontalSpacing="8dp"
         android:verticalSpacing="8dp" />
 
-    <!--   app:effect="fade"
-         app:only_animate_new_items="false" />-->
 </FrameLayout>

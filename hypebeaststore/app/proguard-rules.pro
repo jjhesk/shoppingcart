@@ -16,3 +16,4 @@
 #   public *;
 #}
 -keep class org.lucasr.twowayview.** { *; }
+-dontwarn com.squareup.okhttp.**
