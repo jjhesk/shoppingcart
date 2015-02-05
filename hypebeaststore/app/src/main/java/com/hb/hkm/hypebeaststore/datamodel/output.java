@@ -20,4 +20,6 @@ public class output {
     public Product getProduct(final int pos) {
         return products.get(pos);
     }
+
+
 }

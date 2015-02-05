@@ -8,4 +8,6 @@
     <dimen name="menu_item_height">50dp</dimen>
     <dimen name="button_radius">3dp</dimen>
     <dimen name="button_radius_edge">2.9dp</dimen>
+    <dimen name="button_margin_horizontal">10.9dp</dimen>
+    <dimen name="button_margin_vertical">2.9dp</dimen>
 </resources>

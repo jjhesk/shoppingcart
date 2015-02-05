@@ -4,15 +4,10 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
-import com.google.gson.stream.JsonReader;
 import com.hb.hkm.hypebeaststore.Controllers.Config;
-import com.hb.hkm.hypebeaststore.Controllers.DataBank;
-import com.hb.hkm.hypebeaststore.datamodel.output;
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -25,7 +20,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.io.StringReader;
 
 /**
  * Created by hesk on 2/3/15.
@@ -48,19 +42,7 @@ public abstract class asyclient extends AsyncTask<Void, Void, String> {
         public void beforeStart(final asyclient task);
     }
 
-    public boolean isSuccess(String str) throws JSONException {
-        final JSONObject js = new JSONObject(str);
-        final boolean t = js.getBoolean("success");
-        return t;
-    }
 
-    private String getProductRawJson(final String data) throws JSONException {
-        final JSONObject js = new JSONObject(data);
-        // final String t = js.getJSONArray("products").toString();
-        final String t = js.getString("products");
-        Log.d(TAG, t);
-        return t;
-    }
 
     public asyclient(Context ccc, callback cb) {
         httpParams = new BasicHttpParams();
@@ -84,21 +66,7 @@ public abstract class asyclient extends AsyncTask<Void, Void, String> {
         errorMessage = e;
     }
 
-    private void GSONParser(final String data) throws JsonSyntaxException, JsonIOException, JsonParseException {
-        final GsonBuilder gb = new GsonBuilder();
-        //gb.registerTypeAdapterFactory(new GTool.NullStringToEmptyAdapterFactory());
-        final Gson g = gb.create();
-
-       /*
-       DataBank.product_master_list = g.fromJson(data, new TypeToken<ArrayList<Product>>() {
-       }.getType());
-        */
-        final JsonReader reader = new JsonReader(new StringReader(data.trim()));
-        reader.setLenient(true);
-        output output_time = g.fromJson(reader, output.class);
-        Log.d(TAG, output_time.toString());
-        DataBank.product_master_list = output_time;
-    }
+    abstract protected void GSONParser(final String data);
 
     private Response exe_command() throws IOException {
         Request request = new Request.Builder()
@@ -126,7 +94,6 @@ public abstract class asyclient extends AsyncTask<Void, Void, String> {
             GSONParser(out);
             ViewConstruction();
             out = "complete";
-
 
         } catch (JsonIOException e) {
             setError(e.getMessage());

@@ -1,5 +1,7 @@
 package com.hb.hkm.hypebeaststore.datamodel;
 
+import com.hb.hkm.hypebeaststore.Controllers.Config;
+
 import java.util.ArrayList;
 
 /**
@@ -27,15 +29,27 @@ public class Product {
     public Product() {
     }
 
+    public String getSingleEndPoint() {
+        String out = "";
+        if (brands != null) {
+            out = Config.wv.single_request_route + brands.get(0).getSlug() + "/" + slug;
+        }
+        return out;
+    }
+
     public String getTitle() {
         return name;
     }
 
     public String getPrice() {
-        return price;
+        return "$" + price + " USD";
     }
 
     public String get_cover_image() {
         return images.get(0).getM_url();
+    }
+
+    public ArrayList<Image> get_product_images() {
+        return images;
     }
 }

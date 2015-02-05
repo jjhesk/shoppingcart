@@ -7,11 +7,11 @@ import android.view.MenuItem;
 
 import com.hb.hkm.hypebeaststore.Controllers.Config;
 import com.hb.hkm.hypebeaststore.fragments.dialogComponents.RunLDialogs;
-import com.hb.hkm.hypebeaststore.tasks.WorkerBuilder;
+import com.hb.hkm.hypebeaststore.tasks.ListResultBuilder;
 import com.hb.hkm.hypebeaststore.tasks.asyclient;
 
 public class StoreFront extends ActionBarActivity {
-    private WorkerBuilder sync;
+    private ListResultBuilder sync;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +19,7 @@ public class StoreFront extends ActionBarActivity {
         setContentView(R.layout.activity_store_front);
         // final Bundle instance = savedInstanceState;
         if (savedInstanceState == null) {
-            sync = new WorkerBuilder(this, new asyclient.callback() {
+            sync = new ListResultBuilder(this, new asyclient.callback() {
                 @Override
                 public void onSuccess(String data) {
                     RunLDialogs.strDemo2(StoreFront.this, data);

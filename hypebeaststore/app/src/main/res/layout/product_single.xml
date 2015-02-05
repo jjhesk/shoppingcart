@@ -57,13 +57,28 @@
     </LinearLayout>
 
     <Button
+
         android:background="@drawable/button_b_blue"
+        android:layout_marginLeft="@dimen/button_margin_horizontal"
+        android:layout_marginRight="@dimen/button_margin_horizontal"
+        android:layout_marginBottom="@dimen/button_margin_vertical"
+        android:layout_marginTop="@dimen/button_margin_vertical"
+        android:gravity="center_horizontal|center_vertical"
+        android:textColor="@color/card_face"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/add_to_bag" />
 
     <Button
         android:background="@drawable/button_b_blue"
+        android:layout_marginLeft="@dimen/button_margin_horizontal"
+        android:layout_marginRight="@dimen/button_margin_horizontal"
+        android:layout_marginBottom="@dimen/button_margin_vertical"
+        android:layout_marginTop="@dimen/button_margin_vertical"
+        android:gravity="center_horizontal|center_vertical"
+        android:textColor="@color/card_face"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/add_to_wish" />

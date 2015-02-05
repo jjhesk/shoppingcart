@@ -15,4 +15,8 @@ public class Category {
 
     public Category() {
     }
+
+    public String getSlug() {
+        return slug;
+    }
 }

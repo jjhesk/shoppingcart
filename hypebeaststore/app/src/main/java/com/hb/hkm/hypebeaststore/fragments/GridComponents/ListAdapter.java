@@ -44,7 +44,7 @@ public class ListAdapter extends ArrayAdapter<Product> {
         final String test = p.get_cover_image();
 
         vh.text.setText(p.getTitle());
-        vh.price_tag.setText(p.getPrice() + "USD");
+        vh.price_tag.setText(p.getPrice());
 
         //   int colorResId = position % 2 == 0 ? R.color.even : R.color.odd;
         //   holder.text.setBackgroundColor(res.getColor(colorResId));
