@@ -9,8 +9,8 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
+import com.hb.hkm.hypebeaststore.Controllers.App;
 import com.hb.hkm.hypebeaststore.Controllers.Config;
-import com.hb.hkm.hypebeaststore.Controllers.bgworker;
 import com.hb.hkm.hypebeaststore.R;
 import com.hb.hkm.hypebeaststore.fragments.WebViewComponents.HBClient;
 
@@ -32,7 +32,7 @@ public class HBWebview extends Fragment {
 
     private WebView wv;
 
-    private void view_settings(WebView view, bgworker control) {
+    private void view_settings(WebView view, App control) {
         // token_cookie = control.get_web_cookie();
         /*CookieSyncManager cookieSyncManager = CookieSyncManager.createInstance(getActivity());
         cookieSyncManager.startSync();
@@ -48,7 +48,7 @@ public class HBWebview extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle bundle) {
         wv = (WebView) view.findViewById(R.id.store_webview);
-        view_settings(wv, (bgworker) getActivity().getApplication());
+        view_settings(wv, (App) getActivity().getApplication());
         wv.setWebViewClient(new HBClient(getActivity(), wv));
         wv.setWebChromeClient(new WebChromeClient());
         //wv.addJavascriptInterface(new JSInterfaceSupport(this, ac), "onecall_data_support");

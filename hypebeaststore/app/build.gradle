@@ -36,4 +36,12 @@ dependencies {
     compile project(':L-dialogs')
     compile 'me.drakeet.materialdialog:library:1.2.2'
     compile 'com.squareup.okhttp:okhttp-urlconnection:2.2.0'
+    compile project(':libHkmCheck')
+
+
+
+
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.daimajia.slider:library:1.1.2@aar'
+    
 }

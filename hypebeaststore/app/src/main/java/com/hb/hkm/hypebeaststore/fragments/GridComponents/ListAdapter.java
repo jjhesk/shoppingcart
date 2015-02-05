@@ -1,6 +1,7 @@
 package com.hb.hkm.hypebeaststore.fragments.GridComponents;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,7 +11,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.hb.hkm.hypebeaststore.Controllers.Config;
 import com.hb.hkm.hypebeaststore.Controllers.DataBank;
+import com.hb.hkm.hypebeaststore.ProductSingle;
 import com.hb.hkm.hypebeaststore.R;
 import com.hb.hkm.hypebeaststore.datamodel.Product;
 import com.squareup.picasso.Picasso;
@@ -49,7 +52,7 @@ public class ListAdapter extends ArrayAdapter<Product> {
             Log.d(TAG, test);
             pica
                     .load(p.get_cover_image())
-                    //.load("http://store.hypebeast.com/bundles/hypebeasteditorial/images/hypebeast-logo.png")
+                            //.load("http://store.hypebeast.com/bundles/hypebeasteditorial/images/hypebeast-logo.png")
                     .fit()
                     .placeholder(R.drawable.ic_launcher)
                     .error(R.drawable.bike)
@@ -57,6 +60,16 @@ public class ListAdapter extends ArrayAdapter<Product> {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        vh.backdrop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Intent i = new Intent(getContext(), ProductSingle.class);
+                i.putExtra(Config.single_id, position);
+                getContext().startActivity(i);
+            }
+        });
+
+
     }
 
     @Override
@@ -78,11 +91,13 @@ public class ListAdapter extends ArrayAdapter<Product> {
         final TextView text;
         final TextView price_tag;
         final ImageView iv;
+        final View backdrop;
 
         ViewHolder(View view) {
             text = (TextView) view.findViewById(R.id.description);
             iv = (ImageView) view.findViewById(R.id.imagevi);
             price_tag = (TextView) view.findViewById(R.id.price_tag);
+            backdrop = view;
         }
     }
 }

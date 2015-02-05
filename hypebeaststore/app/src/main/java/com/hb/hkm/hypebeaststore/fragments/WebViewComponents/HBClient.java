@@ -24,7 +24,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.hb.hkm.hypebeaststore.Controllers.bgworker;
+import com.hb.hkm.hypebeaststore.Controllers.App;
 
 public class HBClient extends WebViewClient {
 
@@ -60,7 +60,7 @@ public class HBClient extends WebViewClient {
         Log.d(TAG, "cookie got:"
                 + cookieString);
         if (cookieString != null) {
-            bgworker ap = (bgworker) mContext.getApplicationContext();
+            App ap = (App) mContext.getApplicationContext();
            // ap.save_web_cookie(cookieString);
         }
         super.onPageStarted(view, url, favicon);

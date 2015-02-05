@@ -7,20 +7,24 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:id="@+id/imagevi" />
+        android:layout_height="150dp"
+        android:id="@+id/imagevi"
+        android:layout_margin="40dp" />
 
     <TextView
-        android:gravity="center_vertical"
+        android:gravity="center_vertical|center_horizontal"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:id="@+id/description" />
+        android:layout_height="35dp"
+        android:id="@+id/description"
+        android:textSize="20dp"
+        android:text="White Stapler" />
 
     <TextView
-        android:gravity="center_vertical"
+        android:gravity="center_vertical|center_horizontal"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="30dp"
         android:id="@+id/price_tag"
-
+        android:textSize="18dp"
+        android:text="$99.99 USD"
         />
 </LinearLayout>

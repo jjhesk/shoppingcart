@@ -9,7 +9,7 @@ import com.google.gson.GsonBuilder;
 /**
  * Created by hesk on 1/24/2015.
  */
-public abstract class gsonModel {
+public abstract class gmodel {
 
     public String toJson() {
         final GsonBuilder gsonb = new GsonBuilder();

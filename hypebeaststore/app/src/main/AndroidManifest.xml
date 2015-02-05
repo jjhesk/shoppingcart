@@ -17,7 +17,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
-        android:name=".Controllers.bgworker"
+        android:name=".Controllers.App"
         tools:ignore="InnerclassSeparator">
         <activity
             android:name=".StoreFront"
@@ -25,6 +25,13 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ProductSingle"
+            android:label="Product">
+            <intent-filter>
+                <action android:name="com.hb.hkm.hb.product" />
             </intent-filter>
         </activity>
     </application>
