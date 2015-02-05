@@ -35,7 +35,5 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.4.0'
     compile project(':L-dialogs')
     compile 'me.drakeet.materialdialog:library:1.2.2'
-    compile files('libs/okhttp-urlconnection-2.0.0.jar')
-    compile 'com.squareup:otto:+'
-  //  compile 'com.squareup.okhttp:okhttp-urlconnection:2.0.0-RC2'
+    compile 'com.squareup.okhttp:okhttp-urlconnection:2.2.0'
 }

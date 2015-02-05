@@ -48,8 +48,8 @@ public class ListAdapter extends ArrayAdapter<Product> {
         try {
             Log.d(TAG, test);
             pica
-                    //.load(p.get_cover_image())
-                    .load("http://store.hypebeast.com/bundles/hypebeasteditorial/images/hypebeast-logo.png")
+                    .load(p.get_cover_image())
+                    //.load("http://store.hypebeast.com/bundles/hypebeasteditorial/images/hypebeast-logo.png")
                     .fit()
                     .placeholder(R.drawable.ic_launcher)
                     .error(R.drawable.bike)
