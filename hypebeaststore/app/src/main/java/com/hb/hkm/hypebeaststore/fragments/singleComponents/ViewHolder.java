@@ -1,5 +1,6 @@
 package com.hb.hkm.hypebeaststore.fragments.singleComponents;
 
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -14,7 +15,6 @@ import com.hb.hkm.hypebeaststore.R;
 import com.hb.hkm.hypebeaststore.datamodel.Image;
 import com.hb.hkm.hypebeaststore.datamodel.Product;
 import com.hb.hkm.hypebeaststore.fragments.dialogComponents.RunLDialogs;
-import com.hb.hkm.hypebeaststore.tasks.ListResultBuilder;
 import com.hb.hkm.hypebeaststore.tasks.SingleBuilder;
 import com.hb.hkm.hypebeaststore.tasks.asyclient;
 
@@ -27,12 +27,13 @@ public class ViewHolder
         implements
         BaseSliderView.OnSliderClickListener,
         asyclient.callback {
+    private static String TAG = "viewholder vh";
     private ProductSingle context;
     private SliderLayout sl;
     private PagerIndicator pi;
     private TextView tv_title, tv_sub_title, tv_desc, price;
     private Button add_bag, add_wish;
-    private Product mproduct;
+    private Product mproduct_from_list, product_single;
     private SingleBuilder lb;
 
     public ViewHolder(final ProductSingle act, final int product_array_id) {
@@ -49,13 +50,13 @@ public class ViewHolder
     }
 
     private void after(final int pos) {
-        mproduct = DataBank.product_master_list.getProduct(pos);
-        final String singleurl = mproduct.getSingleEndPoint();
+        mproduct_from_list = DataBank.product_master_list.getProduct(pos);
+        final String singleurl = mproduct_from_list.getSingleEndPoint();
 
-        tv_title.setText(mproduct.getTitle());
+        tv_title.setText(mproduct_from_list.getTitle());
         add_bag.setText("Add to Bag");
         add_wish.setText("Add to Wishlist");
-        price.setText(mproduct.getPrice());
+        price.setText(mproduct_from_list.getPrice());
 
         //loading point
         lb = new SingleBuilder(context, this);
@@ -66,8 +67,8 @@ public class ViewHolder
 
     protected void setup_slider() {
         HashMap<String, String> url_maps = new HashMap<String, String>();
-
-        for (final Image image : mproduct.get_product_images()) {
+        product_single = DataBank.product_single;
+        for (final Image image : product_single.get_product_images()) {
             url_maps.put("", image.getL_url());
         }
 
@@ -94,6 +95,8 @@ public class ViewHolder
 
     @Override
     public void onSliderClick(BaseSliderView baseSliderView) {
+        // baseSliderView.getView().getNextFocusDownId()
+        Log.d(TAG, baseSliderView.toString());
 
     }
 
