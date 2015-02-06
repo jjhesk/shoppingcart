@@ -10,4 +10,7 @@
     <dimen name="button_radius_edge">2.9dp</dimen>
     <dimen name="button_margin_horizontal">10.9dp</dimen>
     <dimen name="button_margin_vertical">2.9dp</dimen>
+    <dimen name="g_item_size">16dp</dimen>
+    <dimen name="price_tag_price">12dp</dimen>
+    <dimen name="slider_height_single_product">350dp</dimen>
 </resources>

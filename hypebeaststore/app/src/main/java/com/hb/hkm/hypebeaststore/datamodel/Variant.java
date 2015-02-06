@@ -20,4 +20,8 @@ public class Variant {
 
     public Variant() {
     }
+
+    public int getId() {
+        return id;
+    }
 }

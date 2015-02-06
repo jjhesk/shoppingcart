@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:id="@+id/description"
-        android:textSize="20dp"
+        android:textSize="@dimen/g_item_size"
         android:text="White Stapler" />
 
     <TextView
@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:id="@+id/price_tag"
-        android:textSize="18dp"
+        android:textSize="@dimen/price_tag_price"
         android:text="$99.99 USD"
         />
 </LinearLayout>

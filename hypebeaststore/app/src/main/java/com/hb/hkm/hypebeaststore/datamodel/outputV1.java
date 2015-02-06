@@ -5,12 +5,12 @@ import java.util.ArrayList;
 /**
  * Created by hesk on 2/4/15.
  */
-public class output {
+public class outputV1 {
     private ArrayList<Product> products;
     private int current_page;
     private int pages;
 
-    public output() {
+    public outputV1() {
     }
 
     public ArrayList<Product> getProducts() {

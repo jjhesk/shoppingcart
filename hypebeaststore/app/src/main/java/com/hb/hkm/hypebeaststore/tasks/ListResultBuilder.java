@@ -9,10 +9,11 @@ import com.google.gson.JsonIOException;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.stream.JsonReader;
+import com.hb.hkm.hypebeaststore.Controllers.Config;
 import com.hb.hkm.hypebeaststore.Controllers.DataBank;
 import com.hb.hkm.hypebeaststore.R;
 import com.hb.hkm.hypebeaststore.StoreFront;
-import com.hb.hkm.hypebeaststore.datamodel.output;
+import com.hb.hkm.hypebeaststore.datamodel.outputV1;
 import com.hb.hkm.hypebeaststore.fragments.GridDisplay;
 
 import java.io.StringReader;
@@ -50,11 +51,21 @@ public class ListResultBuilder extends asyclient {
         */
 
 
-
         final JsonReader reader = new JsonReader(new StringReader(data.trim()));
         reader.setLenient(true);
-        output output_time = g.fromJson(reader, output.class);
-        Log.d(TAG, output_time.toString());
-        DataBank.product_master_list = output_time;
+
+        switch (Config.setting.APIversion) {
+            case 1:
+                outputV1 output_time = g.fromJson(reader, outputV1.class);
+                Log.d(TAG, output_time.toString());
+                DataBank.product_master_list = output_time;
+                break;
+            case 2:
+
+                
+                break;
+        }
+
+
     }
 }

@@ -18,6 +18,7 @@ public class Product {
     //private String back_in_stock_at;
     private String slug;
     private boolean has_variants;
+    private Variant master;
     private ArrayList<Variant> variants;
     private ArrayList<Attribute> attributes;
     // ignore options
@@ -27,6 +28,18 @@ public class Product {
     private ArrayList<simple_product> product_group;
 
     public Product() {
+    }
+
+    public boolean hasVariants() {
+        return has_variants;
+    }
+
+    public int getVariantID(final int i) {
+        return variants.get(i).getId();
+    }
+
+    public int getMasterID() {
+        return master.getId();
     }
 
     public String getSingleEndPoint() {
@@ -47,6 +60,10 @@ public class Product {
 
     public String get_cover_image() {
         return images.get(0).getM_url();
+    }
+
+    public String get_desc() {
+        return description;
     }
 
     public ArrayList<Image> get_product_images() {

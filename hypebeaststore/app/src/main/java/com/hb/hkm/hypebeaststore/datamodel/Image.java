@@ -17,6 +17,10 @@ public class Image {
     public Image() {
     }
 
+    public int getPosition() {
+        return position;
+    }
+
     public String getS_url() {
         return small_url;
     }

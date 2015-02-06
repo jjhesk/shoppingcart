@@ -8,7 +8,6 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 import com.hb.hkm.hypebeaststore.Controllers.DataBank;
 import com.hb.hkm.hypebeaststore.datamodel.Product;
-import com.hb.hkm.hypebeaststore.datamodel.output;
 
 import java.io.StringReader;
 
@@ -29,9 +28,22 @@ public class SingleBuilder extends asyclient {
         final Gson g = gb.create();
         final JsonReader reader = new JsonReader(new StringReader(data.trim()));
         reader.setLenient(true);
-        Product o = g.fromJson(reader, Product.class);
+
+        wrap_product o = g.fromJson(reader, wrap_product.class);
         Log.d(TAG, o.toString());
-        DataBank.product_single = o;
+        DataBank.product_single = o.getp();
+    }
+
+    class wrap_product {
+        private Product product;
+
+        public wrap_product() {
+
+        }
+
+        public Product getp() {
+            return product;
+        }
     }
 
     @Override

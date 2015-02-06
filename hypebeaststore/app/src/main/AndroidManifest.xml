@@ -29,10 +29,12 @@
         </activity>
         <activity
             android:name=".ProductSingle"
-            android:label="Product">
-            <intent-filter>
-                <action android:name="com.hb.hkm.hb.product" />
-            </intent-filter>
+            android:label="Product"
+            android:parentActivityName=".StoreFront">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".StoreFront" />
         </activity>
     </application>
 

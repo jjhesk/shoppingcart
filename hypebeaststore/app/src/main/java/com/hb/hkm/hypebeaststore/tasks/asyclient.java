@@ -16,8 +16,6 @@ import com.squareup.okhttp.Response;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -25,6 +23,8 @@ import java.io.IOException;
  * Created by hesk on 2/3/15.
  */
 public abstract class asyclient extends AsyncTask<Void, Void, String> {
+
+
     protected boolean isError = false;
     protected String errorMessage, submission_body_json, url;
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
@@ -41,8 +41,6 @@ public abstract class asyclient extends AsyncTask<Void, Void, String> {
 
         public void beforeStart(final asyclient task);
     }
-
-
 
     public asyclient(Context ccc, callback cb) {
         httpParams = new BasicHttpParams();
@@ -69,12 +67,16 @@ public abstract class asyclient extends AsyncTask<Void, Void, String> {
     abstract protected void GSONParser(final String data);
 
     private Response exe_command() throws IOException {
-        Request request = new Request.Builder()
+        Request.Builder request = new Request.Builder()
                 .url(url)
                 .header("Accept", "application/json")
-                .header("User-Agent", Config.setting.useragent)
-                .build();
-        final Response response = client.newCall(request).execute();
+                .header("User-Agent", Config.setting.useragent);
+
+        if (Config.setting.useAPIV2)
+            request.header("X-Api-Version", "2.0");
+
+
+        final Response response = client.newCall(request.build()).execute();
         return response;
     }
 
