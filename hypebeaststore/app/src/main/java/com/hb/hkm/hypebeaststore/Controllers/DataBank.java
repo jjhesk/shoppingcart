@@ -2,7 +2,9 @@ package com.hb.hkm.hypebeaststore.Controllers;
 
 import com.hb.hkm.hypebeaststore.datamodel.CartProduct;
 import com.hb.hkm.hypebeaststore.datamodel.Product;
+import com.hb.hkm.hypebeaststore.datamodel.Term;
 import com.hb.hkm.hypebeaststore.datamodel.outputV1;
+import com.hb.hkm.hypebeaststore.datamodel.outputV2;
 
 import java.util.ArrayList;
 
@@ -11,7 +13,10 @@ import java.util.ArrayList;
  */
 public class DataBank {
     public static String loaded = "";
-    public static outputV1 product_master_list;
+    public static outputV2 prodcut_master_list;
     public static Product product_single;
+    public static ArrayList<Product> current_product_list;
     public static ArrayList<CartProduct> my_cart = new ArrayList<CartProduct>();
+    public static ArrayList<Term> filter_list_size;
+    public static ArrayList<Term> filter_list_cat;
 }

@@ -5,7 +5,11 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.asynhkm.productchecker.Util.Tool;
+import com.hb.hkm.hypebeaststore.R;
 import com.hb.hkm.hypebeaststore.datamodel.Product;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  * Created by hesk on 2/2/15.
@@ -30,7 +34,17 @@ public class App extends Application {
         mac_id = Tool.get_mac_address(this);
         login = SP.getString(Config.save_login, "");
         pass = SP.getString(Config.save_password, "");
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                        .setDefaultFontPath("fonts/Roboto-RobotoRegular.ttf")
+                        .setFontAttrId(R.attr.fontPath)
+                        .build()
+        );
 
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
     @Override

@@ -22,42 +22,37 @@
             android:gravity="center" />
 
         <TextView
+            fontPath="fonts/Geoegia.ttf"
+            android:layout_marginLeft="@dimen/button_margin_horizontal"
+            android:layout_marginRight="@dimen/button_margin_horizontal"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:id="@+id/title" />
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/single_brand_font_size"
+            android:id="@+id/brand_title" />
 
         <TextView
+            fontPath="fonts/HelveticaNeueBold.ttf"
+            android:layout_marginLeft="@dimen/button_margin_horizontal"
+            android:layout_marginRight="@dimen/button_margin_horizontal"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:id="@+id/subtitle" />
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/single_product_title_font_size"
+            android:id="@+id/product_title" />
 
 
-        <TextView
+        <include
+            android:layout_marginLeft="@dimen/button_margin_horizontal"
+            android:layout_marginRight="@dimen/button_margin_horizontal"
+            layout="@layout/l_price_tag"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:id="@+id/price_tag" />
+            android:layout_height="wrap_content" />
 
-        <LinearLayout
-
+        <include
+            android:layout_marginLeft="@dimen/button_margin_horizontal"
+            android:layout_marginRight="@dimen/button_margin_horizontal"
+            layout="@layout/l_variants"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
-
-            <!--<SpinnerCompat
-                android:id="@+id/size"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-            </SpinnerCompat>
-
-            <SpinnerCompat
-                android:id="@+id/qty"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-            </SpinnerCompat>-->
-
-        </LinearLayout>
+            android:layout_height="wrap_content" />
 
         <Button
 
@@ -68,7 +63,6 @@
             android:layout_marginTop="@dimen/button_margin_vertical"
             android:gravity="center_horizontal|center_vertical"
             android:textColor="@color/card_face"
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/add_to_bag" />
@@ -86,9 +80,25 @@
             android:layout_height="wrap_content"
             android:id="@+id/add_to_wish" />
 
-        <TextView
-            android:id="@+id/desc"
+        <include
+            android:id="@+id/description"
+            layout="@layout/view_card_compact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+        <include
+            android:id="@+id/size"
+            layout="@layout/view_card_compact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <include
+            android:id="@+id/hardcode"
+            layout="@layout/view_card_compact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
     </LinearLayout>
 </ScrollView>

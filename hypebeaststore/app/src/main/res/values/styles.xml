@@ -5,4 +5,21 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <!--
+        android:background="@drawable/dropdown"
+        android:shadowDx="0dp"
+        android:shadowDy="0dp"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="15dp"
+
+
+        -->
+
+    <style name="AppTheme.button_spinner">
+        <item name="android:background">@drawable/dropdown</item>
+        <item name="android:shadowDx">0dp</item>
+        <item name="android:shadowDy">0dp</item>
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:paddingLeft">15dp</item>
+    </style>
 </resources>

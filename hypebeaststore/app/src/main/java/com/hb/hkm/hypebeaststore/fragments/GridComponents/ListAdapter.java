@@ -32,7 +32,7 @@ public class ListAdapter extends ArrayAdapter<Product> {
     public static final String TAG = "product list adapter";
 
     public ListAdapter(Context context, int itemLayout) {
-        super(context, itemLayout, R.id.description, DataBank.product_master_list.getProducts());
+        super(context, itemLayout, R.id.description, DataBank.current_product_list);
         inflater = LayoutInflater.from(context);
         res = context.getResources();
         this.itemLayout = itemLayout;
@@ -40,9 +40,10 @@ public class ListAdapter extends ArrayAdapter<Product> {
     }
 
     private void feedData(final ViewHolder vh, final int position) {
-        final Product p = DataBank.product_master_list.getProduct(position);
+        final Product p = DataBank.current_product_list.get(position);
         final String test = p.get_cover_image();
 
+        // vh.description.title.setText(p.getTitle());
         vh.text.setText(p.getTitle());
         vh.price_tag.setText(p.getPrice());
 
@@ -88,16 +89,20 @@ public class ListAdapter extends ArrayAdapter<Product> {
     }
 
     static class ViewHolder {
-        final TextView text;
+        //final cardbox description;
         final TextView price_tag;
+        final TextView text;
         final ImageView iv;
         final View backdrop;
 
         ViewHolder(View view) {
-            text = (TextView) view.findViewById(R.id.description);
+            // description = new cardbox((View) view.findViewById(R.id.description), "DESCRIPTION");
             iv = (ImageView) view.findViewById(R.id.imagevi);
             price_tag = (TextView) view.findViewById(R.id.price_tag);
             backdrop = view;
+            text = (TextView) view.findViewById(R.id.description);
         }
     }
+
+
 }

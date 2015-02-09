@@ -5,9 +5,9 @@ package com.hb.hkm.hypebeaststore.datamodel;
  */
 public class Image {
     private int id;
-    private String path;
+//    private String path;
     private int position;
-    private boolean is_model;
+//    private boolean is_model;
     private TimeWrap create_at;
     private String small_url;
     private String medium_url;

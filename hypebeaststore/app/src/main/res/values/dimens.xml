@@ -6,11 +6,14 @@
     <dimen name="slidingmenu_offset">16dp</dimen>
     <dimen name="list_padding">16dp</dimen>
     <dimen name="menu_item_height">50dp</dimen>
-    <dimen name="button_radius">3dp</dimen>
+    <dimen name="button_radius">0dp</dimen>
     <dimen name="button_radius_edge">2.9dp</dimen>
     <dimen name="button_margin_horizontal">10.9dp</dimen>
     <dimen name="button_margin_vertical">2.9dp</dimen>
     <dimen name="g_item_size">16dp</dimen>
     <dimen name="price_tag_price">12dp</dimen>
     <dimen name="slider_height_single_product">350dp</dimen>
+    <dimen name="single_brand_font_size">10dp</dimen>
+    <dimen name="single_product_title_font_size">9dp</dimen>
+    <dimen name="selection_title">19dp</dimen>
 </resources>

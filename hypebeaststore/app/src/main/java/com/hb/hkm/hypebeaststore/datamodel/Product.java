@@ -62,6 +62,10 @@ public class Product {
         return images.get(0).getM_url();
     }
 
+    public String get_brand_name() {
+        return brands.get(0).getNameStr();
+    }
+
     public String get_desc() {
         return description;
     }

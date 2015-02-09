@@ -8,4 +8,5 @@
     <color name="second_pref_v2">#ff8f8d91</color>
     <color name="third_pref">#ffc2c0c4</color>
     <color name="common_background">#ffffffff</color>
+    <color name="selection_dropdown_ui">#ffd8d8d8</color>
 </resources>

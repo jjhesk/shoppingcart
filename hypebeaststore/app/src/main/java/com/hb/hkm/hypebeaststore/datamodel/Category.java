@@ -16,6 +16,10 @@ public class Category {
     public Category() {
     }
 
+    public String getNameStr() {
+        return name;
+    }
+
     public String getSlug() {
         return slug;
     }

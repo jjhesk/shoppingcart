@@ -11,5 +11,11 @@ public class filter {
     private int total;
     private int other;
     private ArrayList<Term> terms;
-    public filter(){}
+
+    public filter() {
+    }
+
+    public ArrayList<Term> getTerms() {
+        return terms;
+    }
 }

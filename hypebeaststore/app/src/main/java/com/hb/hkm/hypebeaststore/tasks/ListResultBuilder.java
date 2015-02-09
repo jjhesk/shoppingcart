@@ -14,6 +14,7 @@ import com.hb.hkm.hypebeaststore.Controllers.DataBank;
 import com.hb.hkm.hypebeaststore.R;
 import com.hb.hkm.hypebeaststore.StoreFront;
 import com.hb.hkm.hypebeaststore.datamodel.outputV1;
+import com.hb.hkm.hypebeaststore.datamodel.outputV2;
 import com.hb.hkm.hypebeaststore.fragments.GridDisplay;
 
 import java.io.StringReader;
@@ -45,27 +46,22 @@ public class ListResultBuilder extends asyclient {
         //gb.registerTypeAdapterFactory(new GTool.NullStringToEmptyAdapterFactory());
         final Gson g = gb.create();
 
-       /*
-         DataBank.product_master_list = g.fromJson(data, new TypeToken<ArrayList<Product>>() {
-            }.getType());
-        */
-
 
         final JsonReader reader = new JsonReader(new StringReader(data.trim()));
         reader.setLenient(true);
-
         switch (Config.setting.APIversion) {
             case 1:
                 outputV1 output_time = g.fromJson(reader, outputV1.class);
                 Log.d(TAG, output_time.toString());
-                DataBank.product_master_list = output_time;
+                DataBank.current_product_list = output_time.getProducts();
+                DataBank.filter_list_size = output_time.sortedSize();
+                DataBank.filter_list_cat = output_time.sortedCate();
                 break;
             case 2:
-
-                
+                outputV2 out = g.fromJson(reader, outputV2.class);
+                Log.d(TAG, out.toString());
+                //DataBank.product_master_list = out;
                 break;
         }
-
-
     }
 }
