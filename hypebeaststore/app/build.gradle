@@ -44,5 +44,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:21.0.3'
     //exclude module: 'support-v4'
     compile 'uk.co.chrisjenx:calligraphy:2.0.1'
+    compile 'in.srain.cube:ultra-ptr:1.0.7@aar'
+    compile 'in.srain.cube:grid-view-with-header-footer:1.0.9'
     compile project(':jsoup-1.8.1')
 }

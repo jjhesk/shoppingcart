@@ -8,6 +8,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 import com.hb.hkm.hypebeaststore.Controllers.DataBank;
 import com.hb.hkm.hypebeaststore.datamodel.Product;
+import com.hb.hkm.hypebeaststore.datamodel.outputV1wrapAdapter;
 
 import java.io.StringReader;
 
@@ -36,6 +37,8 @@ public class SingleBuilder extends asyclient {
 
     class wrap_product {
         private Product product;
+
+        //        private outputV1wrapAdapter adpater;
 
         public wrap_product() {
 

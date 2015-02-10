@@ -36,6 +36,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".StoreFront" />
         </activity>
+
+        <activity
+            android:name=".SelectView"
+            android:label="selection" />
     </application>
 
 </manifest>

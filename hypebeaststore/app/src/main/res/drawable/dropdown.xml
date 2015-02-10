@@ -11,8 +11,14 @@
         </shape>
     </item>
     <item android:right="10dp">
-        <bitmap
-            android:src="@drawable/dropdown_menu_arrow"
-            android:gravity="right" />
+        <!--  <bitmap
+              android:src="@drawable/dropdown_menu_arrow"
+              android:gravity="right" />-->
+        <scale
+            android:gravity="right"
+            android:drawable="@drawable/dropdown_menu_arrow"
+            android:scaleGravity="center_vertical|center_horizontal"
+            android:scaleHeight="80%"
+            android:scaleWidth="80%" />
     </item>
 </layer-list>

@@ -17,4 +17,12 @@ public class Option {
 
     public Option() {
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPresentation() {
+        return presentation;
+    }
 }

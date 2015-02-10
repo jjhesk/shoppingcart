@@ -17,8 +17,8 @@
 
     <style name="AppTheme.button_spinner">
         <item name="android:background">@drawable/dropdown</item>
-        <item name="android:shadowDx">0dp</item>
-        <item name="android:shadowDy">0dp</item>
+     <!--   <item name="android:shadowDx">0dp</item>
+        <item name="android:shadowDy">0dp</item>-->
         <item name="android:gravity">left|center_vertical</item>
         <item name="android:paddingLeft">15dp</item>
     </style>
