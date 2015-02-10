@@ -1,5 +1,6 @@
 package com.hb.hkm.hypebeaststore;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -17,6 +18,7 @@ public class StoreFront extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_front);
+
         // final Bundle instance = savedInstanceState;
         if (savedInstanceState == null) {
             sync = new ListResultBuilder(this, new asyclient.callback() {
@@ -73,5 +75,11 @@ public class StoreFront extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    private void startPage(Class<?> clazz) {
+        if (clazz == null) {
+            return;
+        }
+        Intent intent = new Intent(this, clazz);
+        startActivity(intent);
+    }
 }
