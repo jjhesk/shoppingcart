@@ -23,7 +23,7 @@ import com.squareup.picasso.Picasso;
  */
 
 
-public class ListAdapter extends ArrayAdapter<Product> {
+public class HBResultAdapter extends ArrayAdapter<Product> {
 
     private final LayoutInflater inflater;
     private final Resources res;
@@ -31,7 +31,7 @@ public class ListAdapter extends ArrayAdapter<Product> {
     private final Picasso pica = Picasso.with(getContext());
     public static final String TAG = "product list adapter";
 
-    public ListAdapter(Context context, int itemLayout) {
+    public HBResultAdapter(Context context, int itemLayout) {
         super(context, itemLayout, R.id.description, DataBank.current_product_list);
         inflater = LayoutInflater.from(context);
         res = context.getResources();
@@ -71,6 +71,11 @@ public class ListAdapter extends ArrayAdapter<Product> {
         });
 
 
+    }
+
+    @Override
+    public int getCount() {
+        return DataBank.current_product_list.size();
     }
 
     @Override

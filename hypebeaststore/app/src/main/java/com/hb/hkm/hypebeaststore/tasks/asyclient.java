@@ -33,6 +33,11 @@ public abstract class asyclient extends AsyncTask<Void, Void, String> {
     protected HttpParams httpParams;
     protected OkHttpClient client = new OkHttpClient();
     protected callback mcallback;
+    protected status _mstatus;
+
+    enum status {
+        IDEL, PROCESSING, COMPLETE
+    }
 
     public interface callback {
         public void onSuccess(final String data);
@@ -48,6 +53,7 @@ public abstract class asyclient extends AsyncTask<Void, Void, String> {
         HttpConnectionParams.setSoTimeout(httpParams, 5000);
         ctx = ccc;
         mcallback = cb;
+        _mstatus = status.IDEL;
         // text_mc = ccc.getResources().getString(R.string.mock_dt);
         // Log.d(TAG, text_mc);
     }
@@ -85,6 +91,7 @@ public abstract class asyclient extends AsyncTask<Void, Void, String> {
     @Override
     protected String doInBackground(Void... params) {
         String out = "";
+        _mstatus = status.PROCESSING;
         try {
             Response r = exe_command();
             if (r.code() == 200) {
@@ -121,6 +128,7 @@ public abstract class asyclient extends AsyncTask<Void, Void, String> {
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
+        _mstatus = status.COMPLETE;
         if (mcallback != null) {
             if (isError) {
                 mcallback.onFailure(errorMessage);

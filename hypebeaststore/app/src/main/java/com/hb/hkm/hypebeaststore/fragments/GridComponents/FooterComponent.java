@@ -21,18 +21,17 @@ public class FooterComponent implements BounceListener {
         scl.ifFooterBounce(true);
         scl.setListener(this);
 
-
         field1 = (TextView) groupview.findViewById(R.id.status_now);
         field2 = (TextView) groupview.findViewById(R.id.info_extra);
 
+      /*
         field1 = new TextView(ctx);
         field1.setPadding(10, 20, 10, 20);
         field1.setText("Pullable Footer View");
         field1.setBackgroundColor(ctx.getResources().getColor(R.color.primary_pref_v2));
         field1.setTextColor(ctx.getResources().getColor(R.color.primary_pref));
-        field1.setGravity(Gravity.CENTER);
-
-        scl.setFooterView(field1);
+        field1.setGravity(Gravity.CENTER);*/
+        scl.setFooterView(groupview);
         //field1.setText("START TO LOAD MORE");
         scroller = scl;
 

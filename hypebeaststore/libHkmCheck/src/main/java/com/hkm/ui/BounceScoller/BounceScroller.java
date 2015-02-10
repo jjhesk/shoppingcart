@@ -474,7 +474,7 @@ public class BounceScroller extends RelativeLayout {
 					MeasureSpec.UNSPECIFIED);
 			mFooterHeight = mFooterView.getMeasuredHeight();
 			LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT,
-					mHeaderHeight);
+                    mFooterHeight);
 			addView(mFooterView, 0, params);
 		}
 	}

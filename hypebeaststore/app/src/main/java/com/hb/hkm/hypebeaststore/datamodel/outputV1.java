@@ -16,6 +16,14 @@ public class outputV1 {
     public outputV1() {
     }
 
+    public int totalpages() {
+        return pages;
+    }
+
+    public int current_page() {
+        return current_page;
+    }
+
     public ArrayList<Product> getProducts() {
         return products;
     }

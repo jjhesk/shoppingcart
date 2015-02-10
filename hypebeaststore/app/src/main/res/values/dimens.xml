@@ -16,5 +16,5 @@
     <dimen name="single_brand_font_size">10dp</dimen>
     <dimen name="single_product_title_font_size">9dp</dimen>
     <dimen name="selection_title">19dp</dimen>
-    <dimen name="footer_loader_height">500dp</dimen>
+    <dimen name="footer_loader_height">200dp</dimen>
 </resources>

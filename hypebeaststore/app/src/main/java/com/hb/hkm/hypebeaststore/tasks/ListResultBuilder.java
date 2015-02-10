@@ -11,11 +11,8 @@ import com.google.gson.JsonSyntaxException;
 import com.google.gson.stream.JsonReader;
 import com.hb.hkm.hypebeaststore.Controllers.Config;
 import com.hb.hkm.hypebeaststore.Controllers.DataBank;
-import com.hb.hkm.hypebeaststore.R;
-import com.hb.hkm.hypebeaststore.StoreFront;
 import com.hb.hkm.hypebeaststore.datamodel.outputV1;
 import com.hb.hkm.hypebeaststore.datamodel.outputV2;
-import com.hb.hkm.hypebeaststore.fragments.GridDisplay;
 
 import java.io.StringReader;
 
@@ -23,21 +20,39 @@ import java.io.StringReader;
  * Created by hesk on 2/4/15.
  */
 public class ListResultBuilder extends asyclient {
+    private int page, limit;
+
     public ListResultBuilder(Context ccc, callback cb) {
         super(ccc, cb);
+        page = 1;
+        limit = 12;
+    }
+
+    public ListResultBuilder setPageView(final int page_to_view) {
+        page = page_to_view;
+        return this;
+    }
+
+    public ListResultBuilder setListLimit(final int new_limit) {
+        limit = new_limit;
+        return this;
+    }
+
+    @Override
+    public asyclient setURL(String e) {
+        final String format_new = "%s?page=%d&limit=%d";
+        url = String.format(format_new, e, page, limit);
+        return this;
     }
 
     @Override
     protected void ViewConstruction() {
-        ((StoreFront) ctx).runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                ((StoreFront) ctx).getSupportFragmentManager().beginTransaction()
-                        .add(R.id.container, new GridDisplay())
-                        .commit();
-            }
-        });
 
+
+    }
+
+    public void buildExistingView() {
+        ViewConstruction();
     }
 
     @Override
@@ -53,9 +68,17 @@ public class ListResultBuilder extends asyclient {
             case 1:
                 outputV1 output_time = g.fromJson(reader, outputV1.class);
                 Log.d(TAG, output_time.toString());
-                DataBank.current_product_list = output_time.getProducts();
+                if (DataBank.current_product_list == null)
+                    DataBank.current_product_list = output_time.getProducts();
+                else
+                    DataBank.current_product_list.addAll(output_time.getProducts());
+
                 DataBank.filter_list_size = output_time.sortedSize();
                 DataBank.filter_list_cat = output_time.sortedCate();
+
+                DataBank.result_total_pages = output_time.totalpages();
+                DataBank.result_current_page = output_time.current_page();
+
                 break;
             case 2:
                 outputV2 out = g.fromJson(reader, outputV2.class);
