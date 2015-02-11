@@ -24,4 +24,8 @@ public class Variant {
     public int getId() {
         return id;
     }
+
+    public ArrayList<Option> getOptions() {
+        return option_values;
+    }
 }

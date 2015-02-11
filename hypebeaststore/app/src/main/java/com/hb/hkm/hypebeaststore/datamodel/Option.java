@@ -25,4 +25,8 @@ public class Option {
     public String getPresentation() {
         return presentation;
     }
+
+    public int getVal() {
+        return value;
+    }
 }

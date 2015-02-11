@@ -4,10 +4,10 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.asynhkm.productchecker.Util.Tool;
 import com.hb.hkm.hypebeaststore.Controllers.Config;
 import com.hb.hkm.hypebeaststore.Controllers.DataBank;
 import com.hb.hkm.hypebeaststore.fragments.GridComponents.GrideDisplayEvent;
@@ -19,31 +19,19 @@ import com.hb.hkm.hypebeaststore.tasks.asyclient;
 public class StoreFront extends ActionBarActivity implements asyclient.callback {
     private ListResultBuilder sync;
     public static String TAG = "store front here";
+    final GridDisplay mdisplay = new GridDisplay();
+    private Bundle msavedInstanceState;
 
     @Override
     public void onSuccess(String data) {
-        RunLDialogs.strDemo2(StoreFront.this, data);
-
-        final GridDisplay mdisplay = new GridDisplay();
-        mdisplay.setGridEvents(new GrideDisplayEvent() {
-            @Override
-            public void requestmoreitems(int page) {
-                if (sync.getStatus() == AsyncTask.Status.FINISHED) {
-
-                }
-            }
-        });
-
+        //RunLDialogs.strDemo2(StoreFront.this, data);
         StoreFront.this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                StoreFront.this
-                        .getSupportFragmentManager()
-                        .beginTransaction()
-                        .add(R.id.container, mdisplay)
-                        .commit();
+                mdisplay.notifyList();
             }
         });
+        Tool.trace(getApplicationContext(), "new items");
     }
 
     @Override
@@ -57,29 +45,42 @@ public class StoreFront extends ActionBarActivity implements asyclient.callback 
     }
 
 
-    public void loadingList(Bundle savedInstanceState, int page_at) {
+    public void loadingList(final int page_at) {
         // final Bundle instance = savedInstanceState;
-        if (savedInstanceState == null) {
-            if (DataBank.current_product_list == null) {
-                sync = new ListResultBuilder(this, this);
-                sync
-                        .setPageView(page_at)
-                        .setURL(Config.hometech)
-                        .execute();
+        sync = new ListResultBuilder(this, this);
+        sync.setPageView(page_at)
+                .setURL(Config.hometech)
+                .execute();
 
-            } else {
-                Log.d(TAG, "sync here");
-            }
-        } else {
-            sync.buildExistingView();
-        }
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_store_front);
-        loadingList(savedInstanceState, 1);
+        if (savedInstanceState == null) {
+            setContentView(R.layout.activity_store_front);
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.container, mdisplay)
+                    .commit();
+            if (DataBank.current_product_list.size() == 0) {
+                loadingList(1);
+            }
+        } else {
+            msavedInstanceState = savedInstanceState;
+        }
+
+
+        mdisplay.setGridEvents(new GrideDisplayEvent() {
+            @Override
+            public void requestmoreitems(int page) {
+                if (sync != null) {
+                    if (sync.getStatus() == AsyncTask.Status.FINISHED) {
+                        loadingList(page);
+                    }
+                }
+            }
+        });
     }
 
     private void add_menu() {

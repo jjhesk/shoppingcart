@@ -7,6 +7,7 @@ import android.os.Build;
  */
 public class Config {
     public static class wv {
+        public static final String hb_login = "http://hypebeast.com/login/facebook";
         public static final String domain_start = "https://store.hypebeast.com/";
         public static final String brands = "brands";
         public static String single_request_route = domain_start + brands + "/";
@@ -18,6 +19,8 @@ public class Config {
     public static String clothing = wv.domain_start + "categories/clothing";
 
     public static class setting {
+        public static double list_expand_factor = 0.65d;
+        public static int single_page_items = 15;
         public static int APIversion = 1;
         public static boolean useAPIV2 = false;
         public static String useragent_V2 = "Mozilla/5.0 (iPhone; CPU iPhone OS 10_10 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Mobile/12B411 HypebeastStoreApp/1.0";

@@ -2,23 +2,33 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:left="0dp">
         <shape
+            android:visible="true"
             android:shape="rectangle"
-            android:dither="false">
+            android:dither="true">
             <stroke
-                android:width="2dp"
+                android:width="1dp"
                 android:color="@color/selection_dropdown_ui" />
             <solid android:color="@android:color/white" />
         </shape>
     </item>
+
+
     <item android:right="10dp">
-        <!--  <bitmap
-              android:src="@drawable/dropdown_menu_arrow"
-              android:gravity="right" />-->
+        <!-- <bitmap
+             android:src="@drawable/dropdown_menu_arrow"
+             android:gravity="right"
+
+                   android:scaleGravity="right"
+
+        android:gravity="right"
+
+        />
+             -->
         <scale
-            android:gravity="right"
+
+
             android:drawable="@drawable/dropdown_menu_arrow"
-            android:scaleGravity="center_vertical|center_horizontal"
-            android:scaleHeight="80%"
-            android:scaleWidth="80%" />
+            android:scaleHeight="70%"
+            android:scaleWidth="70%" />
     </item>
 </layer-list>

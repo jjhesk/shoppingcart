@@ -44,7 +44,7 @@ public class HBResultAdapter extends ArrayAdapter<Product> {
         final String test = p.get_cover_image();
 
         // vh.description.title.setText(p.getTitle());
-        vh.text.setText(p.getTitle());
+        vh.text.setText(p.get_brand_name());
         vh.price_tag.setText(p.getPrice());
 
         //   int colorResId = position % 2 == 0 ? R.color.even : R.color.odd;
@@ -73,10 +73,10 @@ public class HBResultAdapter extends ArrayAdapter<Product> {
 
     }
 
-    @Override
+  /*  @Override
     public int getCount() {
         return DataBank.current_product_list.size();
-    }
+    }*/
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -93,21 +93,7 @@ public class HBResultAdapter extends ArrayAdapter<Product> {
         return convertView;
     }
 
-    static class ViewHolder {
-        //final cardbox description;
-        final TextView price_tag;
-        final TextView text;
-        final ImageView iv;
-        final View backdrop;
 
-        ViewHolder(View view) {
-            // description = new cardbox((View) view.findViewById(R.id.description), "DESCRIPTION");
-            iv = (ImageView) view.findViewById(R.id.imagevi);
-            price_tag = (TextView) view.findViewById(R.id.price_tag);
-            backdrop = view;
-            text = (TextView) view.findViewById(R.id.description);
-        }
-    }
 
 
 }

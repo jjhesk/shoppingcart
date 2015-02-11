@@ -1,7 +1,5 @@
 package com.hb.hkm.hypebeaststore.fragments.singleComponents;
 
-import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -15,7 +13,6 @@ import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.hb.hkm.hypebeaststore.Controllers.DataBank;
 import com.hb.hkm.hypebeaststore.ProductSingle;
 import com.hb.hkm.hypebeaststore.R;
-import com.hb.hkm.hypebeaststore.SelectView;
 import com.hb.hkm.hypebeaststore.datamodel.Image;
 import com.hb.hkm.hypebeaststore.datamodel.Product;
 import com.hb.hkm.hypebeaststore.fragments.dialogComponents.RunLDialogs;
@@ -47,12 +44,17 @@ public class ViewHolder
     private ProductSingle context;
     private SliderLayout sl;
     private PagerIndicator pi;
-    private TextView tv_brand_title, tv_product_title, price;
-    private Button add_bag, add_wish, sp_brand, sp_size, sp_cat, sp_qty;
+    private TextView tv_brand_title, tv_product_title, price, sales;
+    private Button add_bag, add_wish, sp_color, sp_size, sp_cat, sp_qty;
     private Product mproduct_from_list, product_single;
     private SingleBuilder lb;
     private AddCartManager acm;
-    private cardbox card_description, card_size;
+    private cardbox card_description, card_size, card_hard;
+    private SelectionSpinner SPinner;
+
+    public SelectionSpinner getOptionUIs() {
+        return SPinner;
+    }
 
     public ViewHolder(final ProductSingle act, final int product_array_id) {
         context = act;
@@ -61,17 +63,14 @@ public class ViewHolder
         tv_brand_title = (TextView) act.findViewById(R.id.brand_title);
         tv_product_title = (TextView) act.findViewById(R.id.product_title);
         price = (TextView) act.findViewById(R.id.price_tag);
-        sp_brand = (Button) act.findViewById(R.id.spinner_brand);
-        sp_brand.setOnClickListener(this);
-        sp_size = (Button) act.findViewById(R.id.spinner_size);
-        sp_size.setOnClickListener(this);
-        sp_cat = (Button) act.findViewById(R.id.spinner_cat);
-        sp_cat.setOnClickListener(this);
-        sp_qty = (Button) act.findViewById(R.id.spinner_quantity);
-        sp_qty.setOnClickListener(this);
-        card_description = new cardbox(act.findViewById(R.id.description), "DESCRIPTION");
-        card_description = new cardbox(act.findViewById(R.id.description), "DESCRIPTION");
+        sales = (TextView) act.findViewById(R.id.sale_price_tag);
 
+        SPinner = new SelectionSpinner(act);
+
+        card_description = new cardbox(act.findViewById(R.id.description), "DESCRIPTION");
+        card_size = new cardbox(act.findViewById(R.id.size), "SIZE");
+        card_hard = new cardbox(act.findViewById(R.id.hardcode), "TERMS");
+        if (!SPinner.foundSize()) card_size.setgone();
         add_bag = (Button) act.findViewById(R.id.add_to_bag);
         add_wish = (Button) act.findViewById(R.id.add_to_wish);
         if (product_array_id == -1) {
@@ -88,7 +87,14 @@ public class ViewHolder
             tv_product_title.setText(mproduct_from_list.getTitle());
             add_bag.setText("Add to Bag");
             add_wish.setText("Add to Wishlist");
-            price.setText(mproduct_from_list.getPrice());
+
+            if (!mproduct_from_list.getSalesPrice().equalsIgnoreCase("")) {
+                price.setText(mproduct_from_list.getPrice());
+                sales.setText(mproduct_from_list.getSalesPrice());
+            } else {
+                price.setText(mproduct_from_list.getPrice());
+                sales.setText("");
+            }
 
             //loading point
             request_tag = READSINGLE;
@@ -102,13 +108,21 @@ public class ViewHolder
         }
     }
 
+    protected void setup_selection_UI() {
+
+    }
+
+    protected void setup_textviews() {
+
+        card_description.setDesc(product_single.get_desc());
+        card_size.setDesc("iaonvoinaoivneionv ev ");
+        card_hard.setDesc("fiaojfdsoi jfiosdj ");
+
+    }
+
     protected void setup_slider() {
         try {
             final Map<String, String> url_maps = new HashMap<String, String>();
-            product_single = DataBank.product_single;
-
-            //   tv_desc.setText(product_single.get_desc());
-            card_description.setDesc(product_single.get_desc());
 
             if (product_single.get_product_images() == null) throw new Exception("no images found");
             for (Image image : product_single.get_product_images()) {
@@ -154,12 +168,14 @@ public class ViewHolder
     public void onSuccess(String data) {
         switch (request_tag) {
             case READSINGLE:
-                RunLDialogs.strDemo2(context, data);
+                //RunLDialogs.strDemo2(context, data);
+                product_single = DataBank.product_single;
                 setup_slider();
-
+                setup_selection_UI();
+                setup_textviews();
                 break;
             case ADDCART:
-                RunLDialogs.strDemo2(context, data);
+                //RunLDialogs.strDemo2(context, data);
 
                 break;
         }
@@ -175,51 +191,11 @@ public class ViewHolder
 
     }
 
-    static class cardbox {
-        TextView _title;
-        TextView content;
-        String tag;
-
-        public cardbox(View v, String tag) {
-            _title = (TextView) v.findViewById(R.id.title);
-            content = (TextView) v.findViewById(R.id.context_conten);
-            _title.setText(tag);
-            this.tag = tag;
-        }
-
-        public void setTitle(final String title) {
-            _title.setText(title);
-        }
-
-        public void setDesc(final String desc) {
-            content.setText(desc);
-        }
-    }
-
-    private void start_intent(final int action_type) {
-        Intent it = new Intent(context, SelectView.class);
-        Bundle f = new Bundle();
-        f.putInt(SelectView.selection_view, action_type);
-        it.putExtras(f);
-        context.startActivityForResult(it, SelectView.ACTION_ON_SELECT);
-
-    }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.spinner_size:
-                start_intent(0);
-                break;
-            case R.id.spinner_brand:
-                start_intent(0);
-                break;
-            case R.id.spinner_cat:
-                start_intent(0);
-                break;
-            case R.id.spinner_quantity:
-                start_intent(0);
-                break;
+
             case R.id.add_to_bag:
                 request_tag = ADDCART;
                 acm = new AddCartManager(context, this);
@@ -228,7 +204,6 @@ public class ViewHolder
                 acm
                         .setURL(AddCartManager.getUrl(h, 1))
                         .execute();
-
                 break;
 
 

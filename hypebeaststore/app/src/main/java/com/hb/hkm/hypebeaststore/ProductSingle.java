@@ -33,17 +33,23 @@ public class ProductSingle extends BasicSupportActionBarHKM {
             if (resultCode == RESULT_OK) {
                 // The user picked a contact.
                 // The Intent's data Uri identifies which contact was selected.
-                int getPos = data.getIntExtra(SelectView.pos, -1);
-                int kind = data.getIntExtra(SelectView.kind, 0);
+
+                Bundle b = data.getExtras();
+                int getPos = b.getInt(SelectView.pos, -1);
+                int kind = b.getInt(SelectView.kind, 0);
+                String displayVal = b.getString(SelectView.selection_val, "");
                 // Do something with the contact here (bigger example below)
                 switch (kind) {
                     case SelectView.SIZE:
                         // load = DataBank.filter_list_size;
+                        vh.getOptionUIs().setSize(displayVal);
                         break;
-                    case SelectView.CAT:
+                    case SelectView.COLOR:
+                        vh.getOptionUIs().setColor(displayVal);
                         // load = DataBank.filter_list_cat;
                         break;
-                    case SelectView.BRAND:
+                    case SelectView.QTY:
+                        vh.getOptionUIs().setQty(displayVal);
                         //  load = DataBank.filter_list_size;
                         break;
                 }

@@ -34,6 +34,28 @@ public class Product {
         return has_variants;
     }
 
+    public String[] getColorVariants() {
+        ArrayList<String> a = new ArrayList<String>();
+        if (product_group.size() == 0 || product_group == null) return new String[]{};
+        for (simple_product s : product_group) {
+            a.add(s.getName());
+        }
+        String[] c = new String[a.size()];
+        c = a.toArray(c);
+        return c;
+    }
+
+    public String[] getSizeVariants() {
+        ArrayList<String> a = new ArrayList<String>();
+        if (variants.size() == 0 || variants == null) return new String[]{};
+        for (Variant s : variants) {
+            a.add(s.getOptions().get(0).getVal() + "");
+        }
+        String[] c = new String[a.size()];
+        c = a.toArray(c);
+        return c;
+    }
+
     public int getVariantID(final int i) {
         return variants.get(i).getId();
     }
@@ -55,7 +77,28 @@ public class Product {
     }
 
     public String getPrice() {
-        return "$" + price + " USD";
+
+
+        return price == null || price.equalsIgnoreCase("0.00") ?
+                "" :
+                the_price(price);
+
+    }
+
+    public String getSalesPrice() {
+
+        return sale_price == null || sale_price.equalsIgnoreCase("0.00") ?
+                "" :
+                the_price(sale_price);
+
+    }
+
+    public boolean onSale() {
+        return sale_price != null;
+    }
+
+    private String the_price(final String p) {
+        return "$" + p + " USD";
     }
 
     public String get_cover_image() {

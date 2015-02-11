@@ -44,5 +44,8 @@ dependencies {
     compile 'com.android.support:appcompat-v7:21.0.3'
     //exclude module: 'support-v4'
     compile 'uk.co.chrisjenx:calligraphy:2.0.1'
+
+    compile 'com.github.traex.expandablelayout:library:1.2.2'
+
     compile project(':jsoup-1.8.1')
 }

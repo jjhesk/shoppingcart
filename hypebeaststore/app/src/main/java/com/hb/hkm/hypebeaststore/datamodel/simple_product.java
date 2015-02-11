@@ -10,4 +10,12 @@ public class simple_product {
 
     public simple_product() {
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
 }

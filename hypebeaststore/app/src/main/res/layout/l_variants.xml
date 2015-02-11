@@ -3,31 +3,23 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="10">
+    android:weightSum="6">
+<!--    android:layout_weight="3"-->
+    <Button
+        android:id="@+id/spinner_color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/button_spinner"
+        android:text="Color XX XX XX X XX XXX XX"
+        android:longClickable="false" />
 
     <Button
-        android:layout_weight="3"
+        android:layout_weight="2"
         android:id="@+id/spinner_size"
         android:text="Size"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/AppTheme.button_spinner" />
-
-    <Button
-        android:layout_weight="1"
-        android:id="@+id/spinner_cat"
-        android:text="Cate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/AppTheme.button_spinner" />
-
-    <Button
-        android:layout_weight="1"
-        android:id="@+id/spinner_brand"
-        android:text="Brand"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/AppTheme.button_spinner" />
+        style="@style/button_spinner" />
 
     <Button
         android:layout_weight="1"
@@ -35,7 +27,7 @@
         android:text="Qty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/AppTheme.button_spinner"
+        style="@style/button_spinner"
 
         />
 

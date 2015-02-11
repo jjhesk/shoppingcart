@@ -32,17 +32,33 @@ public class outputV1 {
         return products.get(pos);
     }
 
-    public ArrayList<Term> sortedSize() {
-        return Filtering.getSorted(adapter.getfacets().getSize().getTerms(), Filtering.SIZE_ORDER_REF);
+    public void sortedSize(final ArrayList<Term> existingList) {
+        sortingWorker(
+                existingList,
+                Filtering.getSorted(adapter.getfacets().getSize().getTerms(),
+                        Filtering.SIZE_ORDER_REF)
+        );
+    }
+
+    public void sortedCate(final ArrayList<Term> existingList) {
+        sortingWorker(
+                existingList,
+                Filtering.getSorted(adapter.getfacets().getCategory().getTerms(),
+                        Filtering.CAT_ORDER_REF)
+        );
     }
 
     /*public ArrayList<Term> sortedBrand() {
         return Filtering.getSorted(adapter.getfacets().getSize().getTerms(), Filtering.);
 
     }*/
+    private void sortingWorker(final ArrayList<Term> existingList,
+                               final ArrayList<Term> mlist) {
 
-    public ArrayList<Term> sortedCate() {
-        return Filtering.getSorted(adapter.getfacets().getCategory().getTerms(), Filtering.CAT_ORDER_REF);
+        existingList.clear();
+        existingList.addAll(mlist);
+
 
     }
+
 }

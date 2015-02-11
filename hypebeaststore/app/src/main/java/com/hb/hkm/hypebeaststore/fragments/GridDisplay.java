@@ -2,12 +2,12 @@ package com.hb.hkm.hypebeaststore.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 
+import com.hb.hkm.hypebeaststore.Controllers.Config;
 import com.hb.hkm.hypebeaststore.Controllers.DataBank;
 import com.hb.hkm.hypebeaststore.R;
 import com.hb.hkm.hypebeaststore.fragments.GridComponents.FooterComponent;
@@ -32,6 +32,7 @@ public class GridDisplay extends ListFragment implements AbsListView.OnScrollLis
     private View groupview_footer;
     private BounceScroller scroller;
     private FooterComponent ftv;
+    private HBResultAdapter madapter;
 
     public void setGridEvents(GrideDisplayEvent m_event) {
         event = m_event;
@@ -46,13 +47,20 @@ public class GridDisplay extends ListFragment implements AbsListView.OnScrollLis
         return rv;
     }
 
+    public void notifyList() {
+        madapter.notifyDataSetChanged();
+    }
+
     @Override
     public void onViewCreated(View v, Bundle b) {
         mGrid = (JazzyGridView) v.findViewById(android.R.id.list);
-        mGrid.setAdapter(new HBResultAdapter(getActivity(), R.layout.l_griditem));
+        madapter = new HBResultAdapter(getActivity(), R.layout.l_griditem);
+        mGrid.setAdapter(madapter);
         mGrid.setTransitionEffect(JazzyHelper.FADE);
         mGrid.setShouldOnlyAnimateNewItems(false);
         mGrid.setOnScrollListener(this);
+
+
         //     scroller = (BounceScroller) v.findViewById(R.id.pc_root);
         //     ftv = new FooterComponent(scroller, groupview_footer, getActivity());
     }
@@ -69,14 +77,12 @@ public class GridDisplay extends ListFragment implements AbsListView.OnScrollLis
     }
 
     @Override
-    public void onScroll(AbsListView view,
-                         int firstVisibleItem,
-                         int visibleItemCount,
-                         int totalItemCount) {
+    public void onScroll(AbsListView view, int firstVisibleItem,
+                         int visibleItemCount, int totalItemCount) {
         double b = (double) firstVisibleItem / (double) totalItemCount;
-        Log.d(TAG, firstVisibleItem + "/" + totalItemCount + " : " + b + "");
-        if (b > 0.8d) {
-            Log.d(TAG, "trigger run request. ");
+        //  Log.d(TAG, firstVisibleItem + "/" + totalItemCount + " : " + b + "");
+        if (b > Config.setting.list_expand_factor) {
+            //  Log.d(TAG, "trigger run request. ");
             if (DataBank.result_total_pages > DataBank.result_current_page) {
                 if (event != null) event.requestmoreitems(DataBank.result_current_page + 1);
             }

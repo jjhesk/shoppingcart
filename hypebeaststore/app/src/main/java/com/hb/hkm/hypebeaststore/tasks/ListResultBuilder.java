@@ -25,7 +25,7 @@ public class ListResultBuilder extends asyclient {
     public ListResultBuilder(Context ccc, callback cb) {
         super(ccc, cb);
         page = 1;
-        limit = 12;
+        limit = Config.setting.single_page_items;
     }
 
     public ListResultBuilder setPageView(final int page_to_view) {
@@ -68,13 +68,11 @@ public class ListResultBuilder extends asyclient {
             case 1:
                 outputV1 output_time = g.fromJson(reader, outputV1.class);
                 Log.d(TAG, output_time.toString());
-                if (DataBank.current_product_list == null)
-                    DataBank.current_product_list = output_time.getProducts();
-                else
-                    DataBank.current_product_list.addAll(output_time.getProducts());
 
-                DataBank.filter_list_size = output_time.sortedSize();
-                DataBank.filter_list_cat = output_time.sortedCate();
+                DataBank.current_product_list.addAll(output_time.getProducts());
+
+                output_time.sortedSize(DataBank.filter_list_size);
+                output_time.sortedCate(DataBank.filter_list_cat);
 
                 DataBank.result_total_pages = output_time.totalpages();
                 DataBank.result_current_page = output_time.current_page();
