@@ -71,11 +71,13 @@ public class ListResultBuilder extends asyclient {
 
                 DataBank.current_product_list.addAll(output_time.getProducts());
 
+                DataBank.result_total_pages = output_time.totalpages();
+                DataBank.result_current_page = output_time.current_page();
+                DataBank.filter_list_price.addAll(output_time.getFacet().getPrice());
+                DataBank.filter_list_brand.addAll(output_time.getFacet().getPrice());
                 output_time.sortedSize(DataBank.filter_list_size);
                 output_time.sortedCate(DataBank.filter_list_cat);
 
-                DataBank.result_total_pages = output_time.totalpages();
-                DataBank.result_current_page = output_time.current_page();
 
                 break;
             case 2:

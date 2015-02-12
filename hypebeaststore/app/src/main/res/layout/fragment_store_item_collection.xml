@@ -1,23 +1,67 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--<com.hkm.ui.BounceScoller.BounceScroller
+<?xml version="1.0" encoding="utf-8"?><!--<com.hkm.ui.BounceScoller.BounceScroller
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/pc_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_background">-->
-    <FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <com.twotoasters.jazzylistview.JazzyGridView
-            android:id="@id/android:list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:divider="@null"
-            android:numColumns="2"
-            android:horizontalSpacing="8dp"
-            android:verticalSpacing="8dp"
 
-            />
-    </FrameLayout>
-<!--</com.hkm.ui.BounceScoller.BounceScroller>-->
+
+<!--   <FrameLayout
+
+       android:layout_height="fill_parent"
+       android:layout_width="fill_parent">
+   </FrameLayout>
+-->
+<FrameLayout
+
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+
+
+    android:id="@android:id/tabcontent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <com.twotoasters.jazzylistview.JazzyGridView
+        android:id="@id/android:list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@null"
+        android:numColumns="2"
+        android:horizontalSpacing="8dp"
+        android:verticalSpacing="8dp"
+
+        />
+
+    <com.melnykov.fab.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_picnic_bag"
+        fab:fab_colorNormal="@color/primary_pref"
+        fab:fab_colorPressed="@color/primary_pref_v2"
+        fab:fab_colorRipple="@color/second_pref_v2"
+        fab:fab_type="mini" />
+
+</FrameLayout>
+
+
+    <!--</com.hkm.ui.BounceScoller.BounceScroller>--><!--
+<com.melnykov.fab.FloatingActionButton
+android:id="@+id/fab"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_gravity="bottom|right"
+android:layout_margin="16dp"
+android:src="@drawable/ic_action_content_new"
+fab:fab_colorNormal="@color/primary"
+fab:fab_colorPressed="@color/primary_pressed"
+fab:fab_colorRipple="@color/ripple" />
+
+
+
+
+-->

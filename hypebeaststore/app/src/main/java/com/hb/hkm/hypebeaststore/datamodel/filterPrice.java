@@ -11,4 +11,13 @@ public class filterPrice {
 
     public filterPrice() {
     }
+
+    public ArrayList<Term> getRanges() {
+        final ArrayList<Term> newList = new ArrayList<Term>();
+        for (Range r : ranges) {
+            newList.add(r.getTerm());
+        }
+
+        return newList;
+    }
 }

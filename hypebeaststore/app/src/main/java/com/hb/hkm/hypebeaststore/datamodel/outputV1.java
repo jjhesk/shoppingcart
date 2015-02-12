@@ -24,6 +24,10 @@ public class outputV1 {
         return current_page;
     }
 
+    public outputV1Facets getFacet() {
+        return adapter.getfacets();
+    }
+
     public ArrayList<Product> getProducts() {
         return products;
     }
@@ -54,11 +58,8 @@ public class outputV1 {
     }*/
     private void sortingWorker(final ArrayList<Term> existingList,
                                final ArrayList<Term> mlist) {
-
         existingList.clear();
         existingList.addAll(mlist);
-
-
     }
 
 }

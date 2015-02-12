@@ -1,5 +1,7 @@
 package com.hb.hkm.hypebeaststore.datamodel;
 
+import java.util.ArrayList;
+
 /**
  * Created by hesk on 2/9/15.
  */
@@ -24,7 +26,7 @@ public class outputV1Facets {
         return category;
     }
 
-    public filterPrice getPrice() {
-        return price;
+    public ArrayList<Term> getPrice() {
+        return price.getRanges();
     }
 }

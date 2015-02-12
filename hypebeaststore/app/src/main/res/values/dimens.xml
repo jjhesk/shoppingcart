@@ -17,4 +17,6 @@
     <dimen name="single_product_title_font_size">9dp</dimen>
     <dimen name="selection_title">19dp</dimen>
     <dimen name="footer_loader_height">200dp</dimen>
+    <dimen name="dialog_title">25dp</dimen>
+    <dimen name="dialog_context_font_size">15dp</dimen>
 </resources>

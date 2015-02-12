@@ -59,12 +59,19 @@ public class Filtering extends asyclient {
         for (String t : ref) {
             for (Term T : items) {
                 String strTerm = T.theTerm();
-                if (strTerm == t) {
+                if (strTerm.equalsIgnoreCase(t)) {
                     newlist.add(new Term(t, T.count()));
                 }
             }
-
         }
         return newlist;
+    }
+
+    public static String[] TermsAsList(final ArrayList<Term> items) {
+        final ArrayList<String> sl = new ArrayList<String>();
+        for (Term T : items) {
+            sl.add(T.theTerm());
+        }
+        return sl.toArray(new String[sl.size()]);
     }
 }

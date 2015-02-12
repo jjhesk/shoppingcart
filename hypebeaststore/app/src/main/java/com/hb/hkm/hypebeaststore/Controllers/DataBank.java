@@ -16,8 +16,13 @@ public class DataBank {
     public static Product product_single;
     public static final ArrayList<Product> current_product_list = new ArrayList<Product>();
     public static final ArrayList<CartProduct> my_cart = new ArrayList<CartProduct>();
+
+
     public static final ArrayList<Term> filter_list_size = new ArrayList<Term>();
     public static final ArrayList<Term> filter_list_cat = new ArrayList<Term>();
+    public static final ArrayList<Term> filter_list_price = new ArrayList<Term>();
+    public static final ArrayList<Term> filter_list_brand = new ArrayList<Term>();
+
 
     public static int result_total_pages = 0;
     public static int result_current_page = 0;
