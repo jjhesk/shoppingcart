@@ -45,7 +45,7 @@ public class StoreFront extends ActionBarActivity implements
             public void run() {
                 mdisplay.notifyList();
                 // if (DataBank.result_total_pages == 1) {
-                initTabs();
+                // initTabs();
                 //     Log.d(TAG, "request init tab");
                 // }
             }
@@ -102,13 +102,13 @@ public class StoreFront extends ActionBarActivity implements
             }
         });
 
-        initTabs();
+        // initTabs();
     }
 
     final ArrayList<String> items_list = new ArrayList<String>();
 
     private void initTabs() {
-        items_list.clear();
+        //  items_list.clear();
         mTab.removeAllViews();
         if (DataBank.filter_list_brand.size() > 0) items_list.add("Brand");
         if (DataBank.filter_list_cat.size() > 0) items_list.add("Category");
@@ -157,12 +157,18 @@ public class StoreFront extends ActionBarActivity implements
         int tabPos = materialTab.getPosition();
         ArrayList<Term> terms = new ArrayList<Term>();
         final String title = items_list.get(tabPos);
+
+        Tool.trace(getApplicationContext(), "pressed title = " + title);
+
         if (title.equalsIgnoreCase("Brand")) terms = DataBank.filter_list_brand;
         if (title.equalsIgnoreCase("Category")) terms = DataBank.filter_list_cat;
         if (title.equalsIgnoreCase("Size")) terms = DataBank.filter_list_size;
         if (title.equalsIgnoreCase("Price")) terms = DataBank.filter_list_price;
+
+
         if (terms.size() > 0) {
             final String[] choices = Filtering.TermsAsList(terms);
+            //Tool.trace(getApplicationContext(), "there are choices = " + choices.length);
             listdialog(title, choices, 0);
         }
     }

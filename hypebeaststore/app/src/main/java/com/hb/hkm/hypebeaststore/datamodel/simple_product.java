@@ -18,4 +18,10 @@ public class simple_product {
     public String getSlug() {
         return slug;
     }
+
+    public int getId() {
+        return id;
+    }
+
+
 }

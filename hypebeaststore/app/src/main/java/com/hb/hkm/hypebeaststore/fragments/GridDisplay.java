@@ -35,6 +35,7 @@ public class GridDisplay extends ListFragment implements AbsListView.OnScrollLis
     private BounceScroller scroller;
     private FooterComponent ftv;
     private HBResultAdapter madapter;
+    private FloatingActionButton mfab;
     private boolean floating_bag = true;
 
     public void setGridEvents(GrideDisplayEvent m_event) {
@@ -56,22 +57,21 @@ public class GridDisplay extends ListFragment implements AbsListView.OnScrollLis
 
     @Override
     public void onViewCreated(View v, Bundle b) {
+        mfab = (FloatingActionButton) v.findViewById(R.id.fab);
         mGrid = (JazzyGridView) v.findViewById(android.R.id.list);
         madapter = new HBResultAdapter(getActivity(), R.layout.l_griditem);
         mGrid.setAdapter(madapter);
         mGrid.setTransitionEffect(JazzyHelper.FADE);
         mGrid.setShouldOnlyAnimateNewItems(false);
+
+
+
+
+        if (floating_bag)
+            mfab.attachToListView(mGrid);
+        //need some more resources to find out the problem on this line
+
         mGrid.setOnScrollListener(this);
-
-
-        // ListView listView = (ListView) findViewById(android.R.id.list);
-
-        if (floating_bag) {
-            FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.fab);
-            fab.attachToListView(mGrid);
-        }
-
-
         //     scroller = (BounceScroller) v.findViewById(R.id.pc_root);
         //     ftv = new FooterComponent(scroller, groupview_footer, getActivity());
     }
@@ -93,13 +93,11 @@ public class GridDisplay extends ListFragment implements AbsListView.OnScrollLis
     public void onScroll(AbsListView view, int firstVisibleItem,
                          int visibleItemCount, int totalItemCount) {
         double b = (double) firstVisibleItem / (double) totalItemCount;
-        //  Log.d(TAG, firstVisibleItem + "/" + totalItemCount + " : " + b + "");
-
+        Log.d(TAG, firstVisibleItem + "/" + totalItemCount + " : " + b + "");
         double k = Config.setting.list_expand_factor + (double) totalItemCount / (double) target_total * (100 - Config.setting.list_expand_factor) / 100d;
-
-       // Log.d(TAG, k + " : " + b + "");
+        Log.d(TAG, k + " : " + b + "");
         if (b > k) {
-          //  Log.d(TAG, "trigger run request. ");
+            Log.d(TAG, "trigger run request. ");
             if (DataBank.result_total_pages > DataBank.result_current_page) {
                 if (event != null) event.requestmoreitems(DataBank.result_current_page + 1);
             }

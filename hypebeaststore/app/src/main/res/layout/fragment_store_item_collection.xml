@@ -39,12 +39,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
-        android:layout_margin="16dp"
+        android:layout_margin="32dp"
         android:src="@drawable/ic_picnic_bag"
         fab:fab_colorNormal="@color/primary_pref"
         fab:fab_colorPressed="@color/primary_pref_v2"
         fab:fab_colorRipple="@color/second_pref_v2"
-        fab:fab_type="mini" />
+        fab:fab_type="normal" />
 
 </FrameLayout>
 

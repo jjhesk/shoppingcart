@@ -4,19 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="6">
-<!--    android:layout_weight="3"-->
+    <!--    android:layout_weight="3"-->
     <Button
         android:id="@+id/spinner_color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/button_spinner"
-        android:text="Color XX XX XX X XX XXX XX"
+        android:text="Select Variants"
         android:longClickable="false" />
 
     <Button
         android:layout_weight="2"
         android:id="@+id/spinner_size"
         android:text="Size"
+        android:minWidth="80dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/button_spinner" />
@@ -27,6 +28,7 @@
         android:text="Qty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:minWidth="90dp"
         style="@style/button_spinner"
 
         />

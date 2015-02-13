@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 /**
  * Created by hesk on 2/9/15.
@@ -31,31 +32,33 @@ public class SelectView extends ListActivity implements AdapterView.OnItemClickL
         // We'll define a custom screen layout here (the one shown above), but
         // typically, you could just use the standard ListActivity layout.
         setContentView(R.layout.act_selection_list);
-        loading_list = getIntent()
-                .getExtras().getStringArray(SelectView.arraystring);
-        /*
+        loading_list = getIntent().getExtras().getStringArray(SelectView.arraystring);
+        final TextView tv = (TextView) findViewById(R.id.title_top);
 
+        String tag_txt = "";
         switch (getIntent().getExtras().getInt(SelectView.selection_view, 0)) {
             case SIZE:
-                load = DataBank.filter_list_size;
+                tag_txt = "Size";
                 break;
-            case CAT:
-                load = DataBank.filter_list_cat;
+            case COLOR:
+                tag_txt = "Product Variants";
                 break;
-            case BRAND:
-                load = DataBank.filter_list_size;
+            case QTY:
+                tag_txt = "Quantity";
                 break;
         }
 
-
-        */
-
+        tv.setText(tag_txt);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, loading_list);
+
         final ListView t = (ListView) findViewById(android.R.id.list);
+        t.setBackgroundColor(getResources().getColor(R.color.common_background));
+
         // Bind to our new adapter.
         setListAdapter(adapter);
         t.setOnItemClickListener(this);
+
     }
 
     @Override

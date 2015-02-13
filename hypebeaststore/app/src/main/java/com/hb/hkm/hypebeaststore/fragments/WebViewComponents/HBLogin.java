@@ -5,20 +5,18 @@ import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
+import com.asynhkm.productchecker.Util.Tool;
+import com.hb.hkm.hypebeaststore.tasks.networkBrowserClient;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
 
 /**
  * Created by hesk on 2/11/15.
  */
-public class HBLogin extends WebViewClient {
+public class HBLogin extends WebViewClient implements networkBrowserClient.callback {
     private static final String TAG = "HBloginFB";
     private final WebView mWebView;
     private boolean loadingFinished = true;
@@ -46,30 +44,19 @@ public class HBLogin extends WebViewClient {
         return string.toString();
     }
 
+
+
+
+
+
+
+    /*
     protected void getURL(final String urlConection) {
-        // here you will use the url to access the headers.
-        // in this case, the Content-Length one
-        URL url;
-        URLConnection conexion;
-        try {
-            url = new URL(urlConection);
-            conexion = url.openConnection();
-            conexion.setConnectTimeout(3000);
-            conexion.connect();
-            // get the size of the file which is in the header of the request
-            int size = conexion.getContentLength();
-        } catch (Exception e) {
-        }
 
 
-        // and here, if you want, you can load the page normally
-        String htmlContent = "";
-
-        HttpGet httpGet = new HttpGet(urlConection);
-        // this receives the response
         HttpResponse response;
         try {
-            /*response = httpClient.execute(httpGet);
+            response = httpClient.execute(httpGet);
             if (response.getStatusLine().getStatusCode() == 200) {
 
                 HttpEntity entity = response.getEntity();
@@ -77,12 +64,12 @@ public class HBLogin extends WebViewClient {
                     InputStream inputStream = entity.getContent();
                     htmlContent = convertToString(inputStream);
                 }
-            }*/
+            }
         } catch (Exception e) {
         }
 
         mWebView.loadData(htmlContent, "text/html", "utf-8");
-    }
+    }*/
 
     @Override
     public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
@@ -104,10 +91,19 @@ public class HBLogin extends WebViewClient {
         if (urlNewString.equalsIgnoreCase(blockr_createnewaccount))
             return true;
 
-        Log.d(TAG, "login: " + urlNewString);
-        loadingFinished = false;
-        mWebView.loadUrl(urlNewString);
+        //  Log.d(TAG, "login: " + urlNewString);
+        if (urlNewString.contains("http://hypebeast.com/login/check-facebook?code=")) {
+            final networkBrowserClient client = new networkBrowserClient(mWebView.getContext(), this);
+            Log.d(TAG, "now we do request with the follow: " + urlNewString);
+            client.setURL(urlNewString).execute();
+        } else {
+            mWebView.loadUrl(urlNewString);
+            loadingFinished = false;
+        }
+
         return true;
+
+
     }
 
     @Override
@@ -121,13 +117,32 @@ public class HBLogin extends WebViewClient {
         if (!redirect) {
             loadingFinished = true;
         }
-
         if (loadingFinished && !redirect) {
             //HIDE LOADING IT HAS FINISHED
-
         } else {
             redirect = false;
         }
         mWebView.loadUrl(showHTMLHack);
+    }
+
+    //networkBrowserClient.callback
+    @Override
+    public void onSuccess(String data) {
+        mWebView.loadData(data, "text/html", "utf-8");
+        loadingFinished = true;
+        Tool.trace(mWebView.getContext(), "url request data complete: " + data);
+        Log.d(TAG, data);
+    }
+
+    @Override
+    public void onFailure(String message) {
+        Tool.trace(mWebView.getContext(), "error from server: " + message);
+        Log.e(TAG, "error from server: " + message);
+        loadingFinished = false;
+    }
+
+    @Override
+    public void beforeStart(networkBrowserClient task) {
+        Tool.trace(mWebView.getContext(), "get url status start async! now");
     }
 }

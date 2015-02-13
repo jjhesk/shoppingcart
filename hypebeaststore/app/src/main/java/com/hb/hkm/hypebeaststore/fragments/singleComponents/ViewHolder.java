@@ -67,16 +67,23 @@ public class ViewHolder
 
         SPinner = new SelectionSpinner(act);
 
+
         card_description = new cardbox(act.findViewById(R.id.description), "DESCRIPTION");
         card_size = new cardbox(act.findViewById(R.id.size), "SIZE");
         card_hard = new cardbox(act.findViewById(R.id.hardcode), "TERMS");
+
+
         if (!SPinner.foundSize()) card_size.setgone();
         add_bag = (Button) act.findViewById(R.id.add_to_bag);
         add_wish = (Button) act.findViewById(R.id.add_to_wish);
+
+
         if (product_array_id == -1) {
             RunLDialogs.strDemo2(context, "position id not found");
         } else
             after(product_array_id);
+
+
     }
 
     private void after(final int pos) {
@@ -87,15 +94,6 @@ public class ViewHolder
             tv_product_title.setText(mproduct_from_list.getTitle());
             add_bag.setText("Add to Bag");
             add_wish.setText("Add to Wishlist");
-
-            if (!mproduct_from_list.getSalesPrice().equalsIgnoreCase("")) {
-                price.setText(mproduct_from_list.getPrice());
-                sales.setText(mproduct_from_list.getSalesPrice());
-            } else {
-                price.setText(mproduct_from_list.getPrice());
-                sales.setText("");
-            }
-
             //loading point
             request_tag = READSINGLE;
             lb = new SingleBuilder(context, this);
@@ -113,10 +111,24 @@ public class ViewHolder
     }
 
     protected void setup_textviews() {
+        String simple = !product_single.hasVariants() ? product_single.getMasterVariant().stock_logic() : "";
 
         card_description.setDesc(product_single.get_desc());
         card_size.setDesc("iaonvoinaoivneionv ev ");
         card_hard.setDesc("fiaojfdsoi jfiosdj ");
+
+
+
+
+        if (!product_single.getSalesPrice().equalsIgnoreCase("")) {
+            price.setText(product_single.getPrice() + simple);
+            sales.setText(product_single.getSalesPrice());
+        } else {
+
+            price.setText(product_single.getPrice() + simple);
+            sales.setText("");
+        }
+
 
     }
 

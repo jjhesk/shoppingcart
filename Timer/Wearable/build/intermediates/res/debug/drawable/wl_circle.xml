@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="@color/wl_gray"/>
+</shape>
+<!-- From: file:/Users/hesk/GitHub/hypestore/Timer/Wearable/src/main/res/drawable/wl_circle.xml -->

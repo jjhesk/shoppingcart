@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:paddingLeft="8dp"
     android:paddingRight="8dp">
+
     <TextView
         android:id="@+id/title_top"
         android:layout_width="match_parent"
@@ -12,7 +13,7 @@
         android:padding="@dimen/button_radius_edge"
         fontPath="fonts/HelveticaNeueLight.ttf"
         android:textSize="@dimen/selection_title"
-        android:text="Size"
+        android:text=""
         android:gravity="center_vertical|center_horizontal" />
 
     <ListView

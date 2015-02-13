@@ -60,7 +60,7 @@ public class Filtering extends asyclient {
             for (Term T : items) {
                 String strTerm = T.theTerm();
                 if (strTerm.equalsIgnoreCase(t)) {
-                    newlist.add(new Term(t, T.count()));
+                    newlist.add(new Term(t, T.getTheCount()));
                 }
             }
         }

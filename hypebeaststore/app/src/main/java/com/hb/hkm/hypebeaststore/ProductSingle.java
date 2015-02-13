@@ -57,5 +57,10 @@ public class ProductSingle extends BasicSupportActionBarHKM {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        actionAsUp();
+    }
 
 }

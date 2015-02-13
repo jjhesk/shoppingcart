@@ -25,7 +25,22 @@ public class Variant {
         return id;
     }
 
+    public int getPID() {
+        return product_id;
+    }
+
     public ArrayList<Option> getOptions() {
         return option_values;
+    }
+
+    public String stock_logic() {
+        int delta = on_hand - on_hold;
+        if (delta == 1) {
+            return "/ Last One Left";
+        } else if (delta == 0) {
+            return "/ Out of Stock";
+        } else {
+            return "";
+        }
     }
 }

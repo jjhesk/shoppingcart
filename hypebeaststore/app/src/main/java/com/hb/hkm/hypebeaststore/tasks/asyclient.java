@@ -97,7 +97,7 @@ public abstract class asyclient extends AsyncTask<Void, Void, String> {
             if (r.code() == 200) {
                 out = r.body().string();
             } else {
-                throw new Exception("serer error");
+                throw new Exception("server error: " + r.code());
             }
 
             GSONParser(out);

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Application/Application.iml" filepath="$PROJECT_DIR$/Application/Application.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Timer.iml" filepath="$PROJECT_DIR$/Timer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Wearable/Wearable.iml" filepath="$PROJECT_DIR$/Wearable/Wearable.iml" />
+      <module fileurl="file://$PROJECT_DIR$/floatbuttonlibrary/floatbuttonlibrary.iml" filepath="$PROJECT_DIR$/floatbuttonlibrary/floatbuttonlibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ttlib/ttlib.iml" filepath="$PROJECT_DIR$/ttlib/ttlib.iml" />
+    </modules>
+  </component>
+</project>
+

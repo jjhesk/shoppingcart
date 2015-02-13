@@ -11,6 +11,8 @@ import com.google.gson.JsonSyntaxException;
 import com.google.gson.stream.JsonReader;
 import com.hb.hkm.hypebeaststore.Controllers.Config;
 import com.hb.hkm.hypebeaststore.Controllers.DataBank;
+import com.hb.hkm.hypebeaststore.datamodel.Term;
+import com.hb.hkm.hypebeaststore.datamodel.gsontool.TermDe;
 import com.hb.hkm.hypebeaststore.datamodel.outputV1;
 import com.hb.hkm.hypebeaststore.datamodel.outputV2;
 
@@ -58,9 +60,9 @@ public class ListResultBuilder extends asyclient {
     @Override
     protected void GSONParser(final String data) throws JsonSyntaxException, JsonIOException, JsonParseException {
         final GsonBuilder gb = new GsonBuilder();
+        gb.registerTypeAdapter(Term.class, new TermDe());
         //gb.registerTypeAdapterFactory(new GTool.NullStringToEmptyAdapterFactory());
         final Gson g = gb.create();
-
 
         final JsonReader reader = new JsonReader(new StringReader(data.trim()));
         reader.setLenient(true);

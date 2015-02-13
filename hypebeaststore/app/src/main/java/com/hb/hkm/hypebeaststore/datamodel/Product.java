@@ -34,11 +34,19 @@ public class Product {
         return has_variants;
     }
 
-    public String[] getColorVariants() {
+    public String[] getProductGroups() {
         ArrayList<String> a = new ArrayList<String>();
         if (product_group.size() == 0 || product_group == null) return new String[]{};
         for (simple_product s : product_group) {
-            a.add(s.getName());
+            int pid = s.getId();
+            Variant found = new Variant();
+            for (Variant v : variants) {
+                if (v.getPID() == pid) {
+                    found = v;
+                }
+                a.add(s.getName() + found.stock_logic());
+
+            }
         }
         String[] c = new String[a.size()];
         c = a.toArray(c);
@@ -54,6 +62,10 @@ public class Product {
         String[] c = new String[a.size()];
         c = a.toArray(c);
         return c;
+    }
+
+    public Variant getMasterVariant() {
+        return master;
     }
 
     public int getVariantID(final int i) {
