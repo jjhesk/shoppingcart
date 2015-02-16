@@ -21,29 +21,34 @@ import java.io.StringReader;
 /**
  * Created by hesk on 2/4/15.
  */
-public class ListResultBuilder extends asyclient {
+public class ListQueryManager extends asyclient {
     private int page, limit;
+    private boolean isReadingMore = false;
 
-    public ListResultBuilder(Context ccc, callback cb) {
-        super(ccc, cb);
+
+    public ListQueryManager(Context ccc) {
+        super(ccc, (callback) ccc);
         page = 1;
         limit = Config.setting.single_page_items;
+
     }
 
-    public ListResultBuilder setPageView(final int page_to_view) {
+    public ListQueryManager setPageView(final int page_to_view) {
         page = page_to_view;
+        isReadingMore = page_to_view > 1;
         return this;
     }
 
-    public ListResultBuilder setListLimit(final int new_limit) {
+    public ListQueryManager setListLimit(final int new_limit) {
         limit = new_limit;
         return this;
     }
 
     @Override
     public asyclient setURL(String e) {
-        final String format_new = "%s?page=%d&limit=%d";
+        String format_new = "%s?page=%d&limit=%d";
         url = String.format(format_new, e, page, limit);
+        url += DataBank.msubmissionfilter.isEmpty() ? "" : DataBank.msubmissionfilter.getJson();
         return this;
     }
 
@@ -75,11 +80,13 @@ public class ListResultBuilder extends asyclient {
 
                 DataBank.result_total_pages = output_time.totalpages();
                 DataBank.result_current_page = output_time.current_page();
-                DataBank.filter_list_price.addAll(output_time.getFacet().getPrice());
-                DataBank.filter_list_brand.addAll(output_time.getFacet().getPrice());
-                output_time.sortedSize(DataBank.filter_list_size);
-                output_time.sortedCate(DataBank.filter_list_cat);
 
+                if (!isReadingMore) {
+                    DataBank.filter_list_price.addAll(output_time.getFacet().getPrice());
+                    DataBank.filter_list_brand.addAll(output_time.getFacet().getBrand());
+                    output_time.sortedSize(DataBank.filter_list_size);
+                    output_time.sortedCate(DataBank.filter_list_cat);
+                }
 
                 break;
             case 2:

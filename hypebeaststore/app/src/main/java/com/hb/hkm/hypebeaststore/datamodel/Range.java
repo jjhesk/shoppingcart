@@ -16,6 +16,14 @@ public class Range {
     public Range() {
     }
 
+    public int getfrom() {
+        return from;
+    }
+
+    public int getto() {
+        return to;
+    }
+
     public Term getTerm() {
 
         String d = "";

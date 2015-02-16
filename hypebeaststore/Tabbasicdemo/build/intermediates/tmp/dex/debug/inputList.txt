@@ -1,0 +1,4 @@
+/Users/hesk/GitHub/hypestore/hypebeaststore/Tabbasicdemo/build/intermediates/classes/debug
+/Users/hesk/GitHub/hypestore/hypebeaststore/Tabbasicdemo/build/intermediates/pre-dexed/debug/support-annotations-21.0.2-519f82e947263aa6c368d38f27b2aae4c6576f55.jar
+/Users/hesk/GitHub/hypestore/hypebeaststore/Tabbasicdemo/build/intermediates/pre-dexed/debug/internal_impl-21.0.2-ab0c03bd4d2bb25465c842858b1cb4a1fb7109fc.jar
+/Users/hesk/GitHub/hypestore/hypebeaststore/Tabbasicdemo/build/intermediates/pre-dexed/debug/classes-a161c2671d23272863d0f9fa4ac4a48d6e9aeade.jar

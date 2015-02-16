@@ -64,6 +64,8 @@ public class SelectView extends ListActivity implements AdapterView.OnItemClickL
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Log.d(TAG, position + "");
+
+        filter_configuration_change(position);
         Intent intent = new Intent();
         Bundle b = new Bundle();
         b.putInt(pos, position);
@@ -72,5 +74,20 @@ public class SelectView extends ListActivity implements AdapterView.OnItemClickL
         intent.putExtras(b);
         setResult(RESULT_OK, intent);
         finish();
+    }
+
+    protected void filter_configuration_change(int position) {
+        final String val = loading_list[position];
+        switch (getIntent().getExtras().getInt(SelectView.selection_view, 0)) {
+            case SIZE:
+                // DataBank.msubmissionfilter.setSize(val);
+                break;
+            case COLOR:
+                // DataBank.msubmissionfilter.setCate(val);
+                break;
+            case QTY:
+                //tag_txt = "Quantity";
+                break;
+        }
     }
 }

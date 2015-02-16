@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
 
 import com.asynhkm.productchecker.Util.Tool;
 import com.hb.hkm.hypebeaststore.Controllers.Config;
@@ -16,7 +17,7 @@ import com.hb.hkm.hypebeaststore.fragments.GridComponents.GrideDisplayEvent;
 import com.hb.hkm.hypebeaststore.fragments.GridDisplay;
 import com.hb.hkm.hypebeaststore.fragments.dialogComponents.RunLDialogs;
 import com.hb.hkm.hypebeaststore.tasks.Filtering;
-import com.hb.hkm.hypebeaststore.tasks.ListResultBuilder;
+import com.hb.hkm.hypebeaststore.tasks.ListQueryManager;
 import com.hb.hkm.hypebeaststore.tasks.asyclient;
 
 import java.util.ArrayList;
@@ -31,11 +32,24 @@ import uk.me.lewisdeane.ldialogs.CustomListDialog;
 public class StoreFront extends ActionBarActivity implements
         MaterialTabListener,
         asyclient.callback {
-    private ListResultBuilder sync;
+    private ListQueryManager sync;
     public static String TAG = "store front here";
     final GridDisplay mdisplay = new GridDisplay();
     private Bundle msavedInstanceState;
     private MaterialTabHost mTab;
+    protected ProgressBar mProgressBar;
+
+    protected void setLoadingAnimation() {
+      /*  mProgressBar.setIndeterminateDrawable(new CircularProgressDrawable
+                .Builder(this)
+                .colors(getResources().getIntArray(R.array.gplus_colors))
+                .sweepSpeed(1f)
+                .strokeWidth(3f)
+                .style(CircularProgressDrawable.Style.ROUNDED)
+
+                .build();*/
+
+    }
 
     @Override
     public void onSuccess(String data) {
@@ -44,10 +58,10 @@ public class StoreFront extends ActionBarActivity implements
             @Override
             public void run() {
                 mdisplay.notifyList();
-                // if (DataBank.result_total_pages == 1) {
-                // initTabs();
-                //     Log.d(TAG, "request init tab");
-                // }
+                if (DataBank.result_current_page == 1) {
+                    initTabs();
+                    Log.d(TAG, "request init tab");
+                }
             }
         });
         Tool.trace(getApplicationContext(), "added items");
@@ -63,14 +77,30 @@ public class StoreFront extends ActionBarActivity implements
 
     }
 
+    private String query_url;
+
+    public void setQuery(final String url) {
+        query_url = url;
+    }
+
+    private String getURLQ() {
+        if (query_url == null) query_url = Config.hometech;
+        return query_url;
+    }
 
     public void loadingList(final int page_at) {
         // final Bundle instance = savedInstanceState;
-        sync = new ListResultBuilder(this, this);
+        sync = new ListQueryManager(this);
         sync.setPageView(page_at)
-                .setURL(Config.hometech)
+                .setURL(getURLQ())
                 .execute();
+    }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // initTabs();
     }
 
     @Override
@@ -78,38 +108,48 @@ public class StoreFront extends ActionBarActivity implements
         super.onCreate(savedInstanceState);
         if (savedInstanceState == null) {
             setContentView(R.layout.activity_store_front);
-            mTab = (MaterialTabHost) this.findViewById(R.id.materialTabHost);
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .add(R.id.container, mdisplay)
-                    .commit();
-            if (DataBank.current_product_list.size() == 0) {
-                loadingList(1);
-            }
         } else {
             msavedInstanceState = savedInstanceState;
         }
 
 
+        // progress2.
+        // final CircleProgressBar progress2 = (CircleProgressBar) findViewById(R.id.progressBar);
         mdisplay.setGridEvents(new GrideDisplayEvent() {
             @Override
             public void requestmoreitems(int page) {
+                int p = page;
                 if (sync != null) {
                     if (sync.getStatus() == AsyncTask.Status.FINISHED) {
                         loadingList(page);
                     }
+                } else {
+                    sync = new ListQueryManager(StoreFront.this);
+                    loadingList(page);
                 }
             }
         });
 
-        // initTabs();
+        mTab = (MaterialTabHost) this.findViewById(R.id.materialTabHost);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.container, mdisplay)
+                .commit();
+
+
+        if (DataBank.current_product_list.size() == 0) {
+            loadingList(1);
+        } else {
+            initTabs();
+        }
+
     }
 
     final ArrayList<String> items_list = new ArrayList<String>();
 
     private void initTabs() {
         //  items_list.clear();
-        mTab.removeAllViews();
+        // mTab.removeAllViews();
         if (DataBank.filter_list_brand.size() > 0) items_list.add("Brand");
         if (DataBank.filter_list_cat.size() > 0) items_list.add("Category");
         if (DataBank.filter_list_size.size() > 0) items_list.add("Size");
@@ -118,13 +158,17 @@ public class StoreFront extends ActionBarActivity implements
             String txt = items_list.get(i);
             mTab.addTab(mTab.newTab().setTabListener(this).setText(txt));
         }
-        Log.d(TAG, items_list.size() + " completed request for top menu");
-        Tool.trace(this, TAG + "completed request for the top menu. there are : " + items_list.size() + " items");
-        mTab.invalidate();
+        // Log.d(TAG, items_list.size() + " completed request for top menu");
+        // Tool.trace(this, TAG + "completed request for the top menu. there are : " + items_list.size() + " items");
+        mTab.notifyDataSetChanged();
     }
 
-    private void listdialog(final String title, final String[] listitems, int preSelect) {
-        final CustomListDialog.Builder builder = new CustomListDialog.Builder(this, title, listitems);
+    private String mfilter_title;
+
+    private void listdialog(String tit, String[] listitems, int preSelect) {
+        //Tool.trace(getApplicationContext(), tit + " : " + listitems.toString());
+        mfilter_title = tit;
+        final CustomListDialog.Builder builder = new CustomListDialog.Builder(this, "nif", listitems);
         // Now we can any of the following methods.
         // builder.content(String content);
         // builder.darkTheme(false);
@@ -143,44 +187,61 @@ public class StoreFront extends ActionBarActivity implements
                 // i is the position clicked.
                 // strings is the array of items in the list.
                 // s is the item selected.
+                if (i > -1) {
+                    if (mfilter_title.equalsIgnoreCase("Price")) {
+                        //   DataBank.msubmissionfilter.setPrice(DataBank.filter_list_price.);
+                    } else {
+
+                    }
+                }
                 Tool.trace(getApplicationContext(), s);
+                customDialog.dismiss();
             }
         });
+
         // Show the dialog.
         customDialog.show();
+    }
+
+    private void beforedialog(String title, final ArrayList<Term> terms) {
+        if (title.equalsIgnoreCase("Brand")) {
+            listdialog(title, Filtering.TermsAsListAlphabetical(terms), 0);
+        } else
+            listdialog(title, Filtering.TermsAsList(terms), 0);
+    }
+
+    private void tab_selected_final(MaterialTab materialTab) {
+        // Tool.trace(this, materialTab.getView().getId());
+        int tabPos = materialTab.getPosition();
+        final String title = items_list.get(tabPos);
+        if (title.equalsIgnoreCase("Brand")) {
+            beforedialog(title, DataBank.filter_list_brand);
+        } else if (title.equalsIgnoreCase("Category")) {
+            beforedialog(title, DataBank.filter_list_cat);
+        } else if (title.equalsIgnoreCase("Size")) {
+            beforedialog(title, DataBank.filter_list_size);
+        } else if (title.equalsIgnoreCase("Price")) {
+            beforedialog(title, DataBank.filter_list_price);
+        }
+        mTab.setSelectedNavigationItem(tabPos);
+        Tool.trace(getApplicationContext(), "pos=" + tabPos + ". pressed title = " + title);
+
     }
 
     @Override
     public void onTabSelected(MaterialTab materialTab) {
         //pager.setCurrentItem(tab.getPosition());
-        Tool.trace(this, materialTab.getView().getId());
-        int tabPos = materialTab.getPosition();
-        ArrayList<Term> terms = new ArrayList<Term>();
-        final String title = items_list.get(tabPos);
-
-        Tool.trace(getApplicationContext(), "pressed title = " + title);
-
-        if (title.equalsIgnoreCase("Brand")) terms = DataBank.filter_list_brand;
-        if (title.equalsIgnoreCase("Category")) terms = DataBank.filter_list_cat;
-        if (title.equalsIgnoreCase("Size")) terms = DataBank.filter_list_size;
-        if (title.equalsIgnoreCase("Price")) terms = DataBank.filter_list_price;
-
-
-        if (terms.size() > 0) {
-            final String[] choices = Filtering.TermsAsList(terms);
-            //Tool.trace(getApplicationContext(), "there are choices = " + choices.length);
-            listdialog(title, choices, 0);
-        }
+        tab_selected_final(materialTab);
     }
 
     @Override
     public void onTabReselected(MaterialTab materialTab) {
-
+        tab_selected_final(materialTab);
     }
 
     @Override
     public void onTabUnselected(MaterialTab materialTab) {
-
+        //  tab_selected_final(materialTab);
     }
 
     private void add_menu() {
@@ -211,6 +272,8 @@ public class StoreFront extends ActionBarActivity implements
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+
+
             return true;
         }
 

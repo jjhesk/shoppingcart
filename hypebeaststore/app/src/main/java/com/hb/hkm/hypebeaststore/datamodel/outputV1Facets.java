@@ -18,8 +18,8 @@ public class outputV1Facets {
         return size;
     }
 
-    public filter getBrand() {
-        return brand;
+    public ArrayList<Term> getBrand() {
+        return brand.getTerms();
     }
 
     public filter getCategory() {

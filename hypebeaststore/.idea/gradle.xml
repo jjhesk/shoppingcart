@@ -11,10 +11,12 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/JazzListView" />
             <option value="$PROJECT_DIR$/L-dialogs" />
+            <option value="$PROJECT_DIR$/Tabbasicdemo" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/jsoup-1.8.1" />
             <option value="$PROJECT_DIR$/libHkmCheck" />
             <option value="$PROJECT_DIR$/library" />
+            <option value="$PROJECT_DIR$/materialtabslib" />
           </set>
         </option>
       </GradleProjectSettings>

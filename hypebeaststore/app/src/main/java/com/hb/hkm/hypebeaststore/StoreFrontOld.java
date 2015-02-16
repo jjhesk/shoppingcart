@@ -13,11 +13,11 @@ import com.hb.hkm.hypebeaststore.Controllers.DataBank;
 import com.hb.hkm.hypebeaststore.fragments.GridComponents.GrideDisplayEvent;
 import com.hb.hkm.hypebeaststore.fragments.GridDisplay;
 import com.hb.hkm.hypebeaststore.fragments.dialogComponents.RunLDialogs;
-import com.hb.hkm.hypebeaststore.tasks.ListResultBuilder;
+import com.hb.hkm.hypebeaststore.tasks.ListQueryManager;
 import com.hb.hkm.hypebeaststore.tasks.asyclient;
 
 public class StoreFrontOld extends ActionBarActivity implements asyclient.callback {
-    private ListResultBuilder sync;
+    private ListQueryManager sync;
     public static String TAG = "store front here";
     final GridDisplay mdisplay = new GridDisplay();
     private Bundle msavedInstanceState;
@@ -47,7 +47,7 @@ public class StoreFrontOld extends ActionBarActivity implements asyclient.callba
 
     public void loadingList(final int page_at) {
         // final Bundle instance = savedInstanceState;
-        sync = new ListResultBuilder(this, this);
+        sync = new ListQueryManager(this);
         sync.setPageView(page_at)
                 .setURL(Config.hometech)
                 .execute();

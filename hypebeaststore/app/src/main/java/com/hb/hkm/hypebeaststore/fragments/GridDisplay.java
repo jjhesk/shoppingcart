@@ -2,7 +2,6 @@ package com.hb.hkm.hypebeaststore.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,15 +62,13 @@ public class GridDisplay extends ListFragment implements AbsListView.OnScrollLis
         mGrid.setAdapter(madapter);
         mGrid.setTransitionEffect(JazzyHelper.FADE);
         mGrid.setShouldOnlyAnimateNewItems(false);
-
-
-
+        mGrid.setOnScrollListener(this);
 
         if (floating_bag)
-            mfab.attachToListView(mGrid);
+            mfab.attachToListView(mGrid, null, this);
         //need some more resources to find out the problem on this line
 
-        mGrid.setOnScrollListener(this);
+        // mGrid.setOnScrollListener(this);
         //     scroller = (BounceScroller) v.findViewById(R.id.pc_root);
         //     ftv = new FooterComponent(scroller, groupview_footer, getActivity());
     }
@@ -93,11 +90,11 @@ public class GridDisplay extends ListFragment implements AbsListView.OnScrollLis
     public void onScroll(AbsListView view, int firstVisibleItem,
                          int visibleItemCount, int totalItemCount) {
         double b = (double) firstVisibleItem / (double) totalItemCount;
-        Log.d(TAG, firstVisibleItem + "/" + totalItemCount + " : " + b + "");
+        //  Log.d(TAG, firstVisibleItem + "/" + totalItemCount + " : " + b + "");
         double k = Config.setting.list_expand_factor + (double) totalItemCount / (double) target_total * (100 - Config.setting.list_expand_factor) / 100d;
-        Log.d(TAG, k + " : " + b + "");
+        // Log.d(TAG, k + " : " + b + "");
         if (b > k) {
-            Log.d(TAG, "trigger run request. ");
+            // Log.d(TAG, "trigger run request. ");
             if (DataBank.result_total_pages > DataBank.result_current_page) {
                 if (event != null) event.requestmoreitems(DataBank.result_current_page + 1);
             }

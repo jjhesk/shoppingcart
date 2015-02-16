@@ -5,6 +5,7 @@ import android.content.Context;
 import com.hb.hkm.hypebeaststore.datamodel.Term;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by hesk on 2/9/15.
@@ -67,8 +68,19 @@ public class Filtering extends asyclient {
         return newlist;
     }
 
+    public static String[] TermsAsListAlphabetical(final ArrayList<Term> items) {
+        final ArrayList<String> sl = new ArrayList<String>();
+        sl.clear();
+        for (Term T : items) {
+            sl.add(T.theTerm());
+        }
+        Collections.sort(sl, String.CASE_INSENSITIVE_ORDER);
+        return sl.toArray(new String[sl.size()]);
+    }
+
     public static String[] TermsAsList(final ArrayList<Term> items) {
         final ArrayList<String> sl = new ArrayList<String>();
+        sl.clear();
         for (Term T : items) {
             sl.add(T.theTerm());
         }
