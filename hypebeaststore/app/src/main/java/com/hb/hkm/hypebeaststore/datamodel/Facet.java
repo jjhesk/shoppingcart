@@ -6,27 +6,27 @@ import java.util.ArrayList;
  * Created by hesk on 2/3/15.
  */
 public class Facet {
-    private filter size;
-    private filter brand;
-    private filter category;
-    private filterPrice price;
+    private CTFilter size;
+    private CTFilter brand;
+    private CTFilter category;
+    private CTPrice price;
 
     public Facet() {
     }
 
-    public filter getSize() {
+    public CTFilter getSize() {
         return size;
     }
 
-    public filter getBrand() {
+    public CTFilter getBrand() {
         return brand;
     }
 
-    public filter getCategory() {
+    public CTFilter getCategory() {
         return category;
     }
 
-    public ArrayList<Term> getPrice() {
+    public ArrayList<Termm> getPrice() {
         return price.getRanges();
     }
 }

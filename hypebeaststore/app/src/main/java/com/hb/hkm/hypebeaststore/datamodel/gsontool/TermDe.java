@@ -6,25 +6,27 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import com.hb.hkm.hypebeaststore.datamodel.Term;
+import com.hb.hkm.hypebeaststore.datamodel.Termm;
 
 import java.lang.reflect.Type;
 
 /**
  * Created by hesk on 2/13/15.
  */
-public class TermDe implements JsonDeserializer<Term>,
-        InstanceCreator<Term> {
+public class TermDe implements
+        JsonDeserializer<Termm>,
+        InstanceCreator<Termm> {
 
     @Override
-    public Term deserialize(JsonElement json, Type type, JsonDeserializationContext context) throws JsonParseException {
-        JsonObject jO = (JsonObject) json;
-        return new Term(jO.get("term").getAsString(), jO.get("count").getAsInt());
-
+    public Termm deserialize(JsonElement json, Type type, JsonDeserializationContext context)
+            throws JsonParseException {
+        final JsonObject j = (JsonObject) json;
+        return new Termm(j.has("term") ? j.get("term").getAsString() : "",
+                j.get("count").getAsInt());
     }
 
     @Override
-    public Term createInstance(Type type) {
-        return new Term("", 0);
+    public Termm createInstance(Type type) {
+        return new Termm("", 0);
     }
 }

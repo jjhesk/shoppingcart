@@ -1,4 +1,6 @@
-package com.hb.hkm.hypebeaststore.datamodel;
+package com.hb.hkm.hypebeaststore.datamodel.V2;
+
+import com.hb.hkm.hypebeaststore.datamodel.V1.outputV1Facets;
 
 /**
  * Created by hesk on 2/9/15.

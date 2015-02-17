@@ -24,18 +24,18 @@ public class Range {
         return to;
     }
 
-    public Term getTerm() {
+    public Termm getTerm() {
 
         String d = "";
         if (from == 0) {
             d = money(to) + " and under";
         } else if (to == 0) {
-            d = money(to) + " and above";
+            d = money(from) + " and above";
         } else {
             d = money(from) + " - " + money(to);
         }
 
-        return new Term(d, count);
+        return new Termm(d, count);
     }
 
     private String money(int n) {

@@ -4,7 +4,7 @@ package com.hb.hkm.hypebeaststore;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.hb.hkm.hypebeaststore.Controllers.Config;
+import com.hb.hkm.hypebeaststore.controller.Config;
 import com.hb.hkm.hypebeaststore.fragments.BasicSupportActionBarHKM;
 import com.hb.hkm.hypebeaststore.fragments.singleComponents.ViewHolder;
 

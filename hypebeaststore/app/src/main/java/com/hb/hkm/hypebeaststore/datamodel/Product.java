@@ -1,6 +1,6 @@
 package com.hb.hkm.hypebeaststore.datamodel;
 
-import com.hb.hkm.hypebeaststore.Controllers.Config;
+import com.hb.hkm.hypebeaststore.controller.Config;
 
 import java.util.ArrayList;
 

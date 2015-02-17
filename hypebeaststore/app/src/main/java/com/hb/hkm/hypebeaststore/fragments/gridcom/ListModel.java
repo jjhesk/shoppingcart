@@ -1,4 +1,4 @@
-package com.hb.hkm.hypebeaststore.fragments.GridComponents;
+package com.hb.hkm.hypebeaststore.fragments.gridcom;
 
 /**
  * Created by hesk on 2/3/15.

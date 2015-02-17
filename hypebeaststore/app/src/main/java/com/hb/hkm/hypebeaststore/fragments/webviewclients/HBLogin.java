@@ -1,4 +1,4 @@
-package com.hb.hkm.hypebeaststore.fragments.WebViewComponents;
+package com.hb.hkm.hypebeaststore.fragments.webviewclients;
 
 import android.graphics.Bitmap;
 import android.util.Log;

@@ -1,4 +1,4 @@
-package com.hb.hkm.hypebeaststore.fragments.GridComponents;
+package com.hb.hkm.hypebeaststore.fragments.gridcom;
 
 import android.view.View;
 import android.widget.ImageView;

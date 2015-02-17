@@ -1,4 +1,4 @@
-package com.hb.hkm.hypebeaststore.ExpaningoMenu;
+package com.hb.hkm.hypebeaststore.expansionmenu;
 
 import android.app.Fragment;
 import android.os.Bundle;

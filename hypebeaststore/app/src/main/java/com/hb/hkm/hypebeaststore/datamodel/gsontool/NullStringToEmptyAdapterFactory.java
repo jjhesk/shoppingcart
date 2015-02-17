@@ -1,6 +1,5 @@
 package com.hb.hkm.hypebeaststore.datamodel.gsontool;
 
-
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
@@ -12,23 +11,18 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
 /**
- * Created by hesk on 2/3/15.
+ * Created by hesk on 2/17/15.
  */
-public class GTool {
-    //Gson gson=GsonBuilder().registerTypeAdapterFactory(newNullStringToEmptyAdapterFactory()).create();
-
-    public static class NullStringToEmptyAdapterFactory<T> implements TypeAdapterFactory {
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-
-            Class<T> rawType = (Class<T>) type.getRawType();
-            if (rawType != String.class) {
-                return null;
-            }
-            return (TypeAdapter<T>) new StringAdapter();
+public class NullStringToEmptyAdapterFactory<T> implements TypeAdapterFactory {
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+        Class<T> rawType = (Class<T>) type.getRawType();
+        if (!rawType.equals(String.class)) {
+            return null;
         }
+        return (TypeAdapter<T>) new StringAdapter();
     }
 
-    public static class StringAdapter extends TypeAdapter<String> {
+    public class StringAdapter extends TypeAdapter<String> {
         public String read(JsonReader reader) throws IOException {
             if (reader.peek() == JsonToken.NULL) {
                 reader.nextNull();

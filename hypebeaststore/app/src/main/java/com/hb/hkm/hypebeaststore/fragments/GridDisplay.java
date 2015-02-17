@@ -7,12 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 
-import com.hb.hkm.hypebeaststore.Controllers.Config;
-import com.hb.hkm.hypebeaststore.Controllers.DataBank;
+import com.hb.hkm.hypebeaststore.controller.Config;
+import com.hb.hkm.hypebeaststore.controller.DataBank;
 import com.hb.hkm.hypebeaststore.R;
-import com.hb.hkm.hypebeaststore.fragments.GridComponents.FooterComponent;
-import com.hb.hkm.hypebeaststore.fragments.GridComponents.GrideDisplayEvent;
-import com.hb.hkm.hypebeaststore.fragments.GridComponents.HBResultAdapter;
+import com.hb.hkm.hypebeaststore.fragments.gridcom.FooterComponent;
+import com.hb.hkm.hypebeaststore.fragments.gridcom.GrideDisplayEvent;
+import com.hb.hkm.hypebeaststore.fragments.gridcom.HBResultAdapter;
 import com.hkm.ui.BounceScoller.BounceScroller;
 import com.melnykov.fab.FloatingActionButton;
 import com.twotoasters.jazzylistview.JazzyGridView;

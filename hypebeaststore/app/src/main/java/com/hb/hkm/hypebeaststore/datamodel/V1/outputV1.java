@@ -1,5 +1,8 @@
-package com.hb.hkm.hypebeaststore.datamodel;
+package com.hb.hkm.hypebeaststore.datamodel.V1;
 
+import com.hb.hkm.hypebeaststore.datamodel.Product;
+import com.hb.hkm.hypebeaststore.datamodel.Termm;
+import com.hb.hkm.hypebeaststore.datamodel.V2.outputV1wrapAdapter;
 import com.hb.hkm.hypebeaststore.tasks.Filtering;
 
 import java.util.ArrayList;
@@ -32,11 +35,7 @@ public class outputV1 {
         return products;
     }
 
-    public Product getProduct(final int pos) {
-        return products.get(pos);
-    }
-
-    public void sortedSize(final ArrayList<Term> existingList) {
+    public void sortedSize(final ArrayList<Termm> existingList) {
         sortingWorker(
                 existingList,
                 Filtering.getSorted(adapter.getfacets().getSize().getTerms(),
@@ -44,7 +43,7 @@ public class outputV1 {
         );
     }
 
-    public void sortedCate(final ArrayList<Term> existingList) {
+    public void sortedCate(final ArrayList<Termm> existingList) {
         sortingWorker(
                 existingList,
                 Filtering.getSorted(adapter.getfacets().getCategory().getTerms(),
@@ -56,8 +55,8 @@ public class outputV1 {
         return Filtering.getSorted(adapter.getfacets().getSize().getTerms(), Filtering.);
 
     }*/
-    private void sortingWorker(final ArrayList<Term> existingList,
-                               final ArrayList<Term> mlist) {
+    private void sortingWorker(final ArrayList<Termm> existingList,
+                               final ArrayList<Termm> mlist) {
         existingList.clear();
         existingList.addAll(mlist);
     }

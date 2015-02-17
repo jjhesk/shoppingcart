@@ -1,4 +1,4 @@
-package com.hb.hkm.hypebeaststore.fragments.GridComponents;
+package com.hb.hkm.hypebeaststore.fragments.gridcom;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,8 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
-import com.hb.hkm.hypebeaststore.Controllers.Config;
-import com.hb.hkm.hypebeaststore.Controllers.DataBank;
+import com.hb.hkm.hypebeaststore.controller.Config;
+import com.hb.hkm.hypebeaststore.controller.DataBank;
 import com.hb.hkm.hypebeaststore.ProductSingle;
 import com.hb.hkm.hypebeaststore.R;
 import com.hb.hkm.hypebeaststore.datamodel.Product;

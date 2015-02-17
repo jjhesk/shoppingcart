@@ -1,10 +1,11 @@
-package com.hb.hkm.hypebeaststore.Controllers;
+package com.hb.hkm.hypebeaststore.controller;
 
+import com.hb.hkm.hypebeaststore.datamodel.CTPrice;
 import com.hb.hkm.hypebeaststore.datamodel.CartProduct;
 import com.hb.hkm.hypebeaststore.datamodel.Product;
 import com.hb.hkm.hypebeaststore.datamodel.SubmissionFilter;
-import com.hb.hkm.hypebeaststore.datamodel.Term;
-import com.hb.hkm.hypebeaststore.datamodel.outputV2;
+import com.hb.hkm.hypebeaststore.datamodel.Termm;
+import com.hb.hkm.hypebeaststore.datamodel.V2.outputV2;
 
 import java.util.ArrayList;
 
@@ -19,10 +20,12 @@ public class DataBank {
     public static final ArrayList<CartProduct> my_cart = new ArrayList<CartProduct>();
 
 
-    public static final ArrayList<Term> filter_list_size = new ArrayList<Term>();
-    public static final ArrayList<Term> filter_list_cat = new ArrayList<Term>();
-    public static final ArrayList<Term> filter_list_price = new ArrayList<Term>();
-    public static final ArrayList<Term> filter_list_brand = new ArrayList<Term>();
+    public static final ArrayList<Termm> filter_list_size = new ArrayList<Termm>();
+    public static final ArrayList<Termm> filter_list_cat = new ArrayList<Termm>();
+    public static final ArrayList<Termm> filter_list_price = new ArrayList<Termm>();
+    public static final ArrayList<Termm> filter_list_brand = new ArrayList<Termm>();
+
+    public static CTPrice filter_price = new CTPrice();
     public static final SubmissionFilter msubmissionfilter = new SubmissionFilter();
 
     public static int result_total_pages = 0;

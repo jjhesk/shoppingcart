@@ -3,7 +3,7 @@ package com.hb.hkm.hypebeaststore.tasks;
 import android.content.Context;
 import android.util.Log;
 
-import com.hb.hkm.hypebeaststore.Controllers.Config;
+import com.hb.hkm.hypebeaststore.controller.Config;
 
 /**
  * Created by hesk on 2/6/15.

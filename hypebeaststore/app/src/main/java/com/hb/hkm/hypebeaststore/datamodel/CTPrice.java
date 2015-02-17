@@ -5,15 +5,19 @@ import java.util.ArrayList;
 /**
  * Created by hesk on 2/3/15.
  */
-public class filterPrice {
-    private String _type;
+public class CTPrice {
+
     private ArrayList<Range> ranges;
 
-    public filterPrice() {
+    public CTPrice() {
     }
 
-    public ArrayList<Term> getRanges() {
-        final ArrayList<Term> newList = new ArrayList<Term>();
+    public Range getRangeAt(int which) {
+        return ranges.get(which);
+    }
+
+    public ArrayList<Termm> getRanges() {
+        final ArrayList<Termm> newList = new ArrayList<Termm>();
         for (Range r : ranges) {
             newList.add(r.getTerm());
         }

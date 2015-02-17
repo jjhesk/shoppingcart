@@ -1,4 +1,4 @@
-package com.hb.hkm.hypebeaststore.fragments.dialogComponents;
+package com.hb.hkm.hypebeaststore.fragments.dialogcom;
 
 import android.content.Context;
 import android.view.View;

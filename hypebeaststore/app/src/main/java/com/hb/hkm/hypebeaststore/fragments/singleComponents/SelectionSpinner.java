@@ -6,11 +6,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.hb.hkm.hypebeaststore.Controllers.DataBank;
+import com.hb.hkm.hypebeaststore.controller.DataBank;
 import com.hb.hkm.hypebeaststore.ProductSingle;
 import com.hb.hkm.hypebeaststore.R;
 import com.hb.hkm.hypebeaststore.SelectView;
-import com.hb.hkm.hypebeaststore.fragments.dialogComponents.RunLDialogs;
+import com.hb.hkm.hypebeaststore.fragments.dialogcom.RunLDialogs;
 
 /**
  * Created by hesk on 2/11/15.

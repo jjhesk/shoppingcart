@@ -2,7 +2,7 @@ package com.hb.hkm.hypebeaststore.tasks;
 
 import android.content.Context;
 
-import com.hb.hkm.hypebeaststore.datamodel.Term;
+import com.hb.hkm.hypebeaststore.datamodel.Termm;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -55,33 +55,33 @@ public class Filtering extends asyclient {
 
     }
 
-    public static ArrayList<Term> getSorted(final ArrayList<Term> items, final String[] ref) {
-        final ArrayList<Term> newlist = new ArrayList<Term>();
+    public static ArrayList<Termm> getSorted(final ArrayList<Termm> items, final String[] ref) {
+        final ArrayList<Termm> newlist = new ArrayList<Termm>();
         for (String t : ref) {
-            for (Term T : items) {
+            for (Termm T : items) {
                 String strTerm = T.theTerm();
                 if (strTerm.equalsIgnoreCase(t)) {
-                    newlist.add(new Term(t, T.getTheCount()));
+                    newlist.add(new Termm(t, T.getTheCount()));
                 }
             }
         }
         return newlist;
     }
 
-    public static String[] TermsAsListAlphabetical(final ArrayList<Term> items) {
+    public static String[] TermsAsListAlphabetical(final ArrayList<Termm> items) {
         final ArrayList<String> sl = new ArrayList<String>();
         sl.clear();
-        for (Term T : items) {
+        for (Termm T : items) {
             sl.add(T.theTerm());
         }
         Collections.sort(sl, String.CASE_INSENSITIVE_ORDER);
         return sl.toArray(new String[sl.size()]);
     }
 
-    public static String[] TermsAsList(final ArrayList<Term> items) {
+    public static String[] TermsAsList(final ArrayList<Termm> items) {
         final ArrayList<String> sl = new ArrayList<String>();
         sl.clear();
-        for (Term T : items) {
+        for (Termm T : items) {
             sl.add(T.theTerm());
         }
         return sl.toArray(new String[sl.size()]);

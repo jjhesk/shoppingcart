@@ -7,15 +7,17 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ProgressBar;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.asynhkm.productchecker.Util.Tool;
-import com.hb.hkm.hypebeaststore.Controllers.Config;
-import com.hb.hkm.hypebeaststore.Controllers.DataBank;
-import com.hb.hkm.hypebeaststore.datamodel.Term;
-import com.hb.hkm.hypebeaststore.fragments.GridComponents.GrideDisplayEvent;
+import com.hb.hkm.hypebeaststore.controller.Config;
+import com.hb.hkm.hypebeaststore.controller.DataBank;
+import com.hb.hkm.hypebeaststore.datamodel.Termm;
 import com.hb.hkm.hypebeaststore.fragments.GridDisplay;
-import com.hb.hkm.hypebeaststore.fragments.dialogComponents.RunLDialogs;
+import com.hb.hkm.hypebeaststore.fragments.dialogcom.RunLDialogs;
+import com.hb.hkm.hypebeaststore.fragments.gridcom.GrideDisplayEvent;
 import com.hb.hkm.hypebeaststore.tasks.Filtering;
 import com.hb.hkm.hypebeaststore.tasks.ListQueryManager;
 import com.hb.hkm.hypebeaststore.tasks.asyclient;
@@ -25,8 +27,6 @@ import java.util.ArrayList;
 import it.neokree.materialtabs.MaterialTab;
 import it.neokree.materialtabs.MaterialTabHost;
 import it.neokree.materialtabs.MaterialTabListener;
-import uk.me.lewisdeane.ldialogs.BaseDialog;
-import uk.me.lewisdeane.ldialogs.CustomListDialog;
 
 
 public class StoreFront extends ActionBarActivity implements
@@ -84,7 +84,7 @@ public class StoreFront extends ActionBarActivity implements
     }
 
     private String getURLQ() {
-        if (query_url == null) query_url = Config.hometech;
+        if (query_url == null) query_url = Config.newarrivals;
         return query_url;
     }
 
@@ -149,65 +149,86 @@ public class StoreFront extends ActionBarActivity implements
 
     private void initTabs() {
         //  items_list.clear();
-        // mTab.removeAllViews();
-        if (DataBank.filter_list_brand.size() > 0) items_list.add("Brand");
-        if (DataBank.filter_list_cat.size() > 0) items_list.add("Category");
-        if (DataBank.filter_list_size.size() > 0) items_list.add("Size");
-        if (DataBank.filter_list_price.size() > 0) items_list.add("Price");
-        for (int i = 0; i < items_list.size(); i++) {
-            String txt = items_list.get(i);
-            mTab.addTab(mTab.newTab().setTabListener(this).setText(txt));
+        if (mTab.getChildCount() == 0) {
+            if (DataBank.filter_list_brand.size() > 0) items_list.add("Brand");
+            if (DataBank.filter_list_cat.size() > 0) items_list.add("Category");
+            if (DataBank.filter_list_size.size() > 0) items_list.add("Size");
+            if (DataBank.filter_list_price.size() > 0) items_list.add("Price");
+            for (int i = 0; i < items_list.size(); i++) {
+                String txt = items_list.get(i);
+                mTab.addTab(mTab.newTab().setTabListener(this).setText(txt));
+            }
+            // Log.d(TAG, items_list.size() + " completed request for top menu");
+            // Tool.trace(this, TAG + "completed request for the top menu. there are : " + items_list.size() + " items");
+            mTab.notifyDataSetChanged();
+        } else {
+            // mTab.removeAllViews();
+            // mTab.notifyDataSetChanged();
         }
-        // Log.d(TAG, items_list.size() + " completed request for top menu");
-        // Tool.trace(this, TAG + "completed request for the top menu. there are : " + items_list.size() + " items");
-        mTab.notifyDataSetChanged();
+
+
     }
 
-    private String mfilter_title;
 
-    private void listdialog(String tit, String[] listitems, int preSelect) {
-        //Tool.trace(getApplicationContext(), tit + " : " + listitems.toString());
-        mfilter_title = tit;
-        final CustomListDialog.Builder builder = new CustomListDialog.Builder(this, "nif", listitems);
-        // Now we can any of the following methods.
-        // builder.content(String content);
-        // builder.darkTheme(false);
-        // builder.typeface(Typeface.createFromAsset(new AssetManager().));
-        builder.titleTextSize(R.dimen.dialog_title);
-        builder.titleAlignment(BaseDialog.Alignment.CENTER);// Use either Alignment.LEFT, Alignment.CENTER or Alignment.RIGHT
-        builder.titleColor(R.color.main_background); // int res, or int colorRes parameter versions available as well.
-        // builder.positiveBackground(Drawable drawable); // int res parameter version also available.
-        // builder.rightToLeft(false);
-        // Enables right to left positioning for languages that may require so.
-        // Now we can build the dialog.
-        final CustomListDialog customDialog = builder.build();
-        customDialog.setListClickListener(new CustomListDialog.ListClickListener() {
-            @Override
-            public void onListItemSelected(int i, String[] strings, String s) {
-                // i is the position clicked.
-                // strings is the array of items in the list.
-                // s is the item selected.
-                if (i > -1) {
-                    if (mfilter_title.equalsIgnoreCase("Price")) {
-                        //   DataBank.msubmissionfilter.setPrice(DataBank.filter_list_price.);
-                    } else {
+    private void listdialog(final String title, final String[] list) {
+        int list_index_selection = -1;
+        //Tool.trace(getApplicationContext(), tit + " : " + list.toString());
+        if (title.equalsIgnoreCase("price")) {
+            list_index_selection = DataBank.msubmissionfilter.getIndexPrice();
+            // list_index_selection = DataBank.msubmissionfilter.getIndex(list, DataBank.filter_price.getRangeAt(which));
+        } else if (title.equalsIgnoreCase("category")) {
+            list_index_selection = DataBank.msubmissionfilter.getIndexCat(list);
+        } else if (title.equalsIgnoreCase("brand")) {
+            list_index_selection = DataBank.msubmissionfilter.getIndexBrand(list);
+        } else if (title.equalsIgnoreCase("size")) {
+            list_index_selection = DataBank.msubmissionfilter.getIndexSize(list);
+        } else {
+
+        }
+
+        final MaterialDialog md = new MaterialDialog.Builder(this)
+                .title(title)
+                .items(list)
+
+                .itemsCallbackSingleChoice(list_index_selection,
+                        new MaterialDialog.ListCallback() {
+                            @Override
+                            public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                                Tool.trace(getApplicationContext(), text + "");
+                            }
+                        })
+
+                .callback(new MaterialDialog.ButtonCallback() {
+                    @Override
+                    public void onPositive(MaterialDialog dialog) {
+                        DataBank.msubmissionfilter.dialogSelection(dialog.getSelectedIndex(), title, list);
+                        mdisplay.notifyList();
+                        loadingList(1);
+                        dialog.dismiss();
+                    }
+
+                    @Override
+                    public void onNegative(MaterialDialog dialog) {
+                        DataBank.msubmissionfilter.reset(title);
+                        dialog.dismiss();
+                    }
+
+                    @Override
+                    public void onNeutral(MaterialDialog dialog) {
 
                     }
-                }
-                Tool.trace(getApplicationContext(), s);
-                customDialog.dismiss();
-            }
-        });
+                })
+                .positiveText(R.string.action_okay_filter)
+                .negativeText(R.string.action_clear_filter)
+                .show();
 
-        // Show the dialog.
-        customDialog.show();
     }
 
-    private void beforedialog(String title, final ArrayList<Term> terms) {
+    private void beforedialog(String title, final ArrayList<Termm> terms) {
         if (title.equalsIgnoreCase("Brand")) {
-            listdialog(title, Filtering.TermsAsListAlphabetical(terms), 0);
+            listdialog(title, Filtering.TermsAsListAlphabetical(terms));
         } else
-            listdialog(title, Filtering.TermsAsList(terms), 0);
+            listdialog(title, Filtering.TermsAsList(terms));
     }
 
     private void tab_selected_final(MaterialTab materialTab) {
@@ -272,8 +293,11 @@ public class StoreFront extends ActionBarActivity implements
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-
-
+            return true;
+        } else if (id == R.id.action_clear_all) {
+            if (DataBank.msubmissionfilter.reset()) {
+                loadingList(1);
+            }
             return true;
         }
 

@@ -1,4 +1,4 @@
-package com.hb.hkm.hypebeaststore.fragments.homeStoreComponents;
+package com.hb.hkm.hypebeaststore.fragments.homestorecom;
 
 import android.content.Context;
 

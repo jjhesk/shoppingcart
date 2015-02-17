@@ -1,4 +1,4 @@
-package com.hb.hkm.hypebeaststore.fragments.WebViewComponents;
+package com.hb.hkm.hypebeaststore.fragments.webviewclients;
 
 
 /**
@@ -24,7 +24,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.hb.hkm.hypebeaststore.Controllers.App;
+import com.hb.hkm.hypebeaststore.controller.App;
 
 public class HBClient extends WebViewClient {
 

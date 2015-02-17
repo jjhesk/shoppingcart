@@ -3,19 +3,19 @@ package com.hb.hkm.hypebeaststore.datamodel;
 /**
  * Created by hesk on 2/3/15.
  */
-public class Term {
+public class Termm {
 
-    private String term = "";
+    private String term = "_";
     private int count = 0;
 
-    public Term() {
+    public Termm() {
     }
 
-    public Term(String t) {
+    public Termm(String t) {
         term = t;
     }
 
-    public Term(String t, int c) {
+    public Termm(String t, int c) {
         count = c;
         term = t;
     }

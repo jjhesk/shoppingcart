@@ -6,9 +6,8 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
-import com.hb.hkm.hypebeaststore.Controllers.DataBank;
+import com.hb.hkm.hypebeaststore.controller.DataBank;
 import com.hb.hkm.hypebeaststore.datamodel.Product;
-import com.hb.hkm.hypebeaststore.datamodel.outputV1wrapAdapter;
 
 import java.io.StringReader;
 

@@ -8,11 +8,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.asynhkm.productchecker.Util.Tool;
-import com.hb.hkm.hypebeaststore.Controllers.Config;
-import com.hb.hkm.hypebeaststore.Controllers.DataBank;
-import com.hb.hkm.hypebeaststore.fragments.GridComponents.GrideDisplayEvent;
+import com.hb.hkm.hypebeaststore.controller.Config;
+import com.hb.hkm.hypebeaststore.controller.DataBank;
+import com.hb.hkm.hypebeaststore.fragments.gridcom.GrideDisplayEvent;
 import com.hb.hkm.hypebeaststore.fragments.GridDisplay;
-import com.hb.hkm.hypebeaststore.fragments.dialogComponents.RunLDialogs;
+import com.hb.hkm.hypebeaststore.fragments.dialogcom.RunLDialogs;
 import com.hb.hkm.hypebeaststore.tasks.ListQueryManager;
 import com.hb.hkm.hypebeaststore.tasks.asyclient;
 
