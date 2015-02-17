@@ -10,30 +10,18 @@ import java.util.ArrayList;
 /**
  * Created by hesk on 2/4/15.
  */
-public class outputV1 {
-    private ArrayList<Product> products;
-    private int current_page;
-    private int pages;
+public class outputV1Adapter {
+
     private outputV1wrapAdapter adapter;
 
-    public outputV1() {
+    public outputV1Adapter() {
     }
 
-    public int totalpages() {
-        return pages;
-    }
-
-    public int current_page() {
-        return current_page;
-    }
 
     public outputV1Facets getFacet() {
         return adapter.getfacets();
     }
 
-    public ArrayList<Product> getProducts() {
-        return products;
-    }
 
     public void sortedSize(final ArrayList<Termm> existingList) {
         sortingWorker(

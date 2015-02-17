@@ -14,7 +14,8 @@ import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
 import com.hb.hkm.hypebeaststore.controller.Config;
 import com.hb.hkm.hypebeaststore.controller.DataBank;
-import com.hb.hkm.hypebeaststore.datamodel.V1.outputV1;
+import com.hb.hkm.hypebeaststore.datamodel.V1.outputV1Adapter;
+import com.hb.hkm.hypebeaststore.datamodel.V1.outputV1ProductWrap;
 import com.hb.hkm.hypebeaststore.datamodel.V2.outputV2;
 import com.hb.hkm.hypebeaststore.datamodel.gsontool.TermFactory;
 
@@ -110,21 +111,23 @@ public class ListQueryManager extends asyclient {
         reader.setLenient(true);
         switch (Config.setting.APIversion) {
             case 1:
-                outputV1 output_time = g.fromJson(data, outputV1.class);
+                final outputV1ProductWrap output_product = g.fromJson(data, outputV1ProductWrap.class);
 
-                Log.d(TAG, output_time.toString());
-                DataBank.current_product_list.addAll(output_time.getProducts());
-                DataBank.result_total_pages = output_time.totalpages();
-                DataBank.result_current_page = output_time.current_page();
+
+                DataBank.current_product_list.addAll(output_product.getProducts());
+                DataBank.result_total_pages = output_product.totalpages();
+                DataBank.result_current_page = output_product.current_page();
 
                 if (!isReadingMore) {
+                    outputV1Adapter outputadapter = g.fromJson(data, outputV1Adapter.class);
+                    //  Log.d(TAG, outputadapter.toString());
                     DataBank.filter_list_price.clear();
                     DataBank.filter_list_brand.clear();
-                    DataBank.filter_list_price.addAll(output_time.getFacet().getPrice());
-                    DataBank.filter_list_brand.addAll(output_time.getFacet().getBrand());
-                    DataBank.filter_price = output_time.getFacet().getPriceFilter();
-                    output_time.sortedSize(DataBank.filter_list_size);
-                    output_time.sortedCate(DataBank.filter_list_cat);
+                    DataBank.filter_list_price.addAll(outputadapter.getFacet().getPrice());
+                    DataBank.filter_list_brand.addAll(outputadapter.getFacet().getBrand());
+                    DataBank.filter_price = outputadapter.getFacet().getPriceFilter();
+                    outputadapter.sortedSize(DataBank.filter_list_size);
+                    outputadapter.sortedCate(DataBank.filter_list_cat);
                 }
 
                 break;
