@@ -1,4 +1,4 @@
-package com.hb.hkm.hypebeaststore.datamodel;
+package com.hb.hkm.hypebeaststore.datamodel.V1;
 
 /**
  * Created by hesk on 2/3/15.

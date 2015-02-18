@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.hb.hkm.hypebeaststore.controller.DataBank;
 import com.hb.hkm.hypebeaststore.ProductSingle;
 import com.hb.hkm.hypebeaststore.R;
 import com.hb.hkm.hypebeaststore.SelectView;
@@ -31,11 +30,14 @@ public class SelectionSpinner implements View.OnClickListener {
         sp_qty = (Button) act.findViewById(R.id.spinner_quantity);
         sp_qty.setOnClickListener(this);
         try {
+            String[] temp = new String[0];
             qty = new String[]{
                     "1", "2", "3", "4", "5", "6", "7", "8", "9"
             };
-            color = DataBank.product_single.getProductGroups();
-            size = DataBank.product_single.getSizeVariants();
+            color = temp;
+            //DataBank.product_single.getProductGroups();
+            size = temp;
+            //DataBank.product_single.getSizeVariants();
         } catch (Exception e) {
             RunLDialogs.strDemo2(act, e.getMessage());
         }

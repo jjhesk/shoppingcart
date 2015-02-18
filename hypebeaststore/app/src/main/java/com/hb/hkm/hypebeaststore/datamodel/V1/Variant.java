@@ -1,4 +1,4 @@
-package com.hb.hkm.hypebeaststore.datamodel;
+package com.hb.hkm.hypebeaststore.datamodel.V1;
 
 import java.util.ArrayList;
 
@@ -14,7 +14,6 @@ public class Variant {
     private boolean is_master;
     private int on_hand;
     private int on_hold;
-    private boolean in_stock;
     private int product_id;
     private ArrayList<Option> option_values;
 

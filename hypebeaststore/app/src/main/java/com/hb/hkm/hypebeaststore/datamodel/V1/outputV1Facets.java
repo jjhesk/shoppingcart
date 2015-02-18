@@ -1,9 +1,5 @@
 package com.hb.hkm.hypebeaststore.datamodel.V1;
 
-import com.hb.hkm.hypebeaststore.datamodel.CTFilter;
-import com.hb.hkm.hypebeaststore.datamodel.CTPrice;
-import com.hb.hkm.hypebeaststore.datamodel.Termm;
-
 import java.util.ArrayList;
 
 /**
@@ -16,6 +12,7 @@ public class outputV1Facets {
     private CTPrice price;
 
     public outputV1Facets() {
+
     }
 
     public CTFilter getSize() {

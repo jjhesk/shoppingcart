@@ -1,27 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:expandable="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:orientation="vertical">
 
-    <com.daimajia.slider.library.SliderLayout
-        android:id="@+id/slider"
+    <!-- <com.daimajia.slider.library.SliderLayout
+         android:id="@+id/slider"
+         android:layout_width="match_parent"
+         android:layout_height="@dimen/slider_height_single_product" />
+
+     <com.daimajia.slider.library.Indicators.PagerIndicator
+         android:id="@+id/custom_indicator"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:gravity="center" />-->
+
+
+    <com.andexert.expandablelayout.library.ExpandableLayout
+        android:id="@+id/single_expanableview"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/slider_height_single_product" />
-
-    <com.daimajia.slider.library.Indicators.PagerIndicator
-        android:id="@+id/custom_indicator"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center" />
+        expandable:headerLayout="@layout/ex_view_header"
+        expandable:contentLayout="@layout/ex_view_content"
+        android:background="#e74c3c" />
 
-    <!--<com.andexert.expandablelayout.library.ExpandableLayout
-        android:id="@+id/expandableLayout"
+    <com.andexert.expandablelayout.library.ExpandableLayoutListView
+        android:id="@+id/expandablelistview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        expandable:headerLayout="@layout/view_header"
-        expandable:contentLayout="@layout/view_content" />-->
-
+        android:layout_height="match_parent" />
 
 </LinearLayout>

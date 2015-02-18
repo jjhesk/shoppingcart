@@ -22,8 +22,7 @@ public class Config {
     public static class setting {
         public static double list_expand_factor = 0.65d;
         public static int single_page_items = 15;
-        public static int APIversion = 1;
-        public static boolean useAPIV2 = false;
+        public static int APIversion = 2;
         public static String useragent_V2 = "Mozilla/5.0 (iPhone; CPU iPhone OS 10_10 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Mobile/12B411 HypebeastStoreApp/1.0";
         public static String useragent = "HypebeastStoreApp/1.0 Android " + Build.VERSION.SDK_INT;
 

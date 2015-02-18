@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 
 import com.asynhkm.productchecker.Util.Tool;
 import com.hb.hkm.hypebeaststore.R;
-import com.hb.hkm.hypebeaststore.datamodel.Product;
+import com.hb.hkm.hypebeaststore.datamodel.V1.Product;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;

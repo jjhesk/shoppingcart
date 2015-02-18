@@ -14,7 +14,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.asynhkm.productchecker.Util.Tool;
 import com.hb.hkm.hypebeaststore.controller.Config;
 import com.hb.hkm.hypebeaststore.controller.DataBank;
-import com.hb.hkm.hypebeaststore.datamodel.Termm;
+import com.hb.hkm.hypebeaststore.datamodel.V1.Termm;
 import com.hb.hkm.hypebeaststore.fragments.GridDisplay;
 import com.hb.hkm.hypebeaststore.fragments.dialogcom.RunLDialogs;
 import com.hb.hkm.hypebeaststore.fragments.gridcom.GrideDisplayEvent;
@@ -54,7 +54,7 @@ public class StoreFront extends ActionBarActivity implements
     @Override
     public void onSuccess(String data) {
         //RunLDialogs.strDemo2(StoreFront.this, data);
-        StoreFront.this.runOnUiThread(new Runnable() {
+        runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 mdisplay.notifyList();
@@ -88,7 +88,7 @@ public class StoreFront extends ActionBarActivity implements
         return query_url;
     }
 
-    public void loadingList(final int page_at) {
+    private void load_fetched_content(final int page_at) {
         // final Bundle instance = savedInstanceState;
         sync = new ListQueryManager(this);
         sync.setPageView(page_at)
@@ -121,11 +121,11 @@ public class StoreFront extends ActionBarActivity implements
                 int p = page;
                 if (sync != null) {
                     if (sync.getStatus() == AsyncTask.Status.FINISHED) {
-                        loadingList(page);
+                        load_fetched_content(page);
                     }
                 } else {
                     sync = new ListQueryManager(StoreFront.this);
-                    loadingList(page);
+                    load_fetched_content(page);
                 }
             }
         });
@@ -136,9 +136,9 @@ public class StoreFront extends ActionBarActivity implements
                 .add(R.id.container, mdisplay)
                 .commit();
 
-
-        if (DataBank.current_product_list.size() == 0) {
-            loadingList(1);
+        if (DataBank.current_product_list2.size() == 0) {
+            //if (DataBank.current_product_list.size() == 0) {
+            load_fetched_content(1);
         } else {
             initTabs();
         }
@@ -149,6 +149,7 @@ public class StoreFront extends ActionBarActivity implements
 
     private void initTabs() {
         //  items_list.clear();
+        boolean noti = false;
         if (mTab.getChildCount() == 0) {
             if (DataBank.filter_list_brand.size() > 0) items_list.add("Brand");
             if (DataBank.filter_list_cat.size() > 0) items_list.add("Category");
@@ -157,10 +158,11 @@ public class StoreFront extends ActionBarActivity implements
             for (int i = 0; i < items_list.size(); i++) {
                 String txt = items_list.get(i);
                 mTab.addTab(mTab.newTab().setTabListener(this).setText(txt));
+                noti = true;
             }
             // Log.d(TAG, items_list.size() + " completed request for top menu");
             // Tool.trace(this, TAG + "completed request for the top menu. there are : " + items_list.size() + " items");
-            mTab.notifyDataSetChanged();
+            if (noti) mTab.notifyDataSetChanged();
         } else {
             // mTab.removeAllViews();
             // mTab.notifyDataSetChanged();
@@ -203,7 +205,7 @@ public class StoreFront extends ActionBarActivity implements
                     public void onPositive(MaterialDialog dialog) {
                         DataBank.msubmissionfilter.dialogSelection(dialog.getSelectedIndex(), title, list);
                         mdisplay.notifyList();
-                        loadingList(1);
+                        load_fetched_content(1);
                         dialog.dismiss();
                     }
 
@@ -296,7 +298,7 @@ public class StoreFront extends ActionBarActivity implements
             return true;
         } else if (id == R.id.action_clear_all) {
             if (DataBank.msubmissionfilter.reset()) {
-                loadingList(1);
+                load_fetched_content(1);
             }
             return true;
         }

@@ -1,7 +1,5 @@
 package com.hb.hkm.hypebeaststore.datamodel.V1;
 
-import com.hb.hkm.hypebeaststore.datamodel.Product;
-
 import java.util.ArrayList;
 
 /**

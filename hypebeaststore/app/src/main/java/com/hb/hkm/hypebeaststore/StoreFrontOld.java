@@ -63,7 +63,8 @@ public class StoreFrontOld extends ActionBarActivity implements asyclient.callba
                     .beginTransaction()
                     .add(R.id.container, mdisplay)
                     .commit();
-            if (DataBank.current_product_list.size() == 0) {
+          //  if (DataBank.current_product_list.size() == 0) {
+            if (DataBank.current_product_list2.size() == 0) {
                 loadingList(1);
             }
         } else {

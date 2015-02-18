@@ -1,4 +1,4 @@
-package com.hb.hkm.hypebeaststore.datamodel;
+package com.hb.hkm.hypebeaststore.datamodel.V1;
 
 import com.hb.hkm.hypebeaststore.controller.Config;
 
@@ -13,7 +13,7 @@ public class Product {
     private String description;
     private String price;
     private String sale_price;
-    private TimeWrap available_on;
+    //private TimeWrap available_on;
     //private String sold_out_at;
     //private String back_in_stock_at;
     private String slug;

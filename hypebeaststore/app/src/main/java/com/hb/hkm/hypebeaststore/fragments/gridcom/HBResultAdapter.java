@@ -9,11 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
-import com.hb.hkm.hypebeaststore.controller.Config;
-import com.hb.hkm.hypebeaststore.controller.DataBank;
 import com.hb.hkm.hypebeaststore.ProductSingle;
 import com.hb.hkm.hypebeaststore.R;
-import com.hb.hkm.hypebeaststore.datamodel.Product;
+import com.hb.hkm.hypebeaststore.controller.Config;
+import com.hb.hkm.hypebeaststore.controller.DataBank;
+import com.hb.hkm.hypebeaststore.datamodel.V2.Product;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -30,7 +30,7 @@ public class HBResultAdapter extends ArrayAdapter<Product> {
     public static final String TAG = "product list adapter";
 
     public HBResultAdapter(Context context, int itemLayout) {
-        super(context, itemLayout, R.id.description, DataBank.current_product_list);
+        super(context, itemLayout, R.id.description, DataBank.current_product_list2);
         inflater = LayoutInflater.from(context);
         res = context.getResources();
         this.itemLayout = itemLayout;
@@ -38,7 +38,8 @@ public class HBResultAdapter extends ArrayAdapter<Product> {
     }
 
     private void feedData(final ViewHolder vh, final int position) {
-        final Product p = DataBank.current_product_list.get(position);
+        // final Product p = DataBank.current_product_list.get(position);
+        final Product p = DataBank.current_product_list2.get(position);
         final String test = p.get_cover_image();
 
         // vh.description.title.setText(p.getTitle());

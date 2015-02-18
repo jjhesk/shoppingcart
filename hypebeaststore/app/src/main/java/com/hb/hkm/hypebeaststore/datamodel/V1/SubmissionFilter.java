@@ -1,4 +1,4 @@
-package com.hb.hkm.hypebeaststore.datamodel;
+package com.hb.hkm.hypebeaststore.datamodel.V1;
 
 import android.net.Uri;
 
@@ -101,6 +101,7 @@ public class SubmissionFilter {
         newFilter = true;
         DataBank.result_current_page = 1;
         DataBank.current_product_list.clear();
+        DataBank.current_product_list2.clear();
     }
 
     public String getJson() {

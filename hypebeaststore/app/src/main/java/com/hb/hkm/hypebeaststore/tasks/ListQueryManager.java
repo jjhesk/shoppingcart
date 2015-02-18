@@ -31,6 +31,7 @@ public class ListQueryManager extends asyclient {
     protected static String TAG = "ListQueryManager";
     private final GsonBuilder gb = new GsonBuilder();
     private Gson g;
+    //  private GsonTestCase1 cgons;
 
     public ListQueryManager(Context ccc) {
         super(ccc, (callback) ccc);
@@ -69,8 +70,11 @@ public class ListQueryManager extends asyclient {
         });
 
         //gb.registerTypeAdapterFactory(new GTool.NullStringToEmptyAdapterFactory());
-        g = gb.create();
+        //gb.setVersion(1.0);
 
+
+        g = gb.create();
+        // cgons = (GsonTestCase1) ccc;
     }
 
     public ListQueryManager setPageView(final int page_to_view) {
@@ -99,9 +103,6 @@ public class ListQueryManager extends asyclient {
 
     }
 
-    public void buildExistingView() {
-        ViewConstruction();
-    }
 
     @Override
     protected void GSONParser(final String data) throws JsonSyntaxException, JsonIOException, JsonParseException {
@@ -113,28 +114,49 @@ public class ListQueryManager extends asyclient {
             case 1:
                 final outputV1ProductWrap output_product = g.fromJson(data, outputV1ProductWrap.class);
 
-
                 DataBank.current_product_list.addAll(output_product.getProducts());
                 DataBank.result_total_pages = output_product.totalpages();
                 DataBank.result_current_page = output_product.current_page();
+                //cgons.addTextBody(data);
+
 
                 if (!isReadingMore) {
-                    outputV1Adapter outputadapter = g.fromJson(data, outputV1Adapter.class);
-                    //  Log.d(TAG, outputadapter.toString());
+                    outputV1Adapter opadp = g.fromJson(data, outputV1Adapter.class);
+                    //  Log.d(TAG, opadp.toString());
+                    DataBank.filter_list_price.clear();
+                    DataBank.filter_list_brand.clear();
+                    DataBank.filter_list_price.addAll(opadp.getFacet().getPrice());
+                    DataBank.filter_list_brand.addAll(opadp.getFacet().getBrand());
+                    DataBank.filter_price = opadp.getFacet().getPriceFilter();
+                    opadp.sortedSize(DataBank.filter_list_size);
+                    opadp.sortedCate(DataBank.filter_list_cat);
+                }
+
+                break;
+            case 2:
+                Log.d(TAG, data);
+                final outputV2 outpro = g.fromJson(data, outputV2.class);
+                DataBank.current_product_list2.addAll(outpro.getProducts());
+                DataBank.result_total_pages = outpro.totalpages();
+                DataBank.result_current_page = outpro.current_page();
+                //cgons.addTextBody(data);
+                if (!isReadingMore) {
+                    DataBank.filter_list_price.clear();
+                    DataBank.filter_list_brand.clear();
+
+                  /*  outputV1Adapter outputadapter = g.fromJson(data, outputV1Adapter.class);
+
                     DataBank.filter_list_price.clear();
                     DataBank.filter_list_brand.clear();
                     DataBank.filter_list_price.addAll(outputadapter.getFacet().getPrice());
                     DataBank.filter_list_brand.addAll(outputadapter.getFacet().getBrand());
                     DataBank.filter_price = outputadapter.getFacet().getPriceFilter();
                     outputadapter.sortedSize(DataBank.filter_list_size);
-                    outputadapter.sortedCate(DataBank.filter_list_cat);
+                    outputadapter.sortedCate(DataBank.filter_list_cat);*/
+                    //  Log.d(TAG, outputadapter.toString());
                 }
 
-                break;
-            case 2:
-                outputV2 out = g.fromJson(reader, outputV2.class);
-                Log.d(TAG, out.toString());
-                //DataBank.product_master_list = out;
+
                 break;
         }
     }

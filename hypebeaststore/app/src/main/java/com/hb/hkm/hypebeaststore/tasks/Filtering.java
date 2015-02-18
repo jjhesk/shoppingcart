@@ -2,7 +2,7 @@ package com.hb.hkm.hypebeaststore.tasks;
 
 import android.content.Context;
 
-import com.hb.hkm.hypebeaststore.datamodel.Termm;
+import com.hb.hkm.hypebeaststore.datamodel.V1.Termm;
 
 import java.util.ArrayList;
 import java.util.Collections;

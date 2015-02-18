@@ -10,11 +10,11 @@ import com.daimajia.slider.library.Indicators.PagerIndicator;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
-import com.hb.hkm.hypebeaststore.controller.DataBank;
 import com.hb.hkm.hypebeaststore.ProductSingle;
 import com.hb.hkm.hypebeaststore.R;
-import com.hb.hkm.hypebeaststore.datamodel.Image;
-import com.hb.hkm.hypebeaststore.datamodel.Product;
+import com.hb.hkm.hypebeaststore.controller.DataBank;
+import com.hb.hkm.hypebeaststore.datamodel.V2.Image;
+import com.hb.hkm.hypebeaststore.datamodel.V2.Product;
 import com.hb.hkm.hypebeaststore.fragments.dialogcom.RunLDialogs;
 import com.hb.hkm.hypebeaststore.tasks.AddCartManager;
 import com.hb.hkm.hypebeaststore.tasks.SingleBuilder;
@@ -68,9 +68,9 @@ public class ViewHolder
         SPinner = new SelectionSpinner(act);
 
 
-        card_description = new cardbox(act.findViewById(R.id.description), "DESCRIPTION");
-        card_size = new cardbox(act.findViewById(R.id.size), "SIZE");
-        card_hard = new cardbox(act.findViewById(R.id.hardcode), "TERMS");
+        card_description = new cardbox(act.findViewById(R.id.description), act.getString(R.string.label_field_1));
+        card_size = new cardbox(act.findViewById(R.id.size), act.getString(R.string.label_field_2));
+        card_hard = new cardbox(act.findViewById(R.id.hardcode), act.getString(R.string.label_field_3));
 
 
         if (!SPinner.foundSize()) card_size.setgone();
@@ -88,12 +88,12 @@ public class ViewHolder
 
     private void after(final int pos) {
         try {
-            mproduct_from_list = DataBank.current_product_list.get(pos);
+            mproduct_from_list = DataBank.current_product_list2.get(pos);
             final String singleurl = mproduct_from_list.getSingleEndPoint();
             tv_brand_title.setText(mproduct_from_list.get_brand_name());
             tv_product_title.setText(mproduct_from_list.getTitle());
-            add_bag.setText("Add to Bag");
-            add_wish.setText("Add to Wishlist");
+            add_bag.setText(context.getString(R.string.button_1));
+            add_wish.setText(context.getString(R.string.button_2));
             //loading point
             request_tag = READSINGLE;
             lb = new SingleBuilder(context, this);
@@ -111,13 +111,11 @@ public class ViewHolder
     }
 
     protected void setup_textviews() {
-        String simple = !product_single.hasVariants() ? product_single.getMasterVariant().stock_logic() : "";
+      /*  String simple = !product_single.hasVariants() ? product_single.getMasterVariant().stock_logic() : "";
 
         card_description.setDesc(product_single.get_desc());
         card_size.setDesc("iaonvoinaoivneionv ev ");
         card_hard.setDesc("fiaojfdsoi jfiosdj ");
-
-
 
 
         if (!product_single.getSalesPrice().equalsIgnoreCase("")) {
@@ -127,7 +125,7 @@ public class ViewHolder
 
             price.setText(product_single.getPrice() + simple);
             sales.setText("");
-        }
+        }*/
 
 
     }
@@ -138,7 +136,7 @@ public class ViewHolder
 
             if (product_single.get_product_images() == null) throw new Exception("no images found");
             for (Image image : product_single.get_product_images()) {
-                url_maps.put("sample #" + image.getPosition(), image.getL_url());
+                url_maps.put("sample #" + image.getPosition(), image.getPath());
             }
 
             for (Map.Entry<String, String> entry : url_maps.entrySet()) {
@@ -181,7 +179,7 @@ public class ViewHolder
         switch (request_tag) {
             case READSINGLE:
                 //RunLDialogs.strDemo2(context, data);
-                product_single = DataBank.product_single;
+                product_single = DataBank.product_single2;
                 setup_slider();
                 setup_selection_UI();
                 setup_textviews();
@@ -211,11 +209,11 @@ public class ViewHolder
             case R.id.add_to_bag:
                 request_tag = ADDCART;
                 acm = new AddCartManager(context, this);
-                final int h = product_single.hasVariants() ? product_single.getVariantID(0) : product_single.getMasterID();
+                // final int h = product_single.hasVariants() ? product_single.getVariantID(0) : product_single.getMasterID();
                 //if (!singleurl.isEmpty())
-                acm
-                        .setURL(AddCartManager.getUrl(h, 1))
-                        .execute();
+                //acm
+                //        .setURL(AddCartManager.getUrl(h, 1))
+                //        .execute();
                 break;
 
 

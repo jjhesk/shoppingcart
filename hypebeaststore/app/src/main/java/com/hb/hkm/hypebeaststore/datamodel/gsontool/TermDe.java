@@ -6,7 +6,7 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import com.hb.hkm.hypebeaststore.datamodel.Termm;
+import com.hb.hkm.hypebeaststore.datamodel.V1.Termm;
 
 import java.lang.reflect.Type;
 

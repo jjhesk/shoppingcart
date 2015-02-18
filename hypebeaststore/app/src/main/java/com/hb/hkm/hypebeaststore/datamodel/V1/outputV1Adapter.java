@@ -1,7 +1,5 @@
 package com.hb.hkm.hypebeaststore.datamodel.V1;
 
-import com.hb.hkm.hypebeaststore.datamodel.Product;
-import com.hb.hkm.hypebeaststore.datamodel.Termm;
 import com.hb.hkm.hypebeaststore.datamodel.V2.outputV1wrapAdapter;
 import com.hb.hkm.hypebeaststore.tasks.Filtering;
 

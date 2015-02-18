@@ -8,7 +8,7 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
-import com.hb.hkm.hypebeaststore.datamodel.Termm;
+import com.hb.hkm.hypebeaststore.datamodel.V1.Termm;
 
 import java.io.IOException;
 

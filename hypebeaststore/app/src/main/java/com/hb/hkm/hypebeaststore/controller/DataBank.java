@@ -1,10 +1,9 @@
 package com.hb.hkm.hypebeaststore.controller;
 
-import com.hb.hkm.hypebeaststore.datamodel.CTPrice;
-import com.hb.hkm.hypebeaststore.datamodel.CartProduct;
-import com.hb.hkm.hypebeaststore.datamodel.Product;
-import com.hb.hkm.hypebeaststore.datamodel.SubmissionFilter;
-import com.hb.hkm.hypebeaststore.datamodel.Termm;
+import com.hb.hkm.hypebeaststore.datamodel.V1.CTPrice;
+import com.hb.hkm.hypebeaststore.datamodel.V1.CartProduct;
+import com.hb.hkm.hypebeaststore.datamodel.V1.SubmissionFilter;
+import com.hb.hkm.hypebeaststore.datamodel.V1.Termm;
 import com.hb.hkm.hypebeaststore.datamodel.V2.outputV2;
 
 import java.util.ArrayList;
@@ -15,8 +14,10 @@ import java.util.ArrayList;
 public class DataBank {
     public static String loaded = "";
     public static outputV2 prodcut_master_list;
-    public static Product product_single;
-    public static final ArrayList<Product> current_product_list = new ArrayList<Product>();
+    public static com.hb.hkm.hypebeaststore.datamodel.V2.Product product_single2;
+    public static com.hb.hkm.hypebeaststore.datamodel.V1.Product product_single;
+    public static final ArrayList<com.hb.hkm.hypebeaststore.datamodel.V2.Product> current_product_list2 = new ArrayList<com.hb.hkm.hypebeaststore.datamodel.V2.Product>();
+    public static final ArrayList<com.hb.hkm.hypebeaststore.datamodel.V1.Product> current_product_list = new ArrayList<com.hb.hkm.hypebeaststore.datamodel.V1.Product>();
     public static final ArrayList<CartProduct> my_cart = new ArrayList<CartProduct>();
 
 

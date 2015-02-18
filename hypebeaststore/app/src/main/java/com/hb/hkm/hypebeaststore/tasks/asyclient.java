@@ -73,16 +73,20 @@ public abstract class asyclient extends AsyncTask<Void, Void, String> {
     abstract protected void GSONParser(final String data);
 
     private Response exe_command() throws IOException {
+
         Request.Builder request = new Request.Builder()
                 .url(url)
                 .header("Accept", "application/json")
                 .header("User-Agent", Config.setting.useragent);
 
-        if (Config.setting.useAPIV2)
+        if (Config.setting.APIversion == 2)
             request.header("X-Api-Version", "2.0");
 
 
         final Response response = client.newCall(request.build()).execute();
+
+
+
         return response;
     }
 

@@ -1,4 +1,4 @@
-package com.hb.hkm.hypebeaststore.datamodel;
+package com.hb.hkm.hypebeaststore.datamodel.V1;
 
 import com.hb.hkm.hypebeaststore.datamodel.gsontool.gmodel;
 
