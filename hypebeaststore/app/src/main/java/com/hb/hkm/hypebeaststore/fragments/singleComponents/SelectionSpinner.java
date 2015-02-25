@@ -6,10 +6,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.asynhkm.productchecker.Util.Tool;
 import com.hb.hkm.hypebeaststore.ProductSingle;
 import com.hb.hkm.hypebeaststore.R;
 import com.hb.hkm.hypebeaststore.SelectView;
 import com.hb.hkm.hypebeaststore.fragments.dialogcom.RunLDialogs;
+
+import java.util.HashMap;
 
 /**
  * Created by hesk on 2/11/15.
@@ -29,17 +32,20 @@ public class SelectionSpinner implements View.OnClickListener {
         sp_size.setOnClickListener(this);
         sp_qty = (Button) act.findViewById(R.id.spinner_quantity);
         sp_qty.setOnClickListener(this);
+
+    }
+
+    public void init(HashMap<String, String> hashk) {
         try {
-            String[] temp = new String[0];
             qty = new String[]{
                     "1", "2", "3", "4", "5", "6", "7", "8", "9"
             };
-            color = temp;
+            color = Tool.sortMapToArray("color", hashk);
             //DataBank.product_single.getProductGroups();
-            size = temp;
+            size = Tool.sortMapToArray("size", hashk);
             //DataBank.product_single.getSizeVariants();
         } catch (Exception e) {
-            RunLDialogs.strDemo2(act, e.getMessage());
+            RunLDialogs.strDemo2(mcontext, e.getMessage());
         }
 
         if (color == null || color.length == 0) {

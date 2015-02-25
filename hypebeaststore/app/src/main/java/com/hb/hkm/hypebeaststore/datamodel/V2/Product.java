@@ -1,6 +1,9 @@
 package com.hb.hkm.hypebeaststore.datamodel.V2;
 
+import com.asynhkm.productchecker.Util.Tool;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by hesk on 2/18/15.
@@ -10,27 +13,25 @@ public class Product {
     private String name;
     private String description;
     private int price;
-    // private int sale_price;
-    private String brand;
+    private int sale_price;
     private String created_at;
     private String updated_at;
+
+    private connection _links;
+    private RelatedGroups _embedded;
     private ArrayList<Image> images = new ArrayList<Image>();
     private ArrayList<Variant> variants = new ArrayList<Variant>();
-
-    public boolean hasVariants() {
-        return variants.size() > 0;
-    }
 
     public ArrayList<Image> get_product_images() {
         return images;
     }
 
     public String get_cover_image() {
-        return images.get(0).getPath();
+        return images.get(0).smallImage();
     }
 
     public String get_brand_name() {
-        return brand;
+        return _embedded.brands().get(0).getcodename();
     }
 
     public String getPrice() {
@@ -42,31 +43,32 @@ public class Product {
     }
 
     public String getSingleEndPoint() {
-        return "";
+        return _links == null ? "" : _links.getself().gethref();
     }
 
     public String getTitle() {
-        return "";
+        return name;
     }
 
     public String get_desc() {
-        return "";
+        return description;
     }
 
     public String getSalesPrice() {
         return "";
     }
-/*
-    public String[] getSizeVariants() {
-        ArrayList<String> a = new ArrayList<String>();
-        if (variants.size() == 0 || variants == null) return new String[]{};
-        for (Variant s : variants) {
-            a.add(s.getOptions().get(0).getVal() + "");
+
+    public HashMap<String, String> getMappedVariants() {
+        HashMap<String, String> a = new HashMap<String, String>();
+        if (variants.size() == 0 || variants == null) return new HashMap<String, String>();
+        try {
+            for (Variant s : variants) {
+                a.putAll(s.getpair());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        String[] c = new String[a.size()];
-        c = a.toArray(c);
-        return c;
+        return Tool.sortHashMapByValuesD(a);
     }
-*/
 
 }

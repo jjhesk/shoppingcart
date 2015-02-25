@@ -16,8 +16,7 @@ import com.hb.hkm.hypebeaststore.controller.Config;
 import com.hb.hkm.hypebeaststore.controller.DataBank;
 import com.hb.hkm.hypebeaststore.datamodel.V1.outputV1Adapter;
 import com.hb.hkm.hypebeaststore.datamodel.V1.outputV1ProductWrap;
-import com.hb.hkm.hypebeaststore.datamodel.V2.outputV2;
-import com.hb.hkm.hypebeaststore.datamodel.gsontool.TermFactory;
+import com.hb.hkm.hypebeaststore.datamodel.V2.outV2sum;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -39,8 +38,8 @@ public class ListQueryManager extends asyclient {
         limit = Config.setting.single_page_items;
 
         gb.disableHtmlEscaping();
-        //gb.registerTypeAdapter(Term.class, new TermDe());
-        gb.registerTypeAdapterFactory(new TermFactory());
+        // gb.registerTypeAdapter(Term.class, new TermDe());
+        // gb.registerTypeAdapterFactory(new TermFactory());
         gb.registerTypeAdapter(Float.class, new TypeAdapter<Float>() {
 
             @Override
@@ -135,17 +134,16 @@ public class ListQueryManager extends asyclient {
                 break;
             case 2:
                 Log.d(TAG, data);
-                final outputV2 outpro = g.fromJson(data, outputV2.class);
-                DataBank.current_product_list2.addAll(outpro.getProducts());
-                DataBank.result_total_pages = outpro.totalpages();
-                DataBank.result_current_page = outpro.current_page();
+                final outV2sum outpro = g.fromJson(data, outV2sum.class);
+                DataBank.current_product_list2.addAll(outpro.V2output().getProducts().getlist());
+                DataBank.result_total_pages = outpro.V2output().totalpages();
+                DataBank.result_current_page = outpro.V2output().current_page();
                 //cgons.addTextBody(data);
                 if (!isReadingMore) {
-                    DataBank.filter_list_price.clear();
-                    DataBank.filter_list_brand.clear();
-
-                  /*  outputV1Adapter outputadapter = g.fromJson(data, outputV1Adapter.class);
-
+                    // DataBank.filter_list_price.clear();
+                    // DataBank.filter_list_brand.clear();
+                  /*
+                    outputV1Adapter outputadapter = g.fromJson(data, outputV1Adapter.class);
                     DataBank.filter_list_price.clear();
                     DataBank.filter_list_brand.clear();
                     DataBank.filter_list_price.addAll(outputadapter.getFacet().getPrice());
@@ -154,6 +152,8 @@ public class ListQueryManager extends asyclient {
                     outputadapter.sortedSize(DataBank.filter_list_size);
                     outputadapter.sortedCate(DataBank.filter_list_cat);*/
                     //  Log.d(TAG, outputadapter.toString());
+
+
                 }
 
 

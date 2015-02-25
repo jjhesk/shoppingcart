@@ -7,6 +7,7 @@ public class Image {
     private int id;
     private String path;
     private int position;
+    private ImageV2core _links;
 
     public Image() {
 
@@ -22,5 +23,21 @@ public class Image {
 
     public int getId() {
         return id;
+    }
+
+    public String originalImage() {
+        return _links.getO().gethref();
+    }
+
+    public String smallImage() {
+        return _links.getS().gethref();
+    }
+
+    public String mediumImage() {
+        return _links.getM().gethref();
+    }
+
+    public String largeImage() {
+        return _links.getL().gethref();
     }
 }

@@ -1,7 +1,5 @@
 package com.hb.hkm.hypebeaststore.datamodel.V2;
 
-import java.util.ArrayList;
-
 /**
  * Created by hesk on 2/6/15.
  */
@@ -21,7 +19,7 @@ public class outputV2 {
         return page;
     }
 
-    public ArrayList<Product> getProducts() {
-        return _embedded.getlist();
+    public wraperV2embeded getProducts() {
+        return _embedded;
     }
 }

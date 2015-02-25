@@ -82,11 +82,7 @@ public abstract class asyclient extends AsyncTask<Void, Void, String> {
         if (Config.setting.APIversion == 2)
             request.header("X-Api-Version", "2.0");
 
-
         final Response response = client.newCall(request.build()).execute();
-
-
-
         return response;
     }
 

@@ -17,3 +17,10 @@
 #}
 -keep class org.lucasr.twowayview.** { *; }
 -dontwarn com.squareup.okhttp.**
+
+# GoldenGate
+-keep class * extends com.flipboard.goldengate.JavaScriptBridge { *; }
+-keepattributes JavascriptInterface
+-keepclassmembers class ** {
+    @android.webkit.JavascriptInterface public *;
+}

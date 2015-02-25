@@ -12,7 +12,7 @@ import uk.me.lewisdeane.ldialogs.CustomDialog;
 public class RunLDialogs {
     public static void strDemo2(Context ctx, final String context) {
         final MaterialDialog materialdialognow = new MaterialDialog(ctx);
-        materialdialognow.setTitle("MaterialDialog");
+        materialdialognow.setTitle("Error Found");
         materialdialognow.setMessage(context);
         materialdialognow.setPositiveButton("OK", new View.OnClickListener() {
             @Override

@@ -19,4 +19,4 @@
           android:showAsAction="always"
           android:title="@string/sample_show_log" />
 </menu>
-<!-- From: file:/Users/hesk/GitHub/hypestore/hypebeaststore/Tabbasicdemo/src/main/res/menu/main.xml -->
+<!-- From: file:/Users/hesk/GitHub/HypebeastStore-Android-Native/hypebeaststore/Tabbasicdemo/src/main/res/menu/main.xml -->

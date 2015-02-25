@@ -11,12 +11,20 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/JazzListView" />
             <option value="$PROJECT_DIR$/L-dialogs" />
+            <option value="$PROJECT_DIR$/OverDragLayout" />
             <option value="$PROJECT_DIR$/Tabbasicdemo" />
+            <option value="$PROJECT_DIR$/WheelViewLib" />
+            <option value="$PROJECT_DIR$/api" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/daimajiaslider" />
+            <option value="$PROJECT_DIR$/eexpandedview" />
+            <option value="$PROJECT_DIR$/eexpandedviewsample" />
+            <option value="$PROJECT_DIR$/goldengateapi" />
+            <option value="$PROJECT_DIR$/goldengatecompiler" />
             <option value="$PROJECT_DIR$/jsoup-1.8.1" />
             <option value="$PROJECT_DIR$/libHkmCheck" />
-            <option value="$PROJECT_DIR$/library" />
             <option value="$PROJECT_DIR$/materialtabslib" />
+            <option value="$PROJECT_DIR$/slidesidemenu" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -36,7 +36,7 @@ public class HBLogin extends ActionBarActivity {
         final WebView webview = (WebView) findViewById(R.id.store_webview);
         webview.getSettings().setJavaScriptEnabled(true);
         webview.addJavascriptInterface(new clientWebInterface(this), "HtmlViewer");
-        webview.setWebViewClient(new com.hb.hkm.hypebeaststore.fragments.webviewclients.HBLogin(webview));
+        webview.setWebViewClient(new com.hb.hkm.hypebeaststore.webviewclients.HBLogin(webview));
         webview.loadUrl(Config.wv.hb_login);
     }
 

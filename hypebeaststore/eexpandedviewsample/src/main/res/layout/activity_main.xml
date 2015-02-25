@@ -1,0 +1,16 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tool:context=".MainActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:animateLayoutChanges="true"
+        android:id="@+id/expanded_menu_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </LinearLayout>
+
+</ScrollView>

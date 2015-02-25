@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/Users/hesk/GitHub/hypestore/hypebeaststore/JazzListView/assets"/></dataSet><dataSet config="release"><source path="/Users/hesk/GitHub/hypestore/hypebeaststore/JazzListView/build-types/release/assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/Users/hesk/GitHub/HypebeastStore-Android-Native/hypebeaststore/JazzListView/assets"/></dataSet><dataSet config="release"><source path="/Users/hesk/GitHub/HypebeastStore-Android-Native/hypebeaststore/JazzListView/build-types/release/assets"/></dataSet></merger>

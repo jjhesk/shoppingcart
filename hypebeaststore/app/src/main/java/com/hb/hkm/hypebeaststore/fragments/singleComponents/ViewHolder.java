@@ -9,7 +9,7 @@ import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.Indicators.PagerIndicator;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
-import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.hb.hkm.hypebeaststore.ProductSingle;
 import com.hb.hkm.hypebeaststore.R;
 import com.hb.hkm.hypebeaststore.controller.DataBank;
@@ -27,6 +27,7 @@ import static com.hb.hkm.hypebeaststore.fragments.singleComponents.ViewHolder.Re
 import static com.hb.hkm.hypebeaststore.fragments.singleComponents.ViewHolder.RequestTag.READSINGLE;
 
 /**
+ * Single View Holder to Display A SINGLE PRODUCT INFOMATION
  * Created by hesk on 2/5/15.
  */
 public class ViewHolder
@@ -67,13 +68,11 @@ public class ViewHolder
 
         SPinner = new SelectionSpinner(act);
 
-
         card_description = new cardbox(act.findViewById(R.id.description), act.getString(R.string.label_field_1));
         card_size = new cardbox(act.findViewById(R.id.size), act.getString(R.string.label_field_2));
         card_hard = new cardbox(act.findViewById(R.id.hardcode), act.getString(R.string.label_field_3));
 
 
-        if (!SPinner.foundSize()) card_size.setgone();
         add_bag = (Button) act.findViewById(R.id.add_to_bag);
         add_wish = (Button) act.findViewById(R.id.add_to_wish);
 
@@ -82,8 +81,6 @@ public class ViewHolder
             RunLDialogs.strDemo2(context, "position id not found");
         } else
             after(product_array_id);
-
-
     }
 
     private void after(final int pos) {
@@ -107,27 +104,22 @@ public class ViewHolder
     }
 
     protected void setup_selection_UI() {
-
+        if (!SPinner.foundSize()) card_size.setgone();
+        SPinner.init(product_single.getMappedVariants());
     }
 
     protected void setup_textviews() {
-      /*  String simple = !product_single.hasVariants() ? product_single.getMasterVariant().stock_logic() : "";
-
+        //String simple = !product_single.hasVariants() ? product_single.getMasterVariant().stock_logic() : "";
         card_description.setDesc(product_single.get_desc());
-        card_size.setDesc("iaonvoinaoivneionv ev ");
-        card_hard.setDesc("fiaojfdsoi jfiosdj ");
-
-
+        card_size.setDesc("product size and all other items goes here.");
+        card_hard.setDesc("terms and conditions goes here");
         if (!product_single.getSalesPrice().equalsIgnoreCase("")) {
-            price.setText(product_single.getPrice() + simple);
+            price.setText(product_single.getPrice());
             sales.setText(product_single.getSalesPrice());
         } else {
-
-            price.setText(product_single.getPrice() + simple);
+            price.setText(product_single.getPrice());
             sales.setText("");
-        }*/
-
-
+        }
     }
 
     protected void setup_slider() {
@@ -136,11 +128,11 @@ public class ViewHolder
 
             if (product_single.get_product_images() == null) throw new Exception("no images found");
             for (Image image : product_single.get_product_images()) {
-                url_maps.put("sample #" + image.getPosition(), image.getPath());
+                url_maps.put("sample #" + image.getPosition(), image.mediumImage());
             }
 
             for (Map.Entry<String, String> entry : url_maps.entrySet()) {
-                TextSliderView textSliderView = new TextSliderView(context);
+                DefaultSliderView textSliderView = new DefaultSliderView(context);
                 // initialize a SliderLayout
                 textSliderView
                         // .description(entry.getKey())

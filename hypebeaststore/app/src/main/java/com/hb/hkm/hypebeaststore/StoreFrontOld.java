@@ -21,7 +21,7 @@ public class StoreFrontOld extends ActionBarActivity implements asyclient.callba
     public static String TAG = "store front here";
     final GridDisplay mdisplay = new GridDisplay();
     private Bundle msavedInstanceState;
-
+//overridePendingTransition(0, 0);
     @Override
     public void onSuccess(String data) {
         //RunLDialogs.strDemo2(StoreFront.this, data);

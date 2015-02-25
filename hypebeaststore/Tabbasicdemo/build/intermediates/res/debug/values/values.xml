@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/Users/hesk/GitHub/hypestore/hypebeaststore/Tabbasicdemo/src/main/res/values/template-dimens.xml -->
+    <!-- From: file:/Users/hesk/GitHub/HypebeastStore-Android-Native/hypebeaststore/Tabbasicdemo/src/main/res/values/template-dimens.xml -->
     <eat-comment/>
     <dimen name="horizontal_page_margin">@dimen/margin_medium</dimen>
     <dimen name="margin_huge">64dp</dimen>
@@ -9,7 +9,7 @@
     <dimen name="margin_small">8dp</dimen>
     <dimen name="margin_tiny">4dp</dimen>
     <dimen name="vertical_page_margin">@dimen/margin_medium</dimen>
-    <!-- From: file:/Users/hesk/GitHub/hypestore/hypebeaststore/Tabbasicdemo/src/main/res/values/base-strings.xml -->
+    <!-- From: file:/Users/hesk/GitHub/HypebeastStore-Android-Native/hypebeaststore/Tabbasicdemo/src/main/res/values/base-strings.xml -->
     <eat-comment/>
     <string name="app_name">SlidingTabsBasic</string>
     <string name="intro_message">
@@ -22,11 +22,11 @@
         
         ]]>
     </string>
-    <!-- From: file:/Users/hesk/GitHub/hypestore/hypebeaststore/Tabbasicdemo/src/main/res/values/fragmentview_strings.xml -->
+    <!-- From: file:/Users/hesk/GitHub/HypebeastStore-Android-Native/hypebeaststore/Tabbasicdemo/src/main/res/values/fragmentview_strings.xml -->
     <eat-comment/>
     <string name="sample_hide_log">Hide Log</string>
     <string name="sample_show_log">Show Log</string>
-    <!-- From: file:/Users/hesk/GitHub/hypestore/hypebeaststore/Tabbasicdemo/src/main/res/values/template-styles.xml -->
+    <!-- From: file:/Users/hesk/GitHub/HypebeastStore-Android-Native/hypebeaststore/Tabbasicdemo/src/main/res/values/template-styles.xml -->
     <eat-comment/>
     <style name="AppTheme" parent="Theme.Sample"/>
     <style name="Theme.Base" parent="android:Theme.Light"/>

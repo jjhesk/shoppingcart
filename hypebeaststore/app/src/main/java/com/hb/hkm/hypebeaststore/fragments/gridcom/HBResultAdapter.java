@@ -40,7 +40,7 @@ public class HBResultAdapter extends ArrayAdapter<Product> {
     private void feedData(final ViewHolder vh, final int position) {
         // final Product p = DataBank.current_product_list.get(position);
         final Product p = DataBank.current_product_list2.get(position);
-        final String test = p.get_cover_image();
+        //final String test = p.get_cover_image();
 
         // vh.description.title.setText(p.getTitle());
         vh.text.setText(p.get_brand_name());
@@ -49,12 +49,12 @@ public class HBResultAdapter extends ArrayAdapter<Product> {
         //   int colorResId = position % 2 == 0 ? R.color.even : R.color.odd;
         //   holder.text.setBackgroundColor(res.getColor(colorResId));
         try {
-            Log.d(TAG, test);
+           // Log.d(TAG, test);
             pica
                     .load(p.get_cover_image())
                             //.load("http://store.hypebeast.com/bundles/hypebeasteditorial/images/hypebeast-logo.png")
                     .fit()
-                    .placeholder(R.drawable.ic_launcher)
+                    .placeholder(R.drawable.hbstoreicon)
                     .error(R.drawable.bike)
                     .into(vh.iv);
         } catch (Exception e) {

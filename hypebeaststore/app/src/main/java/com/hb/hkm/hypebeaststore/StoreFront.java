@@ -15,6 +15,7 @@ import com.asynhkm.productchecker.Util.Tool;
 import com.hb.hkm.hypebeaststore.controller.Config;
 import com.hb.hkm.hypebeaststore.controller.DataBank;
 import com.hb.hkm.hypebeaststore.datamodel.V1.Termm;
+import com.hb.hkm.hypebeaststore.fragments.FilterFragment;
 import com.hb.hkm.hypebeaststore.fragments.GridDisplay;
 import com.hb.hkm.hypebeaststore.fragments.dialogcom.RunLDialogs;
 import com.hb.hkm.hypebeaststore.fragments.gridcom.GrideDisplayEvent;
@@ -24,6 +25,7 @@ import com.hb.hkm.hypebeaststore.tasks.asyclient;
 
 import java.util.ArrayList;
 
+import github.chenupt.dragtoplayout.DragTopLayout;
 import it.neokree.materialtabs.MaterialTab;
 import it.neokree.materialtabs.MaterialTabHost;
 import it.neokree.materialtabs.MaterialTabListener;
@@ -35,9 +37,11 @@ public class StoreFront extends ActionBarActivity implements
     private ListQueryManager sync;
     public static String TAG = "store front here";
     final GridDisplay mdisplay = new GridDisplay();
+    final FilterFragment mfilterengine = new FilterFragment();
     private Bundle msavedInstanceState;
     private MaterialTabHost mTab;
     protected ProgressBar mProgressBar;
+    private DragTopLayout slidelayouttop;
 
     protected void setLoadingAnimation() {
       /*  mProgressBar.setIndeterminateDrawable(new CircularProgressDrawable
@@ -83,8 +87,9 @@ public class StoreFront extends ActionBarActivity implements
         query_url = url;
     }
 
+    private static final String default_url = Config.newarrivals;
+
     private String getURLQ() {
-        if (query_url == null) query_url = Config.newarrivals;
         return query_url;
     }
 
@@ -111,8 +116,10 @@ public class StoreFront extends ActionBarActivity implements
         } else {
             msavedInstanceState = savedInstanceState;
         }
-
-
+        if (getIntent().getExtras() != null) {
+            String url = getIntent().getExtras().getString("uri", "");
+            query_url = url.equalsIgnoreCase("") ? default_url : url;
+        }
         // progress2.
         // final CircleProgressBar progress2 = (CircleProgressBar) findViewById(R.id.progressBar);
         mdisplay.setGridEvents(new GrideDisplayEvent() {
@@ -131,10 +138,20 @@ public class StoreFront extends ActionBarActivity implements
         });
 
         mTab = (MaterialTabHost) this.findViewById(R.id.materialTabHost);
+        slidelayouttop = (DragTopLayout) this.findViewById(R.id.draglayout);
+
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.container, mdisplay)
                 .commit();
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.filter_layouts, mfilterengine)
+                .commit();
+
+        slidelayouttop.setTouchMode(false);
+
 
         if (DataBank.current_product_list2.size() == 0) {
             //if (DataBank.current_product_list.size() == 0) {
@@ -191,7 +208,6 @@ public class StoreFront extends ActionBarActivity implements
         final MaterialDialog md = new MaterialDialog.Builder(this)
                 .title(title)
                 .items(list)
-
                 .itemsCallbackSingleChoice(list_index_selection,
                         new MaterialDialog.ListCallback() {
                             @Override
@@ -248,7 +264,6 @@ public class StoreFront extends ActionBarActivity implements
         }
         mTab.setSelectedNavigationItem(tabPos);
         Tool.trace(getApplicationContext(), "pos=" + tabPos + ". pressed title = " + title);
-
     }
 
     @Override
@@ -292,7 +307,6 @@ public class StoreFront extends ActionBarActivity implements
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
