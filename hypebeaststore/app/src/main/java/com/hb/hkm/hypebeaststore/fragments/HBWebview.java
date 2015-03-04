@@ -9,10 +9,10 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
-import com.hb.hkm.hypebeaststore.controller.App;
-import com.hb.hkm.hypebeaststore.controller.Config;
+import com.hb.hkm.hypebeaststore.life.LifeCycleApp;
+import com.hb.hkm.hypebeaststore.life.Config;
 import com.hb.hkm.hypebeaststore.R;
-import com.hb.hkm.hypebeaststore.webviewclients.HBClient;
+import com.hb.hkm.hypebeaststore.widgets.webviewclients.HBClient;
 
 /**
  * Created by hesk on 2/2/15.
@@ -32,7 +32,7 @@ public class HBWebview extends Fragment {
 
     private WebView wv;
 
-    private void view_settings(WebView view, App control) {
+    private void view_settings(WebView view, LifeCycleApp control) {
         // token_cookie = control.get_web_cookie();
         /*CookieSyncManager cookieSyncManager = CookieSyncManager.createInstance(getActivity());
         cookieSyncManager.startSync();
@@ -48,7 +48,7 @@ public class HBWebview extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle bundle) {
         wv = (WebView) view.findViewById(R.id.store_webview);
-        view_settings(wv, (App) getActivity().getApplication());
+        view_settings(wv, (LifeCycleApp) getActivity().getApplication());
         wv.setWebViewClient(new HBClient(getActivity(), wv));
         wv.setWebChromeClient(new WebChromeClient());
         //wv.addJavascriptInterface(new JSInterfaceSupport(this, ac), "onecall_data_support");

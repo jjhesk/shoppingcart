@@ -1,125 +1,205 @@
 package com.hb.hkm.hypebeaststore;
 
-import android.animation.LayoutTransition;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.OvalShape;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 
-import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
-import com.hb.hkm.hkmeexpandedview.CatelogView;
 import com.hb.hkm.hkmeexpandedview.CatelogViewBuilder;
-import com.hb.hkm.hkmeexpandedview.list.DataBind;
-import com.hb.hkm.hypebeaststore.controller.MaterialColor;
-import com.hb.hkm.hypebeaststore.fragments.wheel.TextDrawable;
-import com.lukedeighton.wheelview.adapter.WheelArrayAdapter;
+import com.hb.hkm.hkmeexpandedview.databindingmodel.BasicDataBind;
+import com.hb.hkm.hkmeexpandedview.toggleWatcher;
+import com.hb.hkm.hypebeaststore.life.Config;
+import com.hb.hkm.hypebeaststore.life.MaterialColor;
+import com.hb.hkm.hypebeaststore.tasks.HTMLDomReader;
+import com.hb.hkm.hypebeaststore.tasks.HomePageJQuery;
+import com.hb.hkm.hypebeaststore.widgets.dialogcom.RunLDialogs;
+import com.parse.ParseAnalytics;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
  * Created by hesk on 2/11/15.
  */
 public class HomeStoreNative extends ActionBarActivity {
-
+    final String[] sample_images = new String[]{
+            "http://1.bp.blogspot.com/-OOr0aY6bIVw/VOC-CtmeaMI/AAAAAAAAk-o/Szc9_sOtwUE/s1600/Shot%2BOf%2BThe%2BWeek.jpg",
+            "http://2.bp.blogspot.com/-Bmwh2nKu3Dg/VJxhEpmcL_I/AAAAAAAAkBQ/W4RNm2tEi4U/s1600/Jump%2BFesta%2B2015%2Bmain.png",
+            "http://4.bp.blogspot.com/-FZE142qPpEw/URKaFmLmMyI/AAAAAAAAWY8/KgO4mq8b83U/s1600/Armoed+Franky+SA-MAX01+main.png",
+            "http://2.bp.blogspot.com/-WCedbQmPqmU/Ud6Bep7c2EI/AAAAAAAAZV0/BPs6HV87ti8/s1600/Nico+Robin+EZ2+ZOOM00.png",
+            "http://2.bp.blogspot.com/-6ECE0JJVi7k/Ur79GaghC7I/AAAAAAAAdZk/cGlOLqZAbm8/s1600/ZOOM+Kalifa+L15+main.png",
+            "http://4.bp.blogspot.com/-ACcwF_O2sxA/VNkeKkLxadI/AAAAAAAAkz0/uMEM_sjkvO4/s1600/EXPO02%2BNeo%2BDX%2BMr.2%2BBon%2BKure%2Bmain.png"
+    };
+    final String[] image_title = new String[]{
+            "Shot",
+            "Jump Festa 2015",
+            "Armoed Franky",
+            "Nico Robin Edition-Z",
+            "Kalifa - P.O.P Limited Edition",
+            "Mr.2 Bon Kure Dome Tour Limitation Ver. - P.O.P Neo EX"
+    };
     private String[] theItemList = new String[]{
             "pop",
             "handle",
             "spring",
             "summer"
     };
+    final String[] ItemsTitle = new String[]{
+            "Robin Nice!",
+            "K-Kill!",
+            "Luffy!",
+            "O - Z!",
+            "Zoro",
+            "Sixth"
+    };
+
+    protected void init_expandtabs(HomePageJQuery client) {
+        final toggleWatcher tw = new toggleWatcher();
+        final LinearLayout container = (LinearLayout) findViewById(R.id.expanded_menu_list);
+        // Start with two views
+       /* final ArrayList<sectionbind> aae = client.getStackItemPackages();
+        for (int i = 0; i < aae.size(); i++) {
+            sectionbind section = aae.get(i);
+            ArrayList<DataBind> h = new ArrayList<DataBind>();
+            for (final Map.Entry<String, String> entry : section.hash.entrySet()) {
+                h.add(new DataBind(entry.getKey(), entry.getValue()));
+            }
+            CatelogViewBuilder cb = new CatelogViewBuilder();
+            cb.enableFBSpring(true)
+                    .preset_src(R.drawable.bike, getResources().getDimension(R.dimen.home_collapsed))
+                    .rndColor()
+                    .setDataList(h)
+                    .setWatcher(tw);
+            CatelogView c = new CatelogView(this, cb);
+            container.addView(c);
+        }*/
 
 
-    protected void init_slider() {
+        // Start with two views
+        for (int i = 0; i < image_title.length; i++) {
+            ArrayList<BasicDataBind> bb = new ArrayList<BasicDataBind>();
+            for (int h = 0; h < ItemsTitle.length; h++) {
+                bb.add(new BasicDataBind(ItemsTitle[h], "zxczx zxczxc"));
+            }
+            CatelogViewBuilder cb = new CatelogViewBuilder(this);
+            cb.preset_src(sample_images[i], getResources().getDimension(R.dimen.home_collapsed))
+                    .rndColor()
+                    .setImageTitle(image_title[i])
+                    .setDataList(bb);
+            //cb.setWatcher(tw);
+            container.addView(cb.create());
+        }
+        // tw.addContainer(container);
+        tw.addContainer(container);
+    }
+
+    protected void init_slider(HomePageJQuery client) {
         try {
             final SliderLayout sl = (SliderLayout) findViewById(R.id.slider);
-            final Map<String, String> url_maps = new HashMap<String, String>();
+            /*  final Map<String, String> url_maps = new HashMap<String, String>();
             for (int i = 0; i < 10; i++) {
                 url_maps.put("sample #" + i, "http://media.salon.com/2013/08/shutterstock_64449766.jpg");
-            }
-            for (Map.Entry<String, String> entry : url_maps.entrySet()) {
+            }*/
+            for (final Map.Entry<String, String> entry : client.getSliderImages().entrySet()) {
                 DefaultSliderView textSliderView = new DefaultSliderView(this);
                 // initialize a SliderLayout
                 textSliderView
-                        .image(entry.getValue())
-                        .setScaleType(BaseSliderView.ScaleType.FitCenterCrop);
-                // .setOnSliderClickListener(this);
+                        .image(entry.getKey())
+                        .setScaleType(BaseSliderView.ScaleType.CenterCrop)
+                        .setOnSliderClickListener(new BaseSliderView.OnSliderClickListener() {
+                            @Override
+                            public void onSliderClick(BaseSliderView slider) {
+                                onSliderClicked(entry);
+                            }
+                        });
                 //add your extra information
                 textSliderView.getBundle()
                         .putString("extra", entry.getKey());
                 sl.addSlider(textSliderView);
             }
-            sl.setPresetTransformer(SliderLayout.Transformer.ZoomOutSlide);
+            sl.setPresetTransformer(SliderLayout.Transformer.Default);
             sl.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
-            sl.setCustomAnimation(new DescriptionAnimation());
+            //sl.setCustomAnimation(new DescriptionAnimation());
             sl.setDuration(4000);
         } catch (NullPointerException e) {
-            //  RunLDialogs.strDemo2(context, e.getMessage());
+            RunLDialogs.strDemo2(this, e.getMessage());
         } catch (Exception e) {
-            // RunLDialogs.strDemo2(context, e.getMessage());
+            RunLDialogs.strDemo2(this, e.getMessage());
         }
     }
 
-    protected void init_expandtabs() throws Resources.NotFoundException {
-        final LinearLayout container = (LinearLayout) findViewById(R.id.expanded_menu_list);
-        // Start with two views
-        for (int i = 0; i < 10; ++i) {
-            ArrayList<DataBind> h = new ArrayList<DataBind>();
-            h.add(new DataBind("sfsf6", "Sfs4e"));
-            h.add(new DataBind("5s3fsf5", "2Sfs"));
-            h.add(new DataBind("grege", "2Sfs"));
-            h.add(new DataBind("42gw", "2Sfs"));
-            h.add(new DataBind("234regerg", "2Sfs"));
-            h.add(new DataBind("7s2ef3", "4Sfs9"));
-            h.add(new DataBind("dfg432243", "4Sfs9"));
-
-            CatelogViewBuilder cb = new CatelogViewBuilder();
-            cb
-                    .preset_src(R.drawable.bike, getResources().getDimension(R.dimen.home_collapsed))
-                    .rndColor()
-                    .setDataList(h);
-            CatelogView c = new CatelogView(this, cb);
-            container.addView(c);
-        }
-
-       /* addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Adding a view will cause a LayoutTransition animation
-                container.addView(new ColoredView(context), 1);
-            }
-        });
-        removeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (container.getChildCount() > 0) {
-                    // Removing a view will cause a LayoutTransition animation
-                    container.removeViewAt(Math.min(1, container.getChildCount() - 1));
-                }
-            }
-        });*/
-
-        // Note that this assumes a LayoutTransition is set on the container, which is the
-        // case here because the container has the attribute "animateLayoutChanges" set to true
-        // in the layout file. You can also call setLayoutTransition(new LayoutTransition()) in
-        // code to set a LayoutTransition on any container.
-        LayoutTransition transition = container.getLayoutTransition();
-        // New capability as of Jellybean; monitor the container for *all* layout changes
-        // (not just add/remove/visibility changes) and animate these changes as well.
-        transition.enableTransitionType(LayoutTransition.CHANGING);
+    private void onSliderClicked(Map.Entry<String, String> entry) {
+        String urlNewString = entry.getValue();
+        Log.d(HomePageJQuery.TAG, "Home Page here: " + urlNewString);
+        Intent intent = new Intent(HomeStoreNative.this, StoreFront.class);
+        // intent.setData(Uri.parse(url));
+        final Bundle f = new Bundle();
+        f.putString("uri", urlNewString);
+        intent.putExtras(f);
+        //intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        HomeStoreNative.this.startActivity(intent);
+        overridePendingTransition(R.anim.enter_from_right, R.anim.exit_out_left);
     }
 
+    private HomePageJQuery process;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
+        setContentView(R.layout.act_home);
+        // Track app opens.
+        ParseAnalytics.trackAppOpened(getIntent());
+        process = (HomePageJQuery) new HomePageJQuery(this, new HTMLDomReader.callback() {
+            @Override
+            public void parserDone(String data, HTMLDomReader tasker) {
+                HomePageJQuery e = (HomePageJQuery) tasker;
+                init_slider(e);
+                init_expandtabs(e);
+            }
+
+            @Override
+            public void parserDoneFailure(String message) {
+
+            }
+
+            @Override
+            public void requestStart(HTMLDomReader task) {
+
+            }
+        }).execute(new String[]{Config.wv.domain_start});
+
+    }
+
+    /*
+
+        static class MaterialColorAdapter extends WheelArrayAdapter<Map.Entry<String, Integer>> {
+            MaterialColorAdapter(List<Map.Entry<String, Integer>> entries) {
+                super(entries);
+            }
+
+            @Override
+            public Drawable getDrawable(int position) {
+                Drawable[] drawable = new Drawable[]{
+                        createOvalDrawable(getItem(position).getValue()),
+                        new TextDrawable(String.valueOf(position))
+                };
+                return new LayerDrawable(drawable);
+            }
+
+            private Drawable createOvalDrawable(int color) {
+                ShapeDrawable shapeDrawable = new ShapeDrawable(new OvalShape());
+                shapeDrawable.getPaint().setColor(color);
+                return shapeDrawable;
+            }
+        }
+    */
     protected void init_wheel() {
        /*   final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.ex_item, R.id.header_text, theItemList);
         final ExpandableLayoutListView expandableLayoutListView = (ExpandableLayoutListView) findViewById(R.id.expandablelistview);
@@ -140,35 +220,6 @@ public class HomeStoreNative extends ActionBarActivity {
         wheelView.setAdapter(new MaterialColorAdapter(entries));*/
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_home);
-        init_slider();
-        init_expandtabs();
-
-    }
-
-    static class MaterialColorAdapter extends WheelArrayAdapter<Map.Entry<String, Integer>> {
-        MaterialColorAdapter(List<Map.Entry<String, Integer>> entries) {
-            super(entries);
-        }
-
-        @Override
-        public Drawable getDrawable(int position) {
-            Drawable[] drawable = new Drawable[]{
-                    createOvalDrawable(getItem(position).getValue()),
-                    new TextDrawable(String.valueOf(position))
-            };
-            return new LayerDrawable(drawable);
-        }
-
-        private Drawable createOvalDrawable(int color) {
-            ShapeDrawable shapeDrawable = new ShapeDrawable(new OvalShape());
-            shapeDrawable.getPaint().setColor(color);
-            return shapeDrawable;
-        }
-    }
 
     //get the materials darker contrast
     private int getContrastColor(Map.Entry<String, Integer> entry) {

@@ -7,7 +7,7 @@ import android.util.Log;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
-import com.hb.hkm.hypebeaststore.controller.Config;
+import com.hb.hkm.hypebeaststore.life.Config;
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;

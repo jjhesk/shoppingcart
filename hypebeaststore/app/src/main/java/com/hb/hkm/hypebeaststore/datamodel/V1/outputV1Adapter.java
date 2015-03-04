@@ -21,7 +21,7 @@ public class outputV1Adapter {
     }
 
 
-    public void sortedSize(final ArrayList<Termm> existingList) {
+    public void sortedSize(final ArrayList<TermWrap> existingList) {
         sortingWorker(
                 existingList,
                 Filtering.getSorted(adapter.getfacets().getSize().getTerms(),
@@ -29,7 +29,7 @@ public class outputV1Adapter {
         );
     }
 
-    public void sortedCate(final ArrayList<Termm> existingList) {
+    public void sortedCate(final ArrayList<TermWrap> existingList) {
         sortingWorker(
                 existingList,
                 Filtering.getSorted(adapter.getfacets().getCategory().getTerms(),
@@ -41,8 +41,8 @@ public class outputV1Adapter {
         return Filtering.getSorted(adapter.getfacets().getSize().getTerms(), Filtering.);
 
     }*/
-    private void sortingWorker(final ArrayList<Termm> existingList,
-                               final ArrayList<Termm> mlist) {
+    private void sortingWorker(final ArrayList<TermWrap> existingList,
+                               final ArrayList<TermWrap> mlist) {
         existingList.clear();
         existingList.addAll(mlist);
     }

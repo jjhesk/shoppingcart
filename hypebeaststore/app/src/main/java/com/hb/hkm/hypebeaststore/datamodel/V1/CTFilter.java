@@ -6,12 +6,12 @@ import java.util.ArrayList;
  * Created by hesk on 2/3/15.
  */
 public class CTFilter {
-    private ArrayList<Termm> terms;
+    private ArrayList<TermWrap> terms;
 
     public CTFilter() {
     }
 
-    public ArrayList<Termm> getTerms() {
+    public ArrayList<TermWrap> getTerms() {
         return terms;
     }
 }

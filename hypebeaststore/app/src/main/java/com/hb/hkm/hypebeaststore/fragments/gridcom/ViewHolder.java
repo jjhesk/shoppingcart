@@ -5,7 +5,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hb.hkm.hypebeaststore.R;
-import com.hb.hkm.hypebeaststore.fragments.singleComponents.cardbox;
 
 /**
  * Created by hesk on 2/11/15.

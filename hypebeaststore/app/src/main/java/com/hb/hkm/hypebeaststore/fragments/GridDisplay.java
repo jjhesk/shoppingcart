@@ -2,17 +2,18 @@ package com.hb.hkm.hypebeaststore.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 
-import com.hb.hkm.hypebeaststore.controller.Config;
-import com.hb.hkm.hypebeaststore.controller.DataBank;
 import com.hb.hkm.hypebeaststore.R;
 import com.hb.hkm.hypebeaststore.fragments.gridcom.FooterComponent;
 import com.hb.hkm.hypebeaststore.fragments.gridcom.GrideDisplayEvent;
 import com.hb.hkm.hypebeaststore.fragments.gridcom.HBResultAdapter;
+import com.hb.hkm.hypebeaststore.life.Config;
+import com.hb.hkm.hypebeaststore.life.retent;
 import com.hkm.ui.BounceScoller.BounceScroller;
 import com.melnykov.fab.FloatingActionButton;
 import com.twotoasters.jazzylistview.JazzyGridView;
@@ -51,7 +52,8 @@ public class GridDisplay extends ListFragment implements AbsListView.OnScrollLis
     }
 
     public void notifyList() {
-        madapter.notifyDataSetChanged();
+        if (madapter != null)
+            madapter.notifyDataSetChanged();
     }
 
     @Override
@@ -95,9 +97,17 @@ public class GridDisplay extends ListFragment implements AbsListView.OnScrollLis
         // Log.d(TAG, k + " : " + b + "");
         if (b > k) {
             // Log.d(TAG, "trigger run request. ");
-            if (DataBank.result_total_pages > DataBank.result_current_page) {
-                if (event != null) event.requestmoreitems(DataBank.result_current_page + 1);
+            if (retent.result_total_pages > retent.result_current_page) {
+                if (event != null) event.requestmoreitems(retent.result_current_page + 1);
             }
         }
+        if (swipeContainer != null) {
+            swipeContainer.setEnabled(firstVisibleItem == 0 );
+        }
+    }
+
+    private SwipeRefreshLayout swipeContainer;
+    public void setSwipeRefresherHandle(SwipeRefreshLayout swipe) {
+        swipeContainer = swipe;
     }
 }

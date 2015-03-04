@@ -2,20 +2,15 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/JazzListView/JazzListView.iml" filepath="$PROJECT_DIR$/JazzListView/JazzListView.iml" />
       <module fileurl="file://$PROJECT_DIR$/L-dialogs/L-dialogs.iml" filepath="$PROJECT_DIR$/L-dialogs/L-dialogs.iml" />
       <module fileurl="file://$PROJECT_DIR$/OverDragLayout/OverDragLayout.iml" filepath="$PROJECT_DIR$/OverDragLayout/OverDragLayout.iml" />
       <module fileurl="file://$PROJECT_DIR$/Tabbasicdemo/Tabbasicdemo.iml" filepath="$PROJECT_DIR$/Tabbasicdemo/Tabbasicdemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/WheelViewLib/WheelViewLib.iml" filepath="$PROJECT_DIR$/WheelViewLib/WheelViewLib.iml" />
-      <module fileurl="file://$PROJECT_DIR$/api/api.iml" filepath="$PROJECT_DIR$/api/api.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/daimajiaslider/daimajiaslider.iml" filepath="$PROJECT_DIR$/daimajiaslider/daimajiaslider.iml" />
       <module fileurl="file://$PROJECT_DIR$/eexpandedview/eexpandedview.iml" filepath="$PROJECT_DIR$/eexpandedview/eexpandedview.iml" />
-      <module fileurl="file://$PROJECT_DIR$/eexpandedviewsample/eexpandedviewsample.iml" filepath="$PROJECT_DIR$/eexpandedviewsample/eexpandedviewsample.iml" />
-      <module fileurl="file://$PROJECT_DIR$/goldengateapi/goldengateapi.iml" filepath="$PROJECT_DIR$/goldengateapi/goldengateapi.iml" />
-      <module fileurl="file://$PROJECT_DIR$/goldengatecompiler/goldengatecompiler.iml" filepath="$PROJECT_DIR$/goldengatecompiler/goldengatecompiler.iml" />
       <module fileurl="file://$PROJECT_DIR$/hypebeaststore.iml" filepath="$PROJECT_DIR$/hypebeaststore.iml" />
-      <module fileurl="file://$PROJECT_DIR$/jsoup-1.8.1/jsoup-1.8.1.iml" filepath="$PROJECT_DIR$/jsoup-1.8.1/jsoup-1.8.1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jsouptexample/jsouptexample.iml" filepath="$PROJECT_DIR$/jsouptexample/jsouptexample.iml" />
       <module fileurl="file://$PROJECT_DIR$/libHkmCheck/libHkmCheck.iml" filepath="$PROJECT_DIR$/libHkmCheck/libHkmCheck.iml" />
       <module fileurl="file://$PROJECT_DIR$/materialtabslib/materialtabslib.iml" filepath="$PROJECT_DIR$/materialtabslib/materialtabslib.iml" />
       <module fileurl="file://$PROJECT_DIR$/slidesidemenu/slidesidemenu.iml" filepath="$PROJECT_DIR$/slidesidemenu/slidesidemenu.iml" />

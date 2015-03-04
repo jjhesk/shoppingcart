@@ -8,20 +8,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.asynhkm.productchecker.Util.Tool;
-import com.hb.hkm.hypebeaststore.controller.Config;
-import com.hb.hkm.hypebeaststore.controller.DataBank;
-import com.hb.hkm.hypebeaststore.fragments.gridcom.GrideDisplayEvent;
 import com.hb.hkm.hypebeaststore.fragments.GridDisplay;
-import com.hb.hkm.hypebeaststore.fragments.dialogcom.RunLDialogs;
+import com.hb.hkm.hypebeaststore.fragments.gridcom.GrideDisplayEvent;
+import com.hb.hkm.hypebeaststore.life.Config;
+import com.hb.hkm.hypebeaststore.life.retent;
 import com.hb.hkm.hypebeaststore.tasks.ListQueryManager;
 import com.hb.hkm.hypebeaststore.tasks.asyclient;
+import com.hb.hkm.hypebeaststore.widgets.dialogcom.RunLDialogs;
 
 public class StoreFrontOld extends ActionBarActivity implements asyclient.callback {
     private ListQueryManager sync;
     public static String TAG = "store front here";
     final GridDisplay mdisplay = new GridDisplay();
     private Bundle msavedInstanceState;
-//overridePendingTransition(0, 0);
+
+    //overridePendingTransition(0, 0);
     @Override
     public void onSuccess(String data) {
         //RunLDialogs.strDemo2(StoreFront.this, data);
@@ -35,7 +36,7 @@ public class StoreFrontOld extends ActionBarActivity implements asyclient.callba
     }
 
     @Override
-    public void onFailure(String message) {
+    public void onFailure(String message, int code) {
         RunLDialogs.strDemo2(StoreFrontOld.this, message);
     }
 
@@ -47,10 +48,15 @@ public class StoreFrontOld extends ActionBarActivity implements asyclient.callba
 
     public void loadingList(final int page_at) {
         // final Bundle instance = savedInstanceState;
-        sync = new ListQueryManager(this);
-        sync.setPageView(page_at)
-                .setURL(Config.hometech)
-                .execute();
+        try {
+            sync = new ListQueryManager(this);
+            sync.setPageView(page_at)
+                    .setURL(Config.hometech)
+                    .execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
     }
 
@@ -63,8 +69,8 @@ public class StoreFrontOld extends ActionBarActivity implements asyclient.callba
                     .beginTransaction()
                     .add(R.id.container, mdisplay)
                     .commit();
-          //  if (DataBank.current_product_list.size() == 0) {
-            if (DataBank.current_product_list2.size() == 0) {
+            //  if (DataBank.current_product_list.size() == 0) {
+            if (retent.current_product_list2.size() == 0) {
                 loadingList(1);
             }
         } else {

@@ -7,11 +7,9 @@ import com.hb.hkm.hypebeaststore.datamodel.V1.outputV1Facets;
  */
 public class outputV1wrapAdapter {
 
-    private outputV1Facets facets;
-
     public outputV1wrapAdapter() {
     }
-
+    private outputV1Facets facets;
     public outputV1Facets getfacets() {
         return facets;
     }

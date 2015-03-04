@@ -2,13 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="50dp">
+    android:layout_height="@dimen/item_height">
 
     <TextView
+        android:paddingTop="@dimen/item_padding"
+        android:paddingBottom="@dimen/item_padding"
         android:id="@+id/label_field"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textColor="@color/background_material_dark"
+        android:textColor="@color/item_text_color"
         android:text="demo text" />
 
 </LinearLayout>

@@ -1,11 +1,10 @@
 package com.hb.hkm.hypebeaststore;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.webkit.WebView;
 
-import com.hb.hkm.hypebeaststore.controller.Config;
+import com.hb.hkm.hypebeaststore.life.Config;
 
 /**
  * Created by hesk on 2/25/15.
@@ -21,7 +20,7 @@ public class HomeStoreWeb extends ActionBarActivity {
         setContentView(R.layout.fragment_store_demo_webview);
         final WebView webview = (WebView) findViewById(R.id.store_webview);
         // webview.reload();
-        webview.setWebViewClient(new com.hb.hkm.hypebeaststore.webviewclients.HomePageClient(webview));
+        webview.setWebViewClient(new com.hb.hkm.hypebeaststore.widgets.webviewclients.HomePageClient(webview));
         webview.loadUrl(Config.wv.domain_start);
         /*final HomepageBridge bridge = new HomepageBridge(webview);
         webview.postDelayed(new Runnable() {

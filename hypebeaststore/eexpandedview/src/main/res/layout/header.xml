@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_gravity="top"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_alignParentTop="true">
+
+    <ImageView
+        android:id="@+id/image_src"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        android:scaleType="centerCrop"
+        android:src="@drawable/load" />
+
+    <View
+        android:id="@+id/secondlayeroverlay"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        style="@style/second_layer_overlay" />
+
+    <TextView
+        style="@style/second_layer_textview"
+        android:id="@+id/secondlayertext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!--
+        android:background="@drawable/down_shadow" />-->
+</RelativeLayout>
+

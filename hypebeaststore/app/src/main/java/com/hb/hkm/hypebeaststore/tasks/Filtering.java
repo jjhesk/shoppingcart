@@ -2,7 +2,7 @@ package com.hb.hkm.hypebeaststore.tasks;
 
 import android.content.Context;
 
-import com.hb.hkm.hypebeaststore.datamodel.V1.Termm;
+import com.hb.hkm.hypebeaststore.datamodel.V1.TermWrap;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,6 +13,24 @@ import java.util.Collections;
 
 public class Filtering extends asyclient {
 
+    public static String[] TermsAsListAlphabetical(final ArrayList<TermWrap> items) {
+        final ArrayList<String> sl = new ArrayList<String>();
+        sl.clear();
+        for (TermWrap T : items) {
+            sl.add(T.theTerm());
+        }
+        Collections.sort(sl, String.CASE_INSENSITIVE_ORDER);
+        return sl.toArray(new String[sl.size()]);
+    }
+
+    public static String[] TermsAsList(final ArrayList<TermWrap> items) {
+        final ArrayList<String> sl = new ArrayList<String>();
+        sl.clear();
+        for (TermWrap T : items) {
+            sl.add(T.theTerm());
+        }
+        return sl.toArray(new String[sl.size()]);
+    }
 
     /**
      * what's kind
@@ -55,35 +73,17 @@ public class Filtering extends asyclient {
 
     }
 
-    public static ArrayList<Termm> getSorted(final ArrayList<Termm> items, final String[] ref) {
-        final ArrayList<Termm> newlist = new ArrayList<Termm>();
+    public static ArrayList<TermWrap> getSorted(final ArrayList<TermWrap> items, final String[] ref) {
+        final ArrayList<TermWrap> newlist = new ArrayList<TermWrap>();
         for (String t : ref) {
-            for (Termm T : items) {
+            for (TermWrap T : items) {
                 String strTerm = T.theTerm();
                 if (strTerm.equalsIgnoreCase(t)) {
-                    newlist.add(new Termm(t, T.getTheCount()));
+                    newlist.add(new TermWrap(t, T.getTheCount()));
                 }
             }
         }
         return newlist;
     }
 
-    public static String[] TermsAsListAlphabetical(final ArrayList<Termm> items) {
-        final ArrayList<String> sl = new ArrayList<String>();
-        sl.clear();
-        for (Termm T : items) {
-            sl.add(T.theTerm());
-        }
-        Collections.sort(sl, String.CASE_INSENSITIVE_ORDER);
-        return sl.toArray(new String[sl.size()]);
-    }
-
-    public static String[] TermsAsList(final ArrayList<Termm> items) {
-        final ArrayList<String> sl = new ArrayList<String>();
-        sl.clear();
-        for (Termm T : items) {
-            sl.add(T.theTerm());
-        }
-        return sl.toArray(new String[sl.size()]);
-    }
 }

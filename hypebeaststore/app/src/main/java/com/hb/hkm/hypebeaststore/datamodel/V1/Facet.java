@@ -26,7 +26,7 @@ public class Facet {
         return category;
     }
 
-    public ArrayList<Termm> getPrice() {
+    public ArrayList<TermWrap> getPrice() {
         return price.getRanges();
     }
 }

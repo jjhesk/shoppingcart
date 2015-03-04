@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.webkit.WebView;
 
-import com.hb.hkm.hypebeaststore.controller.Config;
+import com.hb.hkm.hypebeaststore.life.Config;
 
 /**
  * Created by hesk on 2/11/15.
@@ -36,7 +36,7 @@ public class HBLogin extends ActionBarActivity {
         final WebView webview = (WebView) findViewById(R.id.store_webview);
         webview.getSettings().setJavaScriptEnabled(true);
         webview.addJavascriptInterface(new clientWebInterface(this), "HtmlViewer");
-        webview.setWebViewClient(new com.hb.hkm.hypebeaststore.webviewclients.HBLogin(webview));
+        webview.setWebViewClient(new com.hb.hkm.hypebeaststore.widgets.webviewclients.HBLogin(webview));
         webview.loadUrl(Config.wv.hb_login);
     }
 

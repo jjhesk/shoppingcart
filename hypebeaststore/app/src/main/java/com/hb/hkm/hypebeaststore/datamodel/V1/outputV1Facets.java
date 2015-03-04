@@ -19,7 +19,7 @@ public class outputV1Facets {
         return size;
     }
 
-    public ArrayList<Termm> getBrand() {
+    public ArrayList<TermWrap> getBrand() {
         return brand.getTerms();
     }
 
@@ -27,7 +27,7 @@ public class outputV1Facets {
         return category;
     }
 
-    public ArrayList<Termm> getPrice() {
+    public ArrayList<TermWrap> getPrice() {
         return price.getRanges();
     }
 

@@ -16,12 +16,11 @@ public class CTPrice {
         return ranges.get(which);
     }
 
-    public ArrayList<Termm> getRanges() {
-        final ArrayList<Termm> newList = new ArrayList<Termm>();
+    public ArrayList<TermWrap> getRanges() {
+        final ArrayList<TermWrap> newList = new ArrayList<TermWrap>();
         for (Range r : ranges) {
             newList.add(r.getTerm());
         }
-
         return newList;
     }
 }

@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/button_radius_edge"
-        fontPath="fonts/HelveticaNeueLight.ttf"
+
         android:textSize="@dimen/selection_title"
         android:text=""
         android:gravity="center_vertical|center_horizontal" />

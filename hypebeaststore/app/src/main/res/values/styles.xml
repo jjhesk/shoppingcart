@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
@@ -24,5 +24,18 @@
         <item name="android:paddingLeft">15dp</item>
         <item name="android:paddingRight">15dp</item>
         <item name="android:layout_marginRight">5dp</item>
+    </style>
+
+    <!--<style name="LoadButton" xmlns="http://schemas.android.com/apk/res/com.github.dmytrodanylyk.android-process-button">
+    -->
+    <style name="LoadButton" xmlns="http://schemas.android.com/apk/res-auto">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="pb_colorNormal">@android:color/holo_blue_light</item>
+        <item name="pb_colorPressed">@android:color/holo_blue_dark</item>
+        <item name="pb_colorComplete">@color/light_green_a100</item>
+        <item name="pb_textComplete">Done!</item>
+        <item name="pb_textProgress">Loading</item>
+        <item name="pb_textError">Error</item>
+        <item name="pb_colorError">@color/red_error</item>
     </style>
 </resources>

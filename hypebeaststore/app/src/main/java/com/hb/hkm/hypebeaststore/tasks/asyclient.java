@@ -7,7 +7,7 @@ import android.util.Log;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
-import com.hb.hkm.hypebeaststore.controller.Config;
+import com.hb.hkm.hypebeaststore.life.Config;
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -16,6 +16,7 @@ import com.squareup.okhttp.Response;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
+import org.json.JSONException;
 
 import java.io.IOException;
 
@@ -34,6 +35,7 @@ public abstract class asyclient extends AsyncTask<Void, Void, String> {
     protected OkHttpClient client = new OkHttpClient();
     protected callback mcallback;
     protected status _mstatus;
+    protected int failure_code;
 
     enum status {
         IDEL, PROCESSING, COMPLETE
@@ -42,7 +44,7 @@ public abstract class asyclient extends AsyncTask<Void, Void, String> {
     public interface callback {
         public void onSuccess(final String data);
 
-        public void onFailure(final String message);
+        public void onFailure(final String message, final int code);
 
         public void beforeStart(final asyclient task);
     }
@@ -60,25 +62,26 @@ public abstract class asyclient extends AsyncTask<Void, Void, String> {
 
     private String text_mc;
 
-    public asyclient setURL(String e) {
+    public asyclient setURL(String e) throws Exception {
+        if (e == null) return this;
         url = e;
         return this;
     }
 
-    private void setError(String e) {
+    protected void setError(String e) {
         isError = true;
         errorMessage = e;
     }
 
-    abstract protected void GSONParser(final String data);
+    abstract protected void GSONParser(final String data) throws JSONException, JsonSyntaxException, JsonIOException, JsonParseException;
 
-    private Response exe_command() throws IOException {
+    private Response makeUrlRequest() throws IOException {
 
         Request.Builder request = new Request.Builder()
                 .url(url)
                 .header("Accept", "application/json")
                 .header("User-Agent", Config.setting.useragent);
-
+        //according to HB new API design and spec
         if (Config.setting.APIversion == 2)
             request.header("X-Api-Version", "2.0");
 
@@ -88,21 +91,25 @@ public abstract class asyclient extends AsyncTask<Void, Void, String> {
 
     abstract protected void ViewConstruction();
 
+
     @Override
     protected String doInBackground(Void... params) {
-        String out = "";
+        String body = "";
         _mstatus = status.PROCESSING;
         try {
-            Response r = exe_command();
-            if (r.code() == 200) {
-                out = r.body().string();
+            Response r = makeUrlRequest();
+            failure_code = r.code();
+            if (failure_code == 200) {
+                body = r.body().string();
             } else {
-                throw new Exception("server error: " + r.code());
+                Log.d(TAG, "error code: " + failure_code);
+                Log.d(TAG, "found error on curl: " + url);
+                throw new Exception("server error: " + failure_code);
             }
 
-            GSONParser(out);
+            GSONParser(body);
             ViewConstruction();
-            out = "complete";
+            body = "complete";
 
         } catch (JsonIOException e) {
             setError(e.getMessage());
@@ -116,7 +123,7 @@ public abstract class asyclient extends AsyncTask<Void, Void, String> {
             Log.d("work ERROR", e.getMessage());
             setError(e.getMessage());
         }
-        return out;
+        return body;
     }
 
     @Override
@@ -131,7 +138,7 @@ public abstract class asyclient extends AsyncTask<Void, Void, String> {
         _mstatus = status.COMPLETE;
         if (mcallback != null) {
             if (isError) {
-                mcallback.onFailure(errorMessage);
+                mcallback.onFailure(errorMessage, failure_code);
             } else {
                 mcallback.onSuccess(result);
             }

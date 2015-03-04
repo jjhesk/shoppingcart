@@ -414,6 +414,10 @@ public class DragTopLayout extends FrameLayout {
         }
     }
 
+    public PanelState getState() {
+        return panelState;
+    }
+
     public void closeTopView(boolean anim) {
         if (dragContentView.getHeight() == 0) {
             panelState = PanelState.COLLAPSED;

@@ -8,7 +8,7 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
-import com.hb.hkm.hypebeaststore.datamodel.V1.Termm;
+import com.hb.hkm.hypebeaststore.datamodel.V1.TermWrap;
 
 import java.io.IOException;
 
@@ -23,19 +23,19 @@ public class TermFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
         //  if (type.getRawType() != Term.class || !(type instanceof ParameterizedType))
-        if (!type.getRawType().equals(Termm.class))
+        if (!type.getRawType().equals(TermWrap.class))
             return null;
-        final TypeAdapter<Termm> defaultAdapter = (TypeAdapter<Termm>) gson.getDelegateAdapter(this, type);
+        final TypeAdapter<TermWrap> defaultAdapter = (TypeAdapter<TermWrap>) gson.getDelegateAdapter(this, type);
         return (TypeAdapter<T>) new TermAdapter(defaultAdapter);
     }
 
-    class TermAdapter extends TypeAdapter<Termm> {
-        protected TypeAdapter<Termm> defaultAdapter;
+    class TermAdapter extends TypeAdapter<TermWrap> {
+        protected TypeAdapter<TermWrap> defaultAdapter;
 
         /**
          * @param defaultAdapter
          */
-        public TermAdapter(TypeAdapter<Termm> defaultAdapter) {
+        public TermAdapter(TypeAdapter<TermWrap> defaultAdapter) {
             this.defaultAdapter = defaultAdapter;
         }
 
@@ -43,7 +43,7 @@ public class TermFactory implements TypeAdapterFactory {
          * {@inheritDoc}
          */
         @Override
-        public void write(JsonWriter out, Termm value) throws IOException {
+        public void write(JsonWriter out, TermWrap value) throws IOException {
             defaultAdapter.write(out, value);
         }
 
@@ -51,16 +51,16 @@ public class TermFactory implements TypeAdapterFactory {
          * {@inheritDoc}
          */
         @Override
-        public Termm read(JsonReader in) throws IOException {
+        public TermWrap read(JsonReader in) throws IOException {
             if (in.peek() == JsonToken.STRING) {
                 in.skipValue();
                 return null;
             }
             final GsonBuilder gb = new GsonBuilder();
-            gb.registerTypeAdapter(Termm.class, new TermDe());
+            gb.registerTypeAdapter(TermWrap.class, new TermDe());
             //return defaultAdapter.read(in);
             final Gson g = gb.create();
-            return g.fromJson(in, Termm.class);
+            return g.fromJson(in, TermWrap.class);
             /* return new Term(j.has("term") ? j.get("term").getAsString() : "",
                     j.get("count").getAsInt());*/
         }

@@ -8,19 +8,13 @@ import android.test.suitebuilder.annotation.SmallTest;
 import com.asynhkm.productchecker.Util.Tool;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonToken;
-import com.google.gson.stream.JsonWriter;
-import com.hb.hkm.hypebeaststore.controller.Config;
-import com.hb.hkm.hypebeaststore.controller.DataBank;
+import com.hb.hkm.hypebeaststore.life.Config;
+import com.hb.hkm.hypebeaststore.life.retent;
 import com.hb.hkm.hypebeaststore.datamodel.V1.outputV1ProductWrap;
 import com.hb.hkm.hypebeaststore.datamodel.gsontool.TermFactory;
-import com.hb.hkm.hypebeaststore.fragments.dialogcom.RunLDialogs;
+import com.hb.hkm.hypebeaststore.widgets.dialogcom.RunLDialogs;
 import com.hb.hkm.hypebeaststore.tasks.ListQueryManager;
 import com.hb.hkm.hypebeaststore.tasks.asyclient;
-
-import java.io.IOException;
 
 /**
  * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
@@ -103,16 +97,16 @@ public class ApplicationTest extends ApplicationTestCase<Application>
         final outputV1ProductWrap output_product = g.fromJson(rtt, outputV1ProductWrap.class);
 
 
-        DataBank.current_product_list.addAll(output_product.getProducts());
-        DataBank.result_total_pages = output_product.totalpages();
-        DataBank.result_current_page = output_product.current_page();
+        retent.current_product_list.addAll(output_product.getProducts());
+        retent.result_total_pages = output_product.totalpages();
+        retent.result_current_page = output_product.current_page();
     }
 
     @MediumTest
     public void jsonTest3() {
         final outputV1ProductWrap output_product = g.fromJson(rtt, outputV1ProductWrap.class);
-        DataBank.result_total_pages = output_product.totalpages();
-        DataBank.result_current_page = output_product.current_page();
+        retent.result_total_pages = output_product.totalpages();
+        retent.result_current_page = output_product.current_page();
     }
 
     @SmallTest

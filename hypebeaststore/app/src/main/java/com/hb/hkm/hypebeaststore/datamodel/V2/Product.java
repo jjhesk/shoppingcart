@@ -1,9 +1,6 @@
 package com.hb.hkm.hypebeaststore.datamodel.V2;
 
-import com.asynhkm.productchecker.Util.Tool;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by hesk on 2/18/15.
@@ -58,17 +55,29 @@ public class Product {
         return "";
     }
 
-    public HashMap<String, String> getMappedVariants() {
-        HashMap<String, String> a = new HashMap<String, String>();
-        if (variants.size() == 0 || variants == null) return new HashMap<String, String>();
-        try {
-            for (Variant s : variants) {
-                a.putAll(s.getpair());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return Tool.sortHashMapByValuesD(a);
+    public boolean hasVariance() {
+        return variants.size() > 1;
     }
 
+    public ArrayList<Variant> getMappedVariants() throws Exception {
+        if (!hasVariance()) throw new Exception("variance not found");
+        ArrayList<Variant> h = new ArrayList<Variant>();
+        for (int i = 1; i < variants.size(); i++) {
+            Variant m = variants.get(i).init();
+            h.add(m);
+        }
+        return h;
+    }
+
+    /**
+     * n can only be bigger than 1
+     * n > 1
+     *
+     * @param n
+     * @return
+     */
+    public int getVariantID(int n) {
+
+        return variants.get(n).getId();
+    }
 }

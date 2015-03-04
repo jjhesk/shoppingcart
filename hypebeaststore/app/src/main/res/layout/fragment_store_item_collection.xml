@@ -13,16 +13,11 @@
    </FrameLayout>
 -->
 <FrameLayout
-
-
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
-
-
     android:id="@android:id/tabcontent"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-
 
 
     <com.twotoasters.jazzylistview.JazzyGridView
@@ -32,9 +27,7 @@
         android:divider="@null"
         android:numColumns="2"
         android:horizontalSpacing="8dp"
-        android:verticalSpacing="8dp"
-
-        />
+        android:verticalSpacing="8dp" />
 
     <com.melnykov.fab.FloatingActionButton
         android:id="@+id/fab"

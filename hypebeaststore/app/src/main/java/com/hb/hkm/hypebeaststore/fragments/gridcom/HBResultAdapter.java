@@ -3,7 +3,6 @@ package com.hb.hkm.hypebeaststore.fragments.gridcom;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +10,8 @@ import android.widget.ArrayAdapter;
 
 import com.hb.hkm.hypebeaststore.ProductSingle;
 import com.hb.hkm.hypebeaststore.R;
-import com.hb.hkm.hypebeaststore.controller.Config;
-import com.hb.hkm.hypebeaststore.controller.DataBank;
+import com.hb.hkm.hypebeaststore.life.Config;
+import com.hb.hkm.hypebeaststore.life.retent;
 import com.hb.hkm.hypebeaststore.datamodel.V2.Product;
 import com.squareup.picasso.Picasso;
 
@@ -30,16 +29,15 @@ public class HBResultAdapter extends ArrayAdapter<Product> {
     public static final String TAG = "product list adapter";
 
     public HBResultAdapter(Context context, int itemLayout) {
-        super(context, itemLayout, R.id.description, DataBank.current_product_list2);
+        super(context, itemLayout, R.id.description, retent.current_product_list2);
         inflater = LayoutInflater.from(context);
         res = context.getResources();
         this.itemLayout = itemLayout;
-
     }
 
     private void feedData(final ViewHolder vh, final int position) {
         // final Product p = DataBank.current_product_list.get(position);
-        final Product p = DataBank.current_product_list2.get(position);
+        final Product p = getItem(position);
         //final String test = p.get_cover_image();
 
         // vh.description.title.setText(p.getTitle());
@@ -49,13 +47,14 @@ public class HBResultAdapter extends ArrayAdapter<Product> {
         //   int colorResId = position % 2 == 0 ? R.color.even : R.color.odd;
         //   holder.text.setBackgroundColor(res.getColor(colorResId));
         try {
-           // Log.d(TAG, test);
+            // Log.d(TAG, test);
             pica
                     .load(p.get_cover_image())
                             //.load("http://store.hypebeast.com/bundles/hypebeasteditorial/images/hypebeast-logo.png")
-                    .fit()
+                            //.resizeDimen(R.dimen.dialog_title, R.dimen.dialog_title)
+                    .fit().centerInside()
                     .placeholder(R.drawable.hbstoreicon)
-                    .error(R.drawable.bike)
+                    .error(R.drawable.hbstoreicon)
                     .into(vh.iv);
         } catch (Exception e) {
             e.printStackTrace();

@@ -19,8 +19,8 @@
     <dimen name="footer_loader_height">200dp</dimen>
     <dimen name="dialog_title">25dp</dimen>
     <dimen name="dialog_context_font_size">15dp</dimen>
-
-    <dimen name="home_slider_height">150dp</dimen>
+    <dimen name="grid_item_padding">15dp</dimen>
+    <dimen name="home_slider_height">300dp</dimen>
     <dimen name="home_collapsed">100dp</dimen>
 
 </resources>

@@ -1,2 +1,2 @@
-include ':libHkmCheck', ':JazzListView', ':L-dialogs', ':jsoup-1.8.1', ':Tabbasicdemo', ':materialtabslib', ':WheelViewLib', ':eexpandedview', ':eexpandedviewsample',
-        ':app', ':daimajiaslider', ':OverDragLayout', ':slidesidemenu', ':api', ':goldengatecompiler', ':goldengateapi'
+include ':libHkmCheck', ':L-dialogs', ':Tabbasicdemo', ':materialtabslib', ':WheelViewLib', ':jsouptexample',
+        ':app', ':daimajiaslider', ':OverDragLayout', ':slidesidemenu', ':eexpandedview'

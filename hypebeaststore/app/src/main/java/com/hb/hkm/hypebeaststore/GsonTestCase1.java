@@ -7,12 +7,12 @@ import android.view.Menu;
 import android.widget.TextView;
 
 import com.asynhkm.productchecker.Util.Tool;
-import com.hb.hkm.hypebeaststore.controller.Config;
-import com.hb.hkm.hypebeaststore.controller.DataBank;
-import com.hb.hkm.hypebeaststore.datamodel.V1.Termm;
-import com.hb.hkm.hypebeaststore.fragments.dialogcom.RunLDialogs;
+import com.hb.hkm.hypebeaststore.datamodel.V1.TermWrap;
+import com.hb.hkm.hypebeaststore.life.Config;
+import com.hb.hkm.hypebeaststore.life.retent;
 import com.hb.hkm.hypebeaststore.tasks.ListQueryManager;
 import com.hb.hkm.hypebeaststore.tasks.asyclient;
+import com.hb.hkm.hypebeaststore.widgets.dialogcom.RunLDialogs;
 
 public class GsonTestCase1 extends ActionBarActivity implements asyclient.callback {
     private ListQueryManager sync;
@@ -27,7 +27,7 @@ public class GsonTestCase1 extends ActionBarActivity implements asyclient.callba
         //DataBank.result_total_pages
         if (page < 3) {
             page++;
-            for (final Termm tm : DataBank.filter_list_cat) {
+            for (final TermWrap tm : retent.filter_list_cat) {
                 addTextBody(tm.theTerm());
             }
         } else {
@@ -38,7 +38,7 @@ public class GsonTestCase1 extends ActionBarActivity implements asyclient.callba
     }
 
     @Override
-    public void onFailure(String message) {
+    public void onFailure(String message, int code) {
         RunLDialogs.strDemo2(GsonTestCase1.this, message);
     }
 
@@ -50,11 +50,15 @@ public class GsonTestCase1 extends ActionBarActivity implements asyclient.callba
 
     public void loadingList(final int page) {
         // final Bundle instance = savedInstanceState;
-        sync = new ListQueryManager(this);
-        sync.setPageView(page)
-                .setURL(Config.clothing)
-                .execute();
-        addTextBody2(Config.clothing);
+        try {
+            sync = new ListQueryManager(this);
+            sync.setPageView(page)
+                    .setURL(Config.clothing)
+                    .execute();
+            addTextBody2(Config.clothing);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private TextView result1, result2;

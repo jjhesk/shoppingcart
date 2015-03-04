@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="second_layer_textview">
+        <item name="android:layout_margin">@dimen/secondlayertextmargin</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:text">Demo Title Here</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_alignParentLeft">true</item>
+    </style>
+
+    <style name="second_layer_overlay">
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_height">10dp</item>
+        <item name="android:background">@drawable/overlay_shadow</item>
+    </style>
+</resources>

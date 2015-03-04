@@ -12,14 +12,18 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
-import com.hb.hkm.hypebeaststore.controller.Config;
-import com.hb.hkm.hypebeaststore.controller.DataBank;
 import com.hb.hkm.hypebeaststore.datamodel.V1.outputV1Adapter;
 import com.hb.hkm.hypebeaststore.datamodel.V1.outputV1ProductWrap;
 import com.hb.hkm.hypebeaststore.datamodel.V2.outV2sum;
+import com.hb.hkm.hypebeaststore.life.Config;
+import com.hb.hkm.hypebeaststore.life.retent;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 /**
  * Created by hesk on 2/4/15.
@@ -88,11 +92,25 @@ public class ListQueryManager extends asyclient {
     }
 
     @Override
-    public asyclient setURL(String e) {
-        String format_new = "%s?page=%d&limit=%d";
-        url = String.format(format_new, e, page, limit);
-        url += DataBank.msubmissionfilter.isEmpty() ? "" : DataBank.msubmissionfilter.getJson();
-        Log.d(TAG, url);
+    public asyclient setURL(String e) throws IOException, MalformedURLException, URISyntaxException, Exception {
+        final boolean hasQuestionMark = e.contains("?");
+        final boolean hasSpace = e.contains(" ");
+
+        final String has = "%s&page=%d&limit=%d";
+        final String hasnt = "%s?page=%d&limit=%d";
+        url = String.format(hasQuestionMark ? has : hasnt, e, page, limit);
+        if (hasSpace) {
+            //e.replace(" ", "%20");
+            // url = Uri.encode(url);
+            // URI uri = new URI(
+            //   url = Uriuri.toASCIIString()
+            URL d = new URL(url);
+            URI uri = new URI(d.getProtocol(), d.getUserInfo(), d.getHost(), d.getPort(), d.getPath(), d.getQuery(), d.getRef());
+            url = uri.toURL().toString();
+        }
+        url += retent.msubmissionfilter.isEmpty() ? "" : retent.msubmissionfilter.getJson();
+
+        Log.d(TAG, "request listing url:" + url);
         return this;
     }
 
@@ -105,58 +123,45 @@ public class ListQueryManager extends asyclient {
 
     @Override
     protected void GSONParser(final String data) throws JsonSyntaxException, JsonIOException, JsonParseException {
-
-
         final JsonReader reader = new JsonReader(new StringReader(data.trim()));
         reader.setLenient(true);
         switch (Config.setting.APIversion) {
             case 1:
                 final outputV1ProductWrap output_product = g.fromJson(data, outputV1ProductWrap.class);
-
-                DataBank.current_product_list.addAll(output_product.getProducts());
-                DataBank.result_total_pages = output_product.totalpages();
-                DataBank.result_current_page = output_product.current_page();
+                retent.current_product_list.addAll(output_product.getProducts());
+                retent.result_total_pages = output_product.totalpages();
+                retent.result_current_page = output_product.current_page();
                 //cgons.addTextBody(data);
-
-
                 if (!isReadingMore) {
                     outputV1Adapter opadp = g.fromJson(data, outputV1Adapter.class);
                     //  Log.d(TAG, opadp.toString());
-                    DataBank.filter_list_price.clear();
-                    DataBank.filter_list_brand.clear();
-                    DataBank.filter_list_price.addAll(opadp.getFacet().getPrice());
-                    DataBank.filter_list_brand.addAll(opadp.getFacet().getBrand());
-                    DataBank.filter_price = opadp.getFacet().getPriceFilter();
-                    opadp.sortedSize(DataBank.filter_list_size);
-                    opadp.sortedCate(DataBank.filter_list_cat);
+                    retent.filter_list_price.clear();
+                    retent.filter_list_brand.clear();
+                    retent.filter_list_price.addAll(opadp.getFacet().getPrice());
+                    retent.filter_list_brand.addAll(opadp.getFacet().getBrand());
+                    // retent.filter_price = opadp.getFacet().getPriceFilter();
+                    opadp.sortedSize(retent.filter_list_size);
+                    opadp.sortedCate(retent.filter_list_cat);
                 }
 
                 break;
             case 2:
                 Log.d(TAG, data);
                 final outV2sum outpro = g.fromJson(data, outV2sum.class);
-                DataBank.current_product_list2.addAll(outpro.V2output().getProducts().getlist());
-                DataBank.result_total_pages = outpro.V2output().totalpages();
-                DataBank.result_current_page = outpro.V2output().current_page();
-                //cgons.addTextBody(data);
+                retent.current_product_list2.addAll(outpro.V2output().getProducts().getlist());
+                retent.result_total_pages = outpro.V2output().totalpages();
+                retent.result_current_page = outpro.V2output().current_page();
                 if (!isReadingMore) {
-                    // DataBank.filter_list_price.clear();
-                    // DataBank.filter_list_brand.clear();
-                  /*
-                    outputV1Adapter outputadapter = g.fromJson(data, outputV1Adapter.class);
-                    DataBank.filter_list_price.clear();
-                    DataBank.filter_list_brand.clear();
-                    DataBank.filter_list_price.addAll(outputadapter.getFacet().getPrice());
-                    DataBank.filter_list_brand.addAll(outputadapter.getFacet().getBrand());
-                    DataBank.filter_price = outputadapter.getFacet().getPriceFilter();
-                    outputadapter.sortedSize(DataBank.filter_list_size);
-                    outputadapter.sortedCate(DataBank.filter_list_cat);*/
-                    //  Log.d(TAG, outputadapter.toString());
-
-
+                    retent.filter_list_price.clear();
+                    retent.filter_list_brand.clear();
+                    retent.filter_list_cat.clear();
+                    retent.filter_list_size.clear();
+                    retent.filter_list_price.addAll(outpro.V2output().getfacets().getPrice());
+                    retent.filter_list_brand.addAll(outpro.V2output().getfacets().getBrand());
+                    retent.filter_list_cat.addAll(outpro.V2output().getfacets().getCategory().getTerms());
+                    retent.filter_list_size.addAll(outpro.V2output().getfacets().getSize().getTerms());
+                    // retent.filter_price = outpro.V2output().getfacets().getPriceFilter();
                 }
-
-
                 break;
         }
     }

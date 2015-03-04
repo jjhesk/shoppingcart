@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ImageView
-        android:id="@+id/base_image_frame"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:scaleType="centerCrop"
-        android:layout_gravity="top" />
+        android:layout_height="match_parent">
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/list"></ListView>
+        <include
+            android:id="@+id/base_frame"
+            layout="@layout/header" />
 
+        <View
+            android:background="@drawable/down_shadow"
+            android:layout_width="match_parent"
+            android:layout_below="@id/base_frame"
+            android:layout_height="15dp" />
+
+        <ListView
+            android:layout_below="@id/base_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/list"></ListView>
+    </RelativeLayout>
 </merge>

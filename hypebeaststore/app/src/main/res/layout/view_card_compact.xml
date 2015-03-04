@@ -7,14 +7,14 @@
 
     <TextView
         android:id="@+id/title"
-        fontPath="fonts/HelveticaNeue.ttf"
+
         android:textSize="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="mock" />
 
     <TextView
-        fontPath="fonts/HelveticaNeue.ttf"
+
         android:id="@+id/context_conten"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

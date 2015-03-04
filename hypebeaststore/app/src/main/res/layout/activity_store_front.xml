@@ -12,62 +12,70 @@
 
 
 </LinearLayout>-->
-<github.chenupt.dragtoplayout.DragTopLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
-    tools:context=".StoreFront"
-    tools:ignore="MergeRootFrame"
 
+    android:id="@+id/activity_main_swipe_refresh_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:dtlOpen="false"
-    app:dtlCollapseOffset="0dp"
-    android:id="@+id/draglayout">
+    android:layout_height="wrap_content">
 
-    <!--top view-->
-    <LinearLayout
-        android:id="@+id/top_view"
+    <github.chenupt.dragtoplayout.DragTopLayout
+        tools:context=".StoreFront"
+        tools:ignore="MergeRootFrame"
+
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:animateLayoutChanges="true">
+        android:layout_height="match_parent"
+        app:dtlOpen="false"
+        app:dtlCollapseOffset="0dp"
+        android:id="@+id/draglayout">
 
-        <FrameLayout
-            android:id="@+id/filter_layouts"
+        <!--top view-->
+        <LinearLayout
+            android:id="@+id/top_view"
             android:layout_width="match_parent"
-            android:layout_height="100dp" />
-        <!--  <ImageView
-              android:layout_width="match_parent"
-              android:layout_height="100dp"
-              android:src="@drawable/bike"
-              android:scaleType="centerInside" />
-  -->
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:animateLayoutChanges="true">
 
-    <!--content view-->
-    <LinearLayout
-        android:id="@+id/drag_content_view"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+            <FrameLayout
+                android:id="@+id/filter_layouts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <!--  <ImageView
+                  android:layout_width="match_parent"
+                  android:layout_height="100dp"
+                  android:src="@drawable/bike"
+                  android:scaleType="centerInside" />
+      -->
+        </LinearLayout>
 
-        <!-- for Text Tabs -->
-        <it.neokree.materialtabs.MaterialTabHost
-            android:id="@+id/materialTabHost"
+        <!--content view-->
+        <LinearLayout
+            android:id="@+id/drag_content_view"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            app:textColor="@color/common_background"
-            app:primaryColor="@color/second_pref"
-            app:accentColor="@color/card_face"
-            app:hasIcons="false" />
+            android:layout_height="match_parent">
 
-        <FrameLayout
-            android:id="@+id/container"
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent" />
+            <!-- for Text Tabs -->
+            <it.neokree.materialtabs.MaterialTabHost
+                android:id="@+id/materialTabHost"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                app:textColor="@color/common_background"
+                app:primaryColor="@color/second_pref"
+                app:accentColor="@color/card_face"
+                app:hasIcons="false" />
 
-    </LinearLayout>
+            <FrameLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent" />
 
-</github.chenupt.dragtoplayout.DragTopLayout>
+        </LinearLayout>
+
+    </github.chenupt.dragtoplayout.DragTopLayout>
+</android.support.v4.widget.SwipeRefreshLayout>

@@ -6,7 +6,7 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import com.hb.hkm.hypebeaststore.datamodel.V1.Termm;
+import com.hb.hkm.hypebeaststore.datamodel.V1.TermWrap;
 
 import java.lang.reflect.Type;
 
@@ -14,19 +14,19 @@ import java.lang.reflect.Type;
  * Created by hesk on 2/13/15.
  */
 public class TermDe implements
-        JsonDeserializer<Termm>,
-        InstanceCreator<Termm> {
+        JsonDeserializer<TermWrap>,
+        InstanceCreator<TermWrap> {
 
     @Override
-    public Termm deserialize(JsonElement json, Type type, JsonDeserializationContext context)
+    public TermWrap deserialize(JsonElement json, Type type, JsonDeserializationContext context)
             throws JsonParseException {
         final JsonObject j = (JsonObject) json;
-        return new Termm(j.has("term") ? j.get("term").getAsString() : "",
+        return new TermWrap(j.has("term") ? j.get("term").getAsString() : "",
                 j.get("count").getAsInt());
     }
 
     @Override
-    public Termm createInstance(Type type) {
-        return new Termm("", 0);
+    public TermWrap createInstance(Type type) {
+        return new TermWrap("", 0);
     }
 }

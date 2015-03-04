@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/black_white">
+
+
+    <com.twotoasters.jazzylistview.JazzyGridView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@id/android:list"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:divider="@null"
+        android:numColumns="1"
+        android:horizontalSpacing="8dp"
+        android:verticalSpacing="8dp"
+        android:minHeight="300dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_height="45dp"
+        android:layout_width="match_parent">
+
+        <Button
+            android:id="@+id/f1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/button_blue_single"
+            android:text="CLEAR FILTER"
+            android:layout_margin="5dp" />
+
+        <Button
+            android:id="@+id/f2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/button_blue_single"
+            android:text="NEW FILTER"
+            android:layout_margin="5dp" />
+
+        <Button
+            android:id="@+id/f3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/button_blue_single"
+            android:text="APPLY"
+            android:layout_margin="5dp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

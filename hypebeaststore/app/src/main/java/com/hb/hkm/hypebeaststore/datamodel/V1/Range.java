@@ -11,8 +11,8 @@ public class Range {
     private int max = 0;
     private int total_count = 0;
     private int total = 0;
+    private float mean = 0f;
 
-    //private float meqn;
     public Range() {
     }
 
@@ -24,7 +24,7 @@ public class Range {
         return to;
     }
 
-    public Termm getTerm() {
+    public TermWrap getTerm() {
 
         String d = "";
         if (from == 0) {
@@ -35,7 +35,7 @@ public class Range {
             d = money(from) + " - " + money(to);
         }
 
-        return new Termm(d, count);
+        return new TermWrap(d, count);
     }
 
     private String money(int n) {
