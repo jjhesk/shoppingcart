@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.daimajia.swipe.SwipeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
+    android:id="@+id/swipe"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    app:show_mode="pull_out"
+    app:drag_edge="right">
+
+    <RelativeLayout
+        android:tag="bottom_control"
+        android:layout_width="160dp"
+        android:layout_height="match_parent"
+        android:background="@color/red_400">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="160dp"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:src="@drawable/viewproduct"
+                android:id="@+id/see"
+                android:text="REMOVE"
+                android:scaleType="centerInside"
+                android:layout_width="80dp"
+                android:layout_height="match_parent" />
+
+            <ImageButton
+                android:src="@drawable/delete_icon"
+                android:id="@+id/delete"
+                android:text="REMOVE"
+                android:layout_width="80dp"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:tag="top_control"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:gravity="center_horizontal">
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/iv_image_done"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent" />
+
+                <com.lsjwzh.widget.materialloadingprogressbar.CircleProgressBar
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:id="@+id/loadingb"
+                    android:layout_centerInParent="true" />
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.neopixl.pixlui.components.textview.TextView
+                    android:id="@+id/brand"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/single_brand_font_size"
+
+                    pixlui:typeface="Montserrat-Regular.ttf"
+
+
+                    android:textColor="@color/text_color_single_brand"
+
+                    />
+
+                <com.neopixl.pixlui.components.textview.TextView
+                    android:id="@+id/product_title"
+
+                    pixlui:typeface="Montserrat-Bold.ttf"
+                    android:textSize="@dimen/single_product_title_font_size"
+                    android:textColor="@color/text_color_single_title"
+
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </RelativeLayout>
+</com.daimajia.swipe.SwipeLayout>
